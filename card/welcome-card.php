@@ -4,11 +4,9 @@
       <h3 class="mb-3">Welcome, developer!</h3>
       <div class="row gx-5 gy-3">
         <div class="col-12 col-lg-9">
-
           <div>Portal is a free Bootstrap 5 admin dashboard template. The design is simple, clean and modular so
             it's a great base for building any modern web app.</div>
         </div>
-        <!--//col-->
         <div class="col-12 col-lg-3">
           <a class="btn app-btn-primary"
             href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/"><svg
@@ -21,14 +19,8 @@
                 d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z" />
             </svg>Free Download</a>
         </div>
-        <!--//col-->
       </div>
-      <!--//row-->
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <!--//app-card-body-->
-
   </div>
-  <!--//inner-->
 </div>
-<!--//app-card-->

@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <div class="row g-4 mb-4">
   <div class="col-12 col-lg-4">
     <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
@@ -13,32 +18,21 @@
                   d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
               </svg>
             </div>
-            <!--//icon-holder-->
-
           </div>
-          <!--//col-->
           <div class="col-auto">
             <h4 class="app-card-title">Invoices</h4>
           </div>
-          <!--//col-->
         </div>
-        <!--//row-->
       </div>
-      <!--//app-card-header-->
       <div class="app-card-body px-4">
-
         <div class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet eros vel diam
           semper mollis.</div>
       </div>
-      <!--//app-card-body-->
       <div class="app-card-footer p-4 mt-auto">
         <a class="btn app-btn-secondary" href="#">Create New</a>
       </div>
-      <!--//app-card-footer-->
     </div>
-    <!--//app-card-->
   </div>
-  <!--//col-->
   <div class="col-12 col-lg-4">
     <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
       <div class="app-card-header p-3 border-bottom-0">
@@ -53,31 +47,20 @@
                   d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
               </svg>
             </div>
-            <!--//icon-holder-->
-
           </div>
-          <!--//col-->
           <div class="col-auto">
             <h4 class="app-card-title">Apps</h4>
           </div>
-          <!--//col-->
         </div>
-        <!--//row-->
       </div>
-      <!--//app-card-header-->
       <div class="app-card-body px-4">
-
         <div class="intro">Pellentesque varius, elit vel volutpat sollicitudin, lacus quam efficitur augue</div>
       </div>
-      <!--//app-card-body-->
       <div class="app-card-footer p-4 mt-auto">
         <a class="btn app-btn-secondary" href="#">Create New</a>
       </div>
-      <!--//app-card-footer-->
     </div>
-    <!--//app-card-->
   </div>
-  <!--//col-->
   <div class="col-12 col-lg-4">
     <div class="app-card app-card-basic d-flex flex-column align-items-start shadow-sm">
       <div class="app-card-header p-3 border-bottom-0">
@@ -92,31 +75,19 @@
                   d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
               </svg>
             </div>
-            <!--//icon-holder-->
-
           </div>
-          <!--//col-->
           <div class="col-auto">
             <h4 class="app-card-title">Tools</h4>
           </div>
-          <!--//col-->
         </div>
-        <!--//row-->
       </div>
-      <!--//app-card-header-->
       <div class="app-card-body px-4">
-
         <div class="intro">Sed maximus, libero ac pharetra elementum, turpis nisi molestie neque, et tincidunt
           velit turpis non enim.</div>
       </div>
-      <!--//app-card-body-->
       <div class="app-card-footer p-4 mt-auto">
         <a class="btn app-btn-secondary" href="#">Create New</a>
       </div>
-      <!--//app-card-footer-->
     </div>
-    <!--//app-card-->
   </div>
-  <!--//col-->
 </div>
-<!--//row-->

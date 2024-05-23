@@ -6,18 +6,13 @@
           <div class="col-auto">
             <h4 class="app-card-title">Progress</h4>
           </div>
-          <!--//col-->
           <div class="col-auto">
             <div class="card-header-action">
               <a href="#">All projects</a>
             </div>
-            <!--//card-header-actions-->
           </div>
-          <!--//col-->
         </div>
-        <!--//row-->
       </div>
-      <!--//app-card-header-->
       <div class="app-card-body">
         <div class="item p-3">
           <div class="row align-items-center">
@@ -28,7 +23,6 @@
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <!--//col-->
             <div class="col-auto">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
@@ -36,14 +30,9 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </div>
-            <!--//col-->
           </div>
-          <!--//row-->
           <a class="item-link-mask" href="#"></a>
         </div>
-        <!--//item-->
-
-
         <div class="item p-3">
           <div class="row align-items-center">
             <div class="col">
@@ -53,7 +42,6 @@
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <!--//col-->
             <div class="col-auto">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
@@ -61,13 +49,9 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </div>
-            <!--//col-->
           </div>
-          <!--//row-->
           <a class="item-link-mask" href="#"></a>
         </div>
-        <!--//item-->
-
         <div class="item p-3">
           <div class="row align-items-center">
             <div class="col">
@@ -77,7 +61,6 @@
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <!--//col-->
             <div class="col-auto">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
@@ -85,13 +68,9 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </div>
-            <!--//col-->
           </div>
-          <!--//row-->
           <a class="item-link-mask" href="#"></a>
         </div>
-        <!--//item-->
-
         <div class="item p-3">
           <div class="row align-items-center">
             <div class="col">
@@ -101,7 +80,6 @@
                   aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
-            <!--//col-->
             <div class="col-auto">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
@@ -109,19 +87,12 @@
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </div>
-            <!--//col-->
           </div>
-          <!--//row-->
           <a class="item-link-mask" href="#"></a>
         </div>
-        <!--//item-->
-
       </div>
-      <!--//app-card-body-->
     </div>
-    <!--//app-card-->
   </div>
-  <!--//col-->
   <div class="col-12 col-lg-6">
     <div class="app-card app-card-stats-table h-100 shadow-sm">
       <div class="app-card-header p-3">
@@ -129,18 +100,13 @@
           <div class="col-auto">
             <h4 class="app-card-title">Stats List</h4>
           </div>
-          <!--//col-->
           <div class="col-auto">
             <div class="card-header-action">
               <a href="#">View report</a>
             </div>
-            <!--//card-header-actions-->
           </div>
-          <!--//col-->
         </div>
-        <!--//row-->
       </div>
-      <!--//app-card-header-->
       <div class="app-card-body p-3 p-lg-4">
         <div class="table-responsive">
           <table class="table table-borderless mb-0">
@@ -194,12 +160,7 @@
             </tbody>
           </table>
         </div>
-        <!--//table-responsive-->
       </div>
-      <!--//app-card-body-->
     </div>
-    <!--//app-card-->
   </div>
-  <!--//col-->
 </div>
-<!--//row-->

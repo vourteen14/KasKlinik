@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <div class="app-sidepanel-footer">
 	<nav class="app-nav app-nav-footer">
 		<ul class="app-menu footer-menu list-unstyled">
@@ -13,10 +18,7 @@
 					</span>
 					<span class="nav-link-text">About</span>
 				</a>
-				<!--//nav-link-->
 			</li>
-			<!--//nav-item-->
 		</ul>
-		<!--//footer-menu-->
 	</nav>
 </div>
