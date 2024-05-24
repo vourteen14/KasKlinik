@@ -1,3 +1,32 @@
+<?php
+require './config/config.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $username = $_POST['signin-username'];
+  $password = $_POST['signin-password'];
+  $remember = isset($_POST['RememberPassword']);
+
+  $stmt = $conn->prepare("SELECT * FROM user WHERE username = :username");
+  $stmt->bindParam(':username', $username);
+  $stmt->execute();
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($user && password_verify($password, $user['password'])) {
+    $_SESSION['user_id'] = $user['id'];
+
+    if ($remember) {
+      setcookie('user_id', $user['id'], time() + (86400 * 30), "/");
+    }
+
+    header("Location: index.php");
+    exit();
+  } else {
+		error_log("Invalid username or password");
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,11 +51,11 @@
 								src="assets/images/app-logo.svg" alt="logo"></a></div>
 					<h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
 					<div class="auth-form-container text-start">
-						<form class="auth-form login-form">
+						<form class="auth-form login-form" method="POST">
 							<div class="email mb-3">
-								<label class="sr-only" for="signin-email">Email</label>
-								<input id="signin-email" name="signin-email" type="email" class="form-control signin-email"
-									placeholder="Email address" required="required">
+								<label class="sr-only" for="signin-username">Username</label>
+								<input id="signin-username" name="signin-username" type="text" class="form-control signin-username"
+									placeholder="Username" required="required">
 							</div>
 							<div class="password mb-3">
 								<label class="sr-only" for="signin-password">Password</label>
@@ -35,7 +64,7 @@
 								<div class="extra mt-3 row justify-content-between">
 									<div class="col-6">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="RememberPassword">
+											<input class="form-check-input" type="checkbox" value="" id="RememberPassword" name="RememberPassword">
 											<label class="form-check-label" for="RememberPassword">
 												Remember me
 											</label>
@@ -68,7 +97,7 @@
 		<div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
 			<div class="auth-background-holder">
 			</div>
-			<div class="auth-background-mask"></div>
+			<div class="1"></div>
 			<div class="auth-background-overlay p-3 p-lg-5">
 				<div class="d-flex flex-column align-content-end h-100">
 					<div class="h-100"></div>
