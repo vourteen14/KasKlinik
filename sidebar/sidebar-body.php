@@ -1,12 +1,7 @@
-<?php
-
-
-?>
-
 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 	<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 		<li class="nav-item">
-			<a class="nav-link active" href="#">
+			<a class="nav-link <?php echo $isPage == 'dashboard' ? 'active' : ''; ?>" href="/">
 				<span class="nav-icon">
 					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor"
 						xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +14,7 @@
 			</a>
 		</li>
 		<li class="nav-item has-submenu">
-			<a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1"
+			<a class="nav-link submenu-toggle <?php echo $isPage == 'data-pasien' || $isPage == 'data-tindakan' ? 'active' : ''; ?>" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1"
 				aria-expanded="false" aria-controls="submenu-1">
 				<span class="nav-icon">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-1x2" viewBox="0 0 16 16">
@@ -37,13 +32,13 @@
 			</a>
 			<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 				<ul class="submenu-list list-unstyled">
-					<li class="submenu-item"><a class="submenu-link" href="notifications.html">Data Pasien</a></li>
-					<li class="submenu-item"><a class="submenu-link" href="account.html">Data Tindakan</a></li>
+					<li class="submenu-item"><a class="submenu-link <?php echo $isPage == 'data-pasien' ? 'active' : ''; ?>" href="/data-pasien.php">Data Pasien</a></li>
+					<li class="submenu-item"><a class="submenu-link <?php echo $isPage == 'data-tindakan' ? 'active' : ''; ?>" href="/data-tindakan.php">Data Tindakan</a></li>
 				</ul>
 			</div>
 		</li>
 		<li class="nav-item has-submenu">
-			<a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2"
+			<a class="nav-link submenu-toggle <?php echo $isPage == 'penerimaan-kas' || $isPage == 'pengeluaran-kas' ? 'active' : ''; ?>" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-2"
 				aria-expanded="false" aria-controls="submenu-2">
 				<span class="nav-icon">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
@@ -62,13 +57,13 @@
 			</a>
 			<div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 				<ul class="submenu-list list-unstyled">
-					<li class="submenu-item"><a class="submenu-link" href="login.html">Penerimaan Kas</a></li>
-					<li class="submenu-item"><a class="submenu-link" href="signup.html">Pengeluaran Kas</a></li>
+					<li class="submenu-item"><a class="submenu-link <?php echo $isPage == 'penerimaan-kas' ? 'active' : ''; ?>" href="/penerimaan-kas.php">Penerimaan Kas</a></li>
+					<li class="submenu-item"><a class="submenu-link <?php echo $isPage == 'pengeluaran-kas' ? 'active' : ''; ?>" href="/pengeluaran-kas.php">Pengeluaran Kas</a></li>
 				</ul>
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="charts.html">
+			<a class="nav-link <?php echo $isPage == 'laporan' ? 'active' : ''; ?>" href="/laporan.php">
 				<span class="nav-icon">
 					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line" fill="currentColor"
 						xmlns="http://www.w3.org/2000/svg">
