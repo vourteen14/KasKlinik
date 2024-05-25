@@ -4,8 +4,68 @@ $isPage = 'data-pasien';
 $data = [
   ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
 	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
+	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
 	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ]
 ];
+
+$itemsPerPage = 10;
+$totalItems = count($data);
+$totalPages = ceil($totalItems / $itemsPerPage);
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+if ($page > $totalPages) $page = $totalPages;
+
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+
+$filteredData = array_filter($data, function($item) use ($searchQuery) {
+    return stripos($item['kode'], $searchQuery) !== false ||
+           stripos($item['nama'], $searchQuery) !== false ||
+           stripos($item['tempat'], $searchQuery) !== false ||
+           stripos($item['telepon'], $searchQuery) !== false ||
+           stripos($item['kategori'], $searchQuery) !== false;
+});
+
+$totalItems = count($filteredData);
+$totalPages = ceil($totalItems / $itemsPerPage);
+$offset = ($page - 1) * $itemsPerPage;
+$currentItems = array_slice($filteredData, $offset, $itemsPerPage);
+
+function renderPagination($page, $totalPages, $searchQuery) {
+    include './component/pagination.php';
+}
 
 ?>
 
@@ -65,10 +125,10 @@ $data = [
 						<div class="page-utilities">
 							<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 								<div class="col-auto">
-									<?php include './component/pasien-search-box.php'; ?>
+									<?php include './component/search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<a class="btn app-btn-secondary" href="#">
+									<a class="btn app-btn-primary" href="/data-pasien-input.php">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 											class="bi bi-plus-lg" viewBox="0 0 16 16">
 											<path fill-rule="evenodd"
@@ -98,9 +158,9 @@ $data = [
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($data as $index => $row): ?>
+											<?php foreach ($currentItems as $index => $row): ?>
 											<tr>
-												<td class="cell"><?php echo $index + 1; ?></td>
+												<td class="cell"><?php echo ($offset + $index + 1) ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['kode']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['tempat']); ?></td>
@@ -108,8 +168,9 @@ $data = [
 												<td class="cell"><?php echo htmlspecialchars($row['kategori']); ?></td>
 												<td class="cell">
 													<div class="d-flex justify-content-between w-50">
-														<a class="btn-sm app-btn-secondary me-1" href="#">Edit</a>
-														<a class="btn-sm app-btn-secondary ms-1" href="#">Delete</a>
+														<a class="btn-sm app-btn-primary me-1"
+															href="/data-pasien-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
+														<button class="btn-sm app-btn-secondary ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
 													</div>
 												</td>
 											</tr>
@@ -119,19 +180,7 @@ $data = [
 								</div>
 							</div>
 						</div>
-						<nav class="app-pagination">
-							<ul class="pagination justify-content-center">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-								</li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>
+						<?php renderPagination($page, $totalPages, $searchQuery); ?>
 					</div>
 				</div>
 			</div>
@@ -140,12 +189,29 @@ $data = [
 			<?php include './footer.php'; ?>
 		</footer>
 	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      	<div class="modal-header">
+        	<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      	</div>
+      	<div class="modal-body">
+        	...
+      	</div>
+      	<div class="modal-footer">
+        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        	<button type="button" class="btn btn-primary">Save changes</button>
+      	</div>
+    	</div>
+  	</div>
+	</div> 
 	<script src="assets/plugins/popper.min.js"></script>
+	<script src="assets/plugins/jquery-3.5.1.slim.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/plugins/chart.js/chart.min.js"></script>
 	<script src="assets/js/charts-demo.js"></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
 </body>
-
 </html>

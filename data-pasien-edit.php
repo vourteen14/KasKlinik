@@ -1,0 +1,121 @@
+<?php
+
+$isPage = 'data-pasien';
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+  <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+  <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+</head>
+
+<body class="app">
+  <header class="app-header fixed-top">
+    <div class="app-header-inner">
+      <div class="container-fluid py-2">
+        <div class="app-header-content">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+              <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
+                  <title>Menu</title>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                    d="M4 7h22M4 15h22M4 23h22"></path>
+                </svg>
+              </a>
+            </div>
+            <?php include './component/profile-icon.php'; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="app-sidepanel" class="app-sidepanel">
+      <div id="sidepanel-drop" class="sidepanel-drop"></div>
+      <div class="sidepanel-inner d-flex flex-column">
+        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+        <?php include './sidebar/sidebar-header.php'; ?>
+        <?php include './sidebar/sidebar-body.php'; ?>
+        <?php include './sidebar/sidebar-footer.php'; ?>
+      </div>
+    </div>
+  </header>
+  <div class="app-wrapper">
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+      <div class="container-xl">
+        <h1 class="app-page-title">Edit Data Pasien</h1>
+        <form class="auth-form login-form" method="POST">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="text mb-3">
+                <label class="form-label" for="kode-pasien">Kode Pasien</label>
+                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" required="required">
+              </div>
+              <div class="text mb-3">
+                <label class="form-label" for="nama-pasien">Nama Pasien</label>
+                <input id="nama-pasien" name="nama-pasien" type="text" class="form-control" required="required">
+              </div>
+              <div class="text mb-3">
+                <label class="form-label" for="kategori">Kategori</label>
+                <input id="kategori" name="kategori" type="text" class="form-control" required="required">
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <div class="text mb-3">
+                    <label class="form-label" for="kecamatan">Kecamatan</label>
+                    <input id="kecamatan" name="kecamatan" type="text" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="text mb-3">
+                    <label class="form-label" for="desa">Desa</label>
+                    <input id="desa" name="desa" type="text" class="form-control" required="required">
+                  </div>
+                </div>
+              </div>
+              <div class="text">
+                <label class="form-label" for="telepon">Nomor Telepon</label>
+                <input id="telepon" name="telepon" type="text" class="form-control" required="required">
+              </div>
+              <div class="pt-2">
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+</svg> Edit</button>
+              </div>
+              <div class="pt-1">
+                <a href="/data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                  </svg> Kembali</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="app-footer">
+      <?php include './footer.php'; ?>
+    </footer>
+  </div>
+  <script src="assets/plugins/popper.min.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/plugins/chart.js/chart.min.js"></script>
+  <script src="assets/js/index-charts.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

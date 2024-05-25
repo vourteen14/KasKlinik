@@ -8,9 +8,30 @@ $data = [
     ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
     ['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
     ['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
+    ['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],   ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
+    ['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
+    ['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
+    ['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
+		    ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
+    ['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
+    ['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
     ['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
 ];
 
+$itemsPerPage = 10;
+$totalItems = count($data);
+$totalPages = ceil($totalItems / $itemsPerPage);
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+if ($page > $totalPages) $page = $totalPages;
+
+$offset = ($page - 1) * $itemsPerPage;
+$currentItems = array_slice($data, $offset, $itemsPerPage);
+
+function renderPagination($page, $totalPages) {
+    include './component/pagination.php';
+}
 
 ?>
 
@@ -104,9 +125,9 @@ $data = [
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($data as $index => $row): ?>
+											<?php foreach ($currentItems as $index => $row): ?>
 											<tr>
-												<td class="cell"><?php echo $index + 1; ?></td>
+												<td class="cell"><?php echo $offset + $index + 1; ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['kode']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['catatan']); ?></td>
@@ -126,19 +147,7 @@ $data = [
 								</div>
 							</div>
 						</div>
-						<nav class="app-pagination">
-							<ul class="pagination justify-content-center">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-								</li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>
+						<?php renderPagination($page, $totalPages); ?>
 					</div>
 				</div>
 			</div>
