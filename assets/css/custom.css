@@ -3,3 +3,29 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.search-btn i {
+    margin: auto;
+}
+
+.dialog-container {
+    display: none;
+    position: absolute;
+}
+
+.dialog {
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .dialog-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

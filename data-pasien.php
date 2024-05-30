@@ -2,42 +2,42 @@
 $isPage = 'data-pasien';
 
 $data = [
-  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ],
-	  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum' ]
+  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '10-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '10-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '10-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
+	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
+	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
+	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ]
 ];
 
 $itemsPerPage = 10;
@@ -81,6 +81,7 @@ function renderPagination($page, $totalPages, $searchQuery) {
 	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 	<link rel="shortcut icon" href="favicon.ico">
 	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+	<link id="theme-style" rel="stylesheet" href="assets/css/custom.css">
 	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 </head>
 
@@ -153,6 +154,7 @@ function renderPagination($page, $totalPages, $searchQuery) {
 												<th class="cell">Nama Pasien</th>
 												<th class="cell">Tempat Tinggal</th>
 												<th class="cell">Nomor Telepon</th>
+												<th class="cell">Tanggal</th>
 												<th class="cell">Kategori</th>
 												<th class="cell">Aksi</th>
 											</tr>
@@ -165,12 +167,12 @@ function renderPagination($page, $totalPages, $searchQuery) {
 												<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['tempat']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['telepon']); ?></td>
+												<td class="cell"><?php echo htmlspecialchars($row['tanggal']); ?></td>
 												<td class="cell"><?php echo htmlspecialchars($row['kategori']); ?></td>
 												<td class="cell">
 													<div class="d-flex justify-content-between w-50">
-														<a class="btn-sm app-btn-primary me-1"
-															href="/data-pasien-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
-														<button class="btn-sm app-btn-secondary ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+														<a class="btn-sm app-btn-primary me-1" href="/data-pasien-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
+														<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, <?php echo htmlspecialchars($row['kode']); ?>)">Delete</button>
 													</div>
 												</td>
 											</tr>
@@ -189,23 +191,6 @@ function renderPagination($page, $totalPages, $searchQuery) {
 			<?php include './footer.php'; ?>
 		</footer>
 	</div>
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  	<div class="modal-dialog">
-    	<div class="modal-content">
-      	<div class="modal-header">
-        	<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      	</div>
-      	<div class="modal-body">
-        	...
-      	</div>
-      	<div class="modal-footer">
-        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        	<button type="button" class="btn btn-primary">Save changes</button>
-      	</div>
-    	</div>
-  	</div>
-	</div> 
 	<script src="assets/plugins/popper.min.js"></script>
 	<script src="assets/plugins/jquery-3.5.1.slim.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -214,4 +199,5 @@ function renderPagination($page, $totalPages, $searchQuery) {
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
 </body>
+<?php include './component/dialog.php'; ?>
 </html>

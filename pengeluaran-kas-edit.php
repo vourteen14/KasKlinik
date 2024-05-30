@@ -2,10 +2,6 @@
 
 $isPage = 'data-pasien';
 
-$data =[
-  ['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika']
-];
-
 ?>
 
 <!DOCTYPE html>
@@ -56,42 +52,50 @@ $data =[
   <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
       <div class="container-xl">
-        <h1 class="app-page-title">Input Data Pasien</h1>
+        <h1 class="app-page-title">Edit Data Pasien</h1>
         <form class="auth-form login-form" method="POST">
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="pasien">Diagnosa</label>
-                <select id='pasien' name='pasien' class="form-select w-100" >
-                <?php foreach ($data as $index => $row): ?>
-                  <option value="<?php echo $row['kode']; ?>"><?php echo $row['kode'] . ', ' . $row['nama']; ?></option>
-                <?php endforeach; ?>
-								</select>
+                <label class="form-label" for="kode-pasien">Kode Pasien</label>
+                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" required="required">
               </div>
               <div class="text mb-3">
-                <label class="form-label" for="catatan">Catatan</label>
-                <textarea class="form-control h-25" id="catatan" rows="6"></textarea>
+                <label class="form-label" for="nama-pasien">Nama Pasien</label>
+                <input id="nama-pasien" name="nama-pasien" type="text" class="form-control" required="required">
+              </div>
+              <div class="text mb-3">
+                <label class="form-label" for="kategori">Kategori</label>
+                <input id="kategori" name="kategori" type="text" class="form-control" required="required">
               </div>
             </div>
             <div class="col-12 col-lg-6">
-              <div class="text mb-3">
-                <label class="form-label" for="diagnosa">Diagnosa</label>
-                <input id="diagnosa" name="diagnosa" type="text" class="form-control" required="required">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <div class="text mb-3">
+                    <label class="form-label" for="kecamatan">Kecamatan</label>
+                    <input id="kecamatan" name="kecamatan" type="text" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="text mb-3">
+                    <label class="form-label" for="desa">Desa</label>
+                    <input id="desa" name="desa" type="text" class="form-control" required="required">
+                  </div>
+                </div>
               </div>
-              <div class="text mb-4">
-                <label class="form-label" for="obat">Obat</label>
-                <input id="obat" name="obat" type="text" class="form-control" required="required">
+              <div class="text">
+                <label class="form-label" for="telepon">Nomor Telepon</label>
+                <input id="telepon" name="telepon" type="text" class="form-control" required="required">
               </div>
               <div class="pt-2">
-                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
-                    viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-                  </svg> Tambah</button>
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+</svg> Edit</button>
               </div>
-              <div class="pt-2">
-                <a href="/data-tindakan.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
+              <div class="pt-1">
+                <a href="/data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"

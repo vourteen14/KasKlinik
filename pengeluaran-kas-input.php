@@ -2,10 +2,6 @@
 
 $isPage = 'data-pasien';
 
-$data =[
-  ['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika']
-];
-
 ?>
 
 <!DOCTYPE html>
@@ -61,26 +57,36 @@ $data =[
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="pasien">Diagnosa</label>
-                <select id='pasien' name='pasien' class="form-select w-100" >
-                <?php foreach ($data as $index => $row): ?>
-                  <option value="<?php echo $row['kode']; ?>"><?php echo $row['kode'] . ', ' . $row['nama']; ?></option>
-                <?php endforeach; ?>
-								</select>
+                <label class="form-label" for="kode-pasien">Kode Pasien</label>
+                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" required="required">
               </div>
               <div class="text mb-3">
-                <label class="form-label" for="catatan">Catatan</label>
-                <textarea class="form-control h-25" id="catatan" rows="6"></textarea>
+                <label class="form-label" for="nama-pasien">Nama Pasien</label>
+                <input id="nama-pasien" name="nama-pasien" type="text" class="form-control" required="required">
+              </div>
+              <div class="text mb-3">
+                <label class="form-label" for="kategori">Kategori</label>
+                <input id="kategori" name="kategori" type="text" class="form-control" required="required">
               </div>
             </div>
             <div class="col-12 col-lg-6">
-              <div class="text mb-3">
-                <label class="form-label" for="diagnosa">Diagnosa</label>
-                <input id="diagnosa" name="diagnosa" type="text" class="form-control" required="required">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <div class="text mb-3">
+                    <label class="form-label" for="kecamatan">Kecamatan</label>
+                    <input id="kecamatan" name="kecamatan" type="text" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="text mb-3">
+                    <label class="form-label" for="desa">Desa</label>
+                    <input id="desa" name="desa" type="text" class="form-control" required="required">
+                  </div>
+                </div>
               </div>
-              <div class="text mb-4">
-                <label class="form-label" for="obat">Obat</label>
-                <input id="obat" name="obat" type="text" class="form-control" required="required">
+              <div class="text">
+                <label class="form-label" for="telepon">Nomor Telepon</label>
+                <input id="telepon" name="telepon" type="text" class="form-control" required="required">
               </div>
               <div class="pt-2">
                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg
@@ -90,8 +96,8 @@ $data =[
                       d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
                   </svg> Tambah</button>
               </div>
-              <div class="pt-2">
-                <a href="/data-tindakan.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
+              <div class="pt-1">
+                <a href="/data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
