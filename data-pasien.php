@@ -1,70 +1,43 @@
 <?php
+require './config/config.php';
+
 $isPage = 'data-pasien';
 
-$data = [
-  ['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '10-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '10-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '10-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '9-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '11-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '12-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
-	['kode' => '2887552', 'nama' => 'Udin', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
-	['kode' => '7887552', 'nama' => 'Asep', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02895321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ],
-	['kode' => '8887552', 'nama' => 'Ika', 'tempat' => 'Buahdua, Bengang', 'telepon' => '02875321552', 'kategori' => 'Umum', 'tanggal' => '14-07-2024' ]
-];
-
+// Pagination settings
 $itemsPerPage = 10;
-$totalItems = count($data);
-$totalPages = ceil($totalItems / $itemsPerPage);
-
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($page < 1) $page = 1;
-if ($page > $totalPages) $page = $totalPages;
-
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-
-$filteredData = array_filter($data, function($item) use ($searchQuery) {
-    return stripos($item['kode'], $searchQuery) !== false ||
-           stripos($item['nama'], $searchQuery) !== false ||
-           stripos($item['tempat'], $searchQuery) !== false ||
-           stripos($item['telepon'], $searchQuery) !== false ||
-           stripos($item['kategori'], $searchQuery) !== false;
-});
-
-$totalItems = count($filteredData);
-$totalPages = ceil($totalItems / $itemsPerPage);
 $offset = ($page - 1) * $itemsPerPage;
-$currentItems = array_slice($filteredData, $offset, $itemsPerPage);
 
-function renderPagination($page, $totalPages, $searchQuery) {
-    include './component/pagination.php';
+try {
+	// Fetch total number of items
+	$totalItemsQuery = "SELECT COUNT(*) FROM patient WHERE fullname LIKE :searchQuery OR address LIKE :searchQuery OR phone LIKE :searchQuery OR category LIKE :searchQuery";
+	$stmt = $conn->prepare($totalItemsQuery);
+	$stmt->execute([':searchQuery' => '%' . $searchQuery . '%']);
+	$totalItems = $stmt->fetchColumn();
+
+	$totalPages = ceil($totalItems / $itemsPerPage);
+
+	// Fetch current page items
+	$fetchDataQuery = "SELECT * FROM patient WHERE fullname LIKE :searchQuery OR address LIKE :searchQuery OR phone LIKE :searchQuery OR category LIKE :searchQuery LIMIT :offset, :itemsPerPage";
+	$stmt = $conn->prepare($fetchDataQuery);
+	$stmt->bindParam(':searchQuery', $searchQueryWithWildcards, PDO::PARAM_STR);
+	$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+	$stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+	$searchQueryWithWildcards = '%' . $searchQuery . '%';
+	$stmt->execute();
+	$currentItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	// Debugging output (optional)
+	// echo '<pre>'; print_r($currentItems); echo '</pre>';
+
+} catch (PDOException $e) {
+	echo "Error: " . $e->getMessage();
+}
+
+function renderPagination($page, $totalPages, $searchQuery)
+{
+	include './component/pagination.php';
 }
 
 ?>
@@ -95,8 +68,7 @@ function renderPagination($page, $totalPages, $searchQuery) {
 							<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
 									<title>Menu</title>
-									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-										d="M4 7h22M4 15h22M4 23h22"></path>
+									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
 								</svg>
 							</a>
 						</div>
@@ -129,11 +101,9 @@ function renderPagination($page, $totalPages, $searchQuery) {
 									<?php include './component/search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<a class="btn app-btn-primary" href="/data-pasien-input.php">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-											class="bi bi-plus-lg" viewBox="0 0 16 16">
-											<path fill-rule="evenodd"
-												d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+									<a class="btn app-btn-primary" href="./data-pasien-input.php">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+											<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
 										</svg> Tambah
 									</a>
 								</div>
@@ -152,30 +122,32 @@ function renderPagination($page, $totalPages, $searchQuery) {
 												<th class="cell">No</th>
 												<th class="cell">Kode Pasien</th>
 												<th class="cell">Nama Pasien</th>
-												<th class="cell">Tempat Tinggal</th>
+												<th class="cell">Alamat</th>
 												<th class="cell">Nomor Telepon</th>
-												<th class="cell">Tanggal</th>
 												<th class="cell">Kategori</th>
 												<th class="cell">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($currentItems as $index => $row): ?>
-											<tr>
-												<td class="cell"><?php echo ($offset + $index + 1) ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['kode']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['tempat']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['telepon']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['tanggal']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['kategori']); ?></td>
-												<td class="cell">
-													<div class="d-flex justify-content-between w-50">
-														<a class="btn-sm app-btn-primary me-1" href="/data-pasien-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
-														<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, <?php echo htmlspecialchars($row['kode']); ?>)">Delete</button>
-													</div>
-												</td>
-											</tr>
+											<?php foreach ($currentItems as $index => $row) : ?>
+												<tr>
+													<td class="cell"><?php echo ($offset + $index + 1); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['id'] ?? 'N/A'); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['fullname'] ?? 'N/A'); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['address'] ?? 'N/A'); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['phone'] ?? 'N/A'); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['category'] ?? 'N/A'); ?></td>
+													<td class="cell">
+														<div class="d-flex justify-content-between w-50">
+															<a class="btn-sm app-btn-primary me-1" href="./data-pasien-edit.php?id=<?php echo htmlspecialchars($row['id'] ?? ''); ?>">Edit</a>
+															<form method="POST" action="./data-pasien-delete.php" onsubmit="return confirm('Are you sure you want to delete this patient?')">
+																<input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id'] ?? ''); ?>">
+																<button type="submit" class="btn-sm app-btn-secondary ms-1" name="delete">Delete</button>
+															</form>
+														</div>
+													</td>
+
+												</tr>
 											<?php endforeach; ?>
 										</tbody>
 									</table>
@@ -191,6 +163,7 @@ function renderPagination($page, $totalPages, $searchQuery) {
 			<?php include './footer.php'; ?>
 		</footer>
 	</div>
+
 	<script src="assets/plugins/popper.min.js"></script>
 	<script src="assets/plugins/jquery-3.5.1.slim.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -200,4 +173,5 @@ function renderPagination($page, $totalPages, $searchQuery) {
 	<script src="assets/js/custom.js"></script>
 </body>
 <?php include './component/dialog.php'; ?>
+
 </html>

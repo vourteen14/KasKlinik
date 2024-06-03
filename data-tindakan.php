@@ -3,19 +3,19 @@
 $isPage = 'data-tindakan';
 
 $data = [
-    ['kode' => 'T001', 'nama' => 'Ika', 'catatan' => 'Pemeriksaan rutin untuk pasien baru', 'diagnosa' => 'Pemeriksaan umum', 'suntik' => 'Tidak', 'obat' => 'Parasetamol'],
-    ['kode' => 'T002', 'nama' => 'Pingkan', 'catatan' => 'Imunisasi DPT, dosis pertama', 'diagnosa' => 'Pencegahan penyakit DPT', 'suntik' => 'Ya', 'obat' => 'Tidak ada'],
-    ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
-    ['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
-    ['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
-    ['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],   ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
-    ['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
-    ['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
-    ['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
-		['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
-    ['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
-    ['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
-    ['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
+	['kode' => 'T001', 'nama' => 'Ika', 'catatan' => 'Pemeriksaan rutin untuk pasien baru', 'diagnosa' => 'Pemeriksaan umum', 'suntik' => 'Tidak', 'obat' => 'Parasetamol'],
+	['kode' => 'T002', 'nama' => 'Pingkan', 'catatan' => 'Imunisasi DPT, dosis pertama', 'diagnosa' => 'Pencegahan penyakit DPT', 'suntik' => 'Ya', 'obat' => 'Tidak ada'],
+	['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
+	['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
+	['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
+	['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],   ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
+	['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
+	['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
+	['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
+	['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
+	['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
+	['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
+	['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
 ];
 
 $itemsPerPage = 10;
@@ -28,12 +28,12 @@ if ($page > $totalPages) $page = $totalPages;
 
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
-$filteredData = array_filter($data, function($item) use ($searchQuery) {
-  return stripos($item['kode'], $searchQuery) !== false ||
-    stripos($item['nama'], $searchQuery) !== false ||
-    stripos($item['tempat'], $searchQuery) !== false ||
-    stripos($item['telepon'], $searchQuery) !== false ||
-    stripos($item['kategori'], $searchQuery) !== false;
+$filteredData = array_filter($data, function ($item) use ($searchQuery) {
+	return stripos($item['kode'], $searchQuery) !== false ||
+		stripos($item['nama'], $searchQuery) !== false ||
+		stripos($item['tempat'], $searchQuery) !== false ||
+		stripos($item['telepon'], $searchQuery) !== false ||
+		stripos($item['kategori'], $searchQuery) !== false;
 });
 
 $totalItems = count($filteredData);
@@ -41,8 +41,9 @@ $totalPages = ceil($totalItems / $itemsPerPage);
 $offset = ($page - 1) * $itemsPerPage;
 $currentItems = array_slice($filteredData, $offset, $itemsPerPage);
 
-function renderPagination($page, $totalPages, $searchQuery) {
-    include './component/pagination.php';
+function renderPagination($page, $totalPages, $searchQuery)
+{
+	include './component/pagination.php';
 }
 
 ?>
@@ -73,8 +74,7 @@ function renderPagination($page, $totalPages, $searchQuery) {
 							<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
 									<title>Menu</title>
-									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-										d="M4 7h22M4 15h22M4 23h22"></path>
+									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
 								</svg>
 							</a>
 						</div>
@@ -107,11 +107,9 @@ function renderPagination($page, $totalPages, $searchQuery) {
 									<?php include './component/search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<a class="btn app-btn-primary" href="/data-tindakan-input.php">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-											class="bi bi-plus-lg" viewBox="0 0 16 16">
-											<path fill-rule="evenodd"
-												d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+									<a class="btn app-btn-primary" href="./data-tindakan-input.php">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+											<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
 										</svg> Tambah
 									</a>
 								</div>
@@ -133,25 +131,25 @@ function renderPagination($page, $totalPages, $searchQuery) {
 												<th class="cell">Catatan</th>
 												<th class="cell">Diagnosa</th>
 												<th class="cell">Obat</th>
-                        <th class="cell">Aksi</th>
+												<th class="cell">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($currentItems as $index => $row): ?>
-											<tr>
-												<td class="cell"><?php echo $offset + $index + 1; ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['kode']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['catatan']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['diagnosa']); ?></td>
-                        <td class="cell"><?php echo htmlspecialchars($row['obat']); ?></td>
-												<td class="cell">
-													<div class="d-flex justify-content-between w-50">
-														<a class="btn-sm app-btn-primary me-1" href="/data-tindakan-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
-														<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, 'dfas')">Delete</button>
-													</div>
-												</td>
-											</tr>
+											<?php foreach ($currentItems as $index => $row) : ?>
+												<tr>
+													<td class="cell"><?php echo $offset + $index + 1; ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['kode']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['catatan']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['diagnosa']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['obat']); ?></td>
+													<td class="cell">
+														<div class="d-flex justify-content-between w-50">
+															<a class="btn-sm app-btn-primary me-1" href="./data-tindakan-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
+															<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, 'dfas')">Delete</button>
+														</div>
+													</td>
+												</tr>
 											<?php endforeach; ?>
 										</tbody>
 									</table>
@@ -176,4 +174,5 @@ function renderPagination($page, $totalPages, $searchQuery) {
 	<script src="assets/js/custom.js"></script>
 </body>
 <?php include './component/dialog.php'; ?>
+
 </html>

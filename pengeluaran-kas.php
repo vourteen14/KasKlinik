@@ -3,23 +3,23 @@
 $isPage = 'pengeluaran-kas';
 
 $data = [
-    ['kode_nota' => '2887552', 'nama_pasien' => 'Udin', 'nama_dokter' => 'Asep', 'tindakan' => 'suntik dengan obat A', 'subtotal' => '50000'],
-    ['kode_nota' => '2887553', 'nama_pasien' => 'Rina', 'nama_dokter' => 'Budi', 'tindakan' => 'pemeriksaan fisik', 'subtotal' => '75000'],
-    ['kode_nota' => '2887554', 'nama_pasien' => 'Siti', 'nama_dokter' => 'Cici', 'tindakan' => 'tes darah', 'subtotal' => '60000'],
-    ['kode_nota' => '2887555', 'nama_pasien' => 'Eko', 'nama_dokter' => 'Dewi', 'tindakan' => 'röntgen', 'subtotal' => '80000'],
-    ['kode_nota' => '2887556', 'nama_pasien' => 'Fajar', 'nama_dokter' => 'Eka', 'tindakan' => 'konsultasi', 'subtotal' => '45000'],
-    ['kode_nota' => '2887557', 'nama_pasien' => 'Gita', 'nama_dokter' => 'Fandi', 'tindakan' => 'pemeriksaan mata', 'subtotal' => '70000'],
-    ['kode_nota' => '2887558', 'nama_pasien' => 'Hani', 'nama_dokter' => 'Gina', 'tindakan' => 'tes urine', 'subtotal' => '55000'],
-    ['kode_nota' => '2887559', 'nama_pasien' => 'Iwan', 'nama_dokter' => 'Hendra', 'tindakan' => 'pemeriksaan gigi', 'subtotal' => '65000'],
-    ['kode_nota' => '2887560', 'nama_pasien' => 'Joko', 'nama_dokter' => 'Indra', 'tindakan' => 'konsultasi gizi', 'subtotal' => '70000'],
-    ['kode_nota' => '2887561', 'nama_pasien' => 'Kiki', 'nama_dokter' => 'Joni', 'tindakan' => 'pemeriksaan darah', 'subtotal' => '60000'],
-    ['kode_nota' => '2887562', 'nama_pasien' => 'Lina', 'nama_dokter' => 'Krisna', 'tindakan' => 'tes kolesterol', 'subtotal' => '55000'],
-    ['kode_nota' => '2887563', 'nama_pasien' => 'Mira', 'nama_dokter' => 'Luki', 'tindakan' => 'pemeriksaan jantung', 'subtotal' => '75000'],
-    ['kode_nota' => '2887564', 'nama_pasien' => 'Nina', 'nama_dokter' => 'Mila', 'tindakan' => 'konsultasi psikologi', 'subtotal' => '80000'],
-    ['kode_nota' => '2887565', 'nama_pasien' => 'Oscar', 'nama_dokter' => 'Nina', 'tindakan' => 'pemeriksaan kulit', 'subtotal' => '65000'],
-    ['kode_nota' => '2887566', 'nama_pasien' => 'Puput', 'nama_dokter' => 'Oki', 'tindakan' => 'tes alergi', 'subtotal' => '60000'],
-    ['kode_nota' => '2887567', 'nama_pasien' => 'Rudi', 'nama_dokter' => 'Pipit', 'tindakan' => 'pemeriksaan pencernaan', 'subtotal' => '70000'],
-    ['kode_nota' => '2887568', 'nama_pasien' => 'Sari', 'nama_dokter' => 'Qori', 'tindakan' => 'konsultasi kehamilan', 'subtotal' => '75000'],
+	['kode_nota' => '2887552', 'nama_pasien' => 'Udin', 'nama_dokter' => 'Asep', 'tindakan' => 'suntik dengan obat A', 'subtotal' => '50000'],
+	['kode_nota' => '2887553', 'nama_pasien' => 'Rina', 'nama_dokter' => 'Budi', 'tindakan' => 'pemeriksaan fisik', 'subtotal' => '75000'],
+	['kode_nota' => '2887554', 'nama_pasien' => 'Siti', 'nama_dokter' => 'Cici', 'tindakan' => 'tes darah', 'subtotal' => '60000'],
+	['kode_nota' => '2887555', 'nama_pasien' => 'Eko', 'nama_dokter' => 'Dewi', 'tindakan' => 'röntgen', 'subtotal' => '80000'],
+	['kode_nota' => '2887556', 'nama_pasien' => 'Fajar', 'nama_dokter' => 'Eka', 'tindakan' => 'konsultasi', 'subtotal' => '45000'],
+	['kode_nota' => '2887557', 'nama_pasien' => 'Gita', 'nama_dokter' => 'Fandi', 'tindakan' => 'pemeriksaan mata', 'subtotal' => '70000'],
+	['kode_nota' => '2887558', 'nama_pasien' => 'Hani', 'nama_dokter' => 'Gina', 'tindakan' => 'tes urine', 'subtotal' => '55000'],
+	['kode_nota' => '2887559', 'nama_pasien' => 'Iwan', 'nama_dokter' => 'Hendra', 'tindakan' => 'pemeriksaan gigi', 'subtotal' => '65000'],
+	['kode_nota' => '2887560', 'nama_pasien' => 'Joko', 'nama_dokter' => 'Indra', 'tindakan' => 'konsultasi gizi', 'subtotal' => '70000'],
+	['kode_nota' => '2887561', 'nama_pasien' => 'Kiki', 'nama_dokter' => 'Joni', 'tindakan' => 'pemeriksaan darah', 'subtotal' => '60000'],
+	['kode_nota' => '2887562', 'nama_pasien' => 'Lina', 'nama_dokter' => 'Krisna', 'tindakan' => 'tes kolesterol', 'subtotal' => '55000'],
+	['kode_nota' => '2887563', 'nama_pasien' => 'Mira', 'nama_dokter' => 'Luki', 'tindakan' => 'pemeriksaan jantung', 'subtotal' => '75000'],
+	['kode_nota' => '2887564', 'nama_pasien' => 'Nina', 'nama_dokter' => 'Mila', 'tindakan' => 'konsultasi psikologi', 'subtotal' => '80000'],
+	['kode_nota' => '2887565', 'nama_pasien' => 'Oscar', 'nama_dokter' => 'Nina', 'tindakan' => 'pemeriksaan kulit', 'subtotal' => '65000'],
+	['kode_nota' => '2887566', 'nama_pasien' => 'Puput', 'nama_dokter' => 'Oki', 'tindakan' => 'tes alergi', 'subtotal' => '60000'],
+	['kode_nota' => '2887567', 'nama_pasien' => 'Rudi', 'nama_dokter' => 'Pipit', 'tindakan' => 'pemeriksaan pencernaan', 'subtotal' => '70000'],
+	['kode_nota' => '2887568', 'nama_pasien' => 'Sari', 'nama_dokter' => 'Qori', 'tindakan' => 'konsultasi kehamilan', 'subtotal' => '75000'],
 ];
 
 $itemsPerPage = 10;
@@ -32,12 +32,12 @@ if ($page > $totalPages) $page = $totalPages;
 
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
-$filteredData = array_filter($data, function($item) use ($searchQuery) {
-    return stripos($item['kode'], $searchQuery) !== false ||
-           stripos($item['nama'], $searchQuery) !== false ||
-           stripos($item['tempat'], $searchQuery) !== false ||
-           stripos($item['telepon'], $searchQuery) !== false ||
-           stripos($item['kategori'], $searchQuery) !== false;
+$filteredData = array_filter($data, function ($item) use ($searchQuery) {
+	return stripos($item['kode'], $searchQuery) !== false ||
+		stripos($item['nama'], $searchQuery) !== false ||
+		stripos($item['tempat'], $searchQuery) !== false ||
+		stripos($item['telepon'], $searchQuery) !== false ||
+		stripos($item['kategori'], $searchQuery) !== false;
 });
 
 $totalItems = count($filteredData);
@@ -45,8 +45,9 @@ $totalPages = ceil($totalItems / $itemsPerPage);
 $offset = ($page - 1) * $itemsPerPage;
 $currentItems = array_slice($filteredData, $offset, $itemsPerPage);
 
-function renderPagination($page, $totalPages, $searchQuery) {
-    include './component/pagination.php';
+function renderPagination($page, $totalPages, $searchQuery)
+{
+	include './component/pagination.php';
 }
 
 ?>
@@ -77,8 +78,7 @@ function renderPagination($page, $totalPages, $searchQuery) {
 							<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
 									<title>Menu</title>
-									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-										d="M4 7h22M4 15h22M4 23h22"></path>
+									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
 								</svg>
 							</a>
 						</div>
@@ -111,11 +111,9 @@ function renderPagination($page, $totalPages, $searchQuery) {
 									<?php include './component/pasien-search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<a class="btn app-btn-primary" href="/pengeluaran-kas-input.php">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-											class="bi bi-plus-lg" viewBox="0 0 16 16">
-											<path fill-rule="evenodd"
-												d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+									<a class="btn app-btn-primary" href="./pengeluaran-kas-input.php">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+											<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
 										</svg> Tambah
 									</a>
 								</div>
@@ -141,21 +139,21 @@ function renderPagination($page, $totalPages, $searchQuery) {
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($currentItems as $index => $row): ?>
-											<tr>
-												<td class="cell"><?php echo ($offset + $index + 1) ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['kode_nota']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['nama_pasien']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['nama_dokter']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['tindakan']); ?></td>
-												<td class="cell"><?php echo htmlspecialchars($row['subtotal']); ?></td>
-												<td class="cell">
-													<div class="d-flex justify-content-between w-50">
-														<a class="btn-sm app-btn-primary me-1" href="/pengeluaran-kas-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
-														<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, <?php echo htmlspecialchars($row['kode']); ?>)">Delete</button>
-													</div>
-												</td>
-											</tr>
+											<?php foreach ($currentItems as $index => $row) : ?>
+												<tr>
+													<td class="cell"><?php echo ($offset + $index + 1) ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['kode_nota']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['nama_pasien']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['nama_dokter']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['tindakan']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['subtotal']); ?></td>
+													<td class="cell">
+														<div class="d-flex justify-content-between w-50">
+															<a class="btn-sm app-btn-primary me-1" href="./pengeluaran-kas-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
+															<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, <?php echo htmlspecialchars($row['kode']); ?>)">Delete</button>
+														</div>
+													</td>
+												</tr>
 											<?php endforeach; ?>
 										</tbody>
 									</table>
@@ -180,4 +178,5 @@ function renderPagination($page, $totalPages, $searchQuery) {
 	<script src="assets/js/custom.js"></script>
 </body>
 <?php include './component/dialog.php'; ?>
+
 </html>

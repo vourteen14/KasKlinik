@@ -1,11 +1,43 @@
 <?php
+require './config/config.php';
 
 $isPage = 'data-pasien';
 
-$data =[
-  ['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika'],['kode' => '2887552', 'nama' => 'Udin'],['kode' => '7887552', 'nama' => 'Asep'],['kode' => '8887552', 'nama' => 'Ika']
-];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $nama_pasien = $_POST['nama-pasien'];
+  $kategori = $_POST['kategori'];
+  $kecamatan = $_POST['kecamatan'];
+  $desa = $_POST['desa'];
+  $telepon = $_POST['telepon'];
 
+  // Menyusun query SQL menggunakan prepared statements untuk keamanan
+  $sql = "INSERT INTO patient (fullname, address, phone, category)
+    VALUES (:fullname, :address, :phone, :category)";
+
+  try {
+    // Mempersiapkan statement
+    $stmt = $conn->prepare($sql);
+
+    // Menggabungkan kecamatan dan desa menjadi satu alamat
+    $alamat = $kecamatan . ', ' . $desa;
+
+    // Mengikat parameter
+    $stmt->bindParam(':fullname', $nama_pasien);
+    $stmt->bindParam(':address', $alamat);
+    $stmt->bindParam(':phone', $telepon);
+    $stmt->bindParam(':category', $kategori);
+
+    // Menjalankan statement
+    $stmt->execute();
+
+    $message = "New record created successfully";
+  } catch (PDOException $e) {
+    $message = "Error: " . $e->getMessage();
+  }
+
+  // Menutup koneksi
+  $conn = null;
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +65,7 @@ $data =[
               <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
                   <title>Menu</title>
-                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                    d="M4 7h22M4 15h22M4 23h22"></path>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                 </svg>
               </a>
             </div>
@@ -61,12 +92,12 @@ $data =[
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="pasien">Diagnosa</label>
-                <select id='pasien' name='pasien' class="form-select w-100" >
-                <?php foreach ($data as $index => $row): ?>
-                  <option value="<?php echo $row['kode']; ?>"><?php echo $row['kode'] . ', ' . $row['nama']; ?></option>
-                <?php endforeach; ?>
-								</select>
+                <label class="form-label" for="pasien">Pasien</label>
+                <select id='pasien' name='pasien' class="form-select w-100">
+                  <?php foreach ($id as $index => $row) : ?>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id'] . ', ' . $row['nama']; ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="catatan">Catatan</label>
@@ -83,19 +114,13 @@ $data =[
                 <input id="obat" name="obat" type="text" class="form-control" required="required">
               </div>
               <div class="pt-2">
-                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
-                    viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
                   </svg> Tambah</button>
               </div>
               <div class="pt-2">
-                <a href="/data-tindakan.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                <a href="/data-tindakan.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                   </svg> Kembali</a>
               </div>
             </div>

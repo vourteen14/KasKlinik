@@ -1,8 +1,74 @@
 <?php
+require './config/config.php';
 
 $isPage = 'data-pasien';
 
+// Initialize variables
+$patientData = [
+  'id' => '',
+  'fullname' => '',
+  'category' => '',
+  'address' => '',
+  'phone' => ''
+];
+
+if (isset($_GET['id'])) {
+  $patientId = $_GET['id'];
+
+  try {
+    $fetchPatientQuery = "SELECT * FROM patient WHERE id = :id";
+    $stmt = $conn->prepare($fetchPatientQuery);
+    $stmt->execute([':id' => $patientId]);
+    $patientData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Split the address into kecamatan and desa
+    $addressParts = explode(', ', $patientData['address']);
+    $patientData['kecamatan'] = $addressParts[0];
+    $patientData['desa'] = $addressParts[1];
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+}
+
+// Initialize alert variables
+$successMessage = '';
+$errorMessage = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $id = $_POST['id-pasien'];
+  $fullname = $_POST['fullname'];
+  $category = $_POST['category'];
+  $kecamatan = $_POST['kecamatan'];
+  $desa = $_POST['desa'];
+  $phone = $_POST['phone'];
+
+  try {
+    // Combine kecamatan and desa into the address
+    $address = $kecamatan . ', ' . $desa;
+
+    $updateQuery = "UPDATE patient SET fullname = :fullname, category = :category, address = :address, phone = :phone WHERE id = :id";
+    $stmt = $conn->prepare($updateQuery);
+    $stmt->execute([
+      ':fullname' => $fullname,
+      ':category' => $category,
+      ':address' => $address,
+      ':phone' => $phone,
+      ':id' => $id
+    ]);
+    // Set success message
+    $message = 'success';
+    // Redirect to data-pasien.php after update
+    header('Location: ./data-pasien.php');
+    exit();
+  } catch (PDOException $e) {
+    // Set error message
+    $message = 'Error: ' . $e->getMessage();
+  }
+}
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +95,7 @@ $isPage = 'data-pasien';
               <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
                   <title>Menu</title>
-                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                    d="M4 7h22M4 15h22M4 23h22"></path>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                 </svg>
               </a>
             </div>
@@ -53,54 +118,58 @@ $isPage = 'data-pasien';
     <div class="app-content pt-3 p-md-3 p-lg-4">
       <div class="container-xl">
         <h1 class="app-page-title">Edit Data Pasien</h1>
-        <form class="auth-form login-form" method="POST">
+        <form class="auth-form login-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="kode-pasien">Kode Pasien</label>
-                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" required="required">
+                <label class="form-label" for="id">Id Pasien</label>
+                <input id="id" name="id-pasien" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['id']); ?>" required="required" readonly>
               </div>
               <div class="text mb-3">
-                <label class="form-label" for="nama-pasien">Nama Pasien</label>
-                <input id="nama-pasien" name="nama-pasien" type="text" class="form-control" required="required">
+                <label class="form-label" for="fullname">Nama Pasien</label>
+                <input id="fullname" name="fullname" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['fullname']); ?>" required="required">
               </div>
               <div class="text mb-3">
-                <label class="form-label" for="kategori">Kategori</label>
-                <input id="kategori" name="kategori" type="text" class="form-control" required="required">
+                <label class="form-label" for="category">Category</label>
+                <input id="category" name="category" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['category']); ?>" required="required">
               </div>
             </div>
             <div class="col-12 col-lg-6">
-              <div class="row">
-                <div class="col-12 col-lg-6">
-                  <div class="text mb-3">
-                    <label class="form-label" for="kecamatan">Kecamatan</label>
-                    <input id="kecamatan" name="kecamatan" type="text" class="form-control" required="required">
+              <div class="col-12 col-lg-6">
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="text mb-3">
+                      <label class="form-label" for="kecamatan">Kecamatan</label>
+                      <input id="kecamatan" name="kecamatan" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['kecamatan']); ?>" required="required">
+                    </div>
                   </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                  <div class="text mb-3">
-                    <label class="form-label" for="desa">Desa</label>
-                    <input id="desa" name="desa" type="text" class="form-control" required="required">
+                  <div class="col-12 col-lg-6">
+                    <div class="text mb-3">
+                      <label class="form-label" for="desa">Desa</label>
+                      <input id="desa" name="desa" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['desa']); ?>" required="required">
+                    </div>
                   </div>
                 </div>
               </div>
+
               <div class="text">
-                <label class="form-label" for="telepon">Nomor Telepon</label>
-                <input id="telepon" name="telepon" type="text" class="form-control" required="required">
+                <label class="form-label" for="phone">Nomor Phone</label>
+                <input id="phone" name="phone" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['phone']); ?>" required="required">
               </div>
               <div class="pt-2">
-                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-</svg> Edit</button>
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                  </svg> Edit
+                </button>
               </div>
               <div class="pt-1">
-                <a href="/data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                  </svg> Kembali</a>
+                <a href="./data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                  </svg> Kembali
+                </a>
               </div>
             </div>
           </div>

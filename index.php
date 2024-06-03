@@ -5,16 +5,17 @@ session_start();
 
 if (!isset($_SESSION['user_id'])) {
 	if (isset($_COOKIE['user_id'])) {
-    $_SESSION['user_id'] = $_COOKIE['user_id'];
-  } else {
-    header("Location: login.php");
-    exit();
-  }
+		$_SESSION['user_id'] = $_COOKIE['user_id'];
+	} else {
+		header("Location: login.php");
+		exit();
+	}
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
 	<meta charset="utf-8">
@@ -26,6 +27,7 @@ if (!isset($_SESSION['user_id'])) {
 	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 </head>
+
 <body class="app">
 	<header class="app-header fixed-top">
 		<div class="app-header-inner">
@@ -36,8 +38,7 @@ if (!isset($_SESSION['user_id'])) {
 							<a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
 									<title>Menu</title>
-									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-										d="M4 7h22M4 15h22M4 23h22"></path>
+									<path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
 								</svg>
 							</a>
 						</div>
@@ -77,4 +78,5 @@ if (!isset($_SESSION['user_id'])) {
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
 </body>
+
 </html>

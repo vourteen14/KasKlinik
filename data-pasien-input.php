@@ -1,7 +1,44 @@
 <?php
+require './config/config.php';
 
-$isPage = 'data-pasien';
+// Variabel untuk menyimpan pesan
+$message = '';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $nama_pasien = $_POST['nama-pasien'];
+  $kategori = $_POST['kategori'];
+  $kecamatan = $_POST['kecamatan'];
+  $desa = $_POST['desa'];
+  $telepon = $_POST['telepon'];
+
+  // Menyusun query SQL menggunakan prepared statements untuk keamanan
+  $sql = "INSERT INTO patient (fullname, address, phone, category)
+    VALUES (:fullname, :address, :phone, :category)";
+
+  try {
+    // Mempersiapkan statement
+    $stmt = $conn->prepare($sql);
+
+    // Menggabungkan kecamatan dan desa menjadi satu alamat
+    $alamat = $kecamatan . ', ' . $desa;
+
+    // Mengikat parameter
+    $stmt->bindParam(':fullname', $nama_pasien);
+    $stmt->bindParam(':address', $alamat);
+    $stmt->bindParam(':phone', $telepon);
+    $stmt->bindParam(':category', $kategori);
+
+    // Menjalankan statement
+    $stmt->execute();
+
+    $message = "New record created successfully";
+  } catch (PDOException $e) {
+    $message = "Error: " . $e->getMessage();
+  }
+
+  // Menutup koneksi
+  $conn = null;
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +57,11 @@ $isPage = 'data-pasien';
 </head>
 
 <body class="app">
+  <?php if ($message) : ?>
+    <script>
+      alert('<?php echo $message; ?>');
+    </script>
+  <?php endif; ?>
   <header class="app-header fixed-top">
     <div class="app-header-inner">
       <div class="container-fluid py-2">
@@ -29,8 +71,7 @@ $isPage = 'data-pasien';
               <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
                   <title>Menu</title>
-                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                    d="M4 7h22M4 15h22M4 23h22"></path>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                 </svg>
               </a>
             </div>
@@ -58,7 +99,7 @@ $isPage = 'data-pasien';
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
                 <label class="form-label" for="kode-pasien">Kode Pasien</label>
-                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" required="required">
+                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" disabled>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="nama-pasien">Nama Pasien</label>
@@ -89,20 +130,18 @@ $isPage = 'data-pasien';
                 <input id="telepon" name="telepon" type="text" class="form-control" required="required">
               </div>
               <div class="pt-2">
-                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
-                    viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-                  </svg> Tambah</button>
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                  </svg> Tambah
+                </button>
               </div>
               <div class="pt-1">
-                <a href="/data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                  </svg> Kembali</a>
+                <a href="./data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                  </svg> Kembali
+                </a>
               </div>
             </div>
           </div>
