@@ -1,42 +1,45 @@
 <?php
-require './config/config.php';
+include './config/config.php'; // Menghubungkan ke database
 
 $isPage = 'data-pasien';
+$message = '';
+// Mengambil data dari tabel patient
+$sql = "SELECT id, fullname FROM patient";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $nama_pasien = $_POST['nama-pasien'];
-  $kategori = $_POST['kategori'];
-  $kecamatan = $_POST['kecamatan'];
-  $desa = $_POST['desa'];
-  $telepon = $_POST['telepon'];
+$id = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  // Menyusun query SQL menggunakan prepared statements untuk keamanan
-  $sql = "INSERT INTO patient (fullname, address, phone, category)
-    VALUES (:fullname, :address, :phone, :category)";
+if (empty($id)) {
+  echo "0 results";
+}
 
-  try {
-    // Mempersiapkan statement
-    $stmt = $conn->prepare($sql);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Validasi input
+  if (isset($_POST['pasien'], $_POST['catatan'], $_POST['diagnosa'], $_POST['obat'])) {
+    $patient_id = $_POST['pasien'];
+    $notes = $_POST['catatan'];
+    $diagnosis = $_POST['diagnosa'];
+    $medicine = $_POST['obat'];
 
-    // Menggabungkan kecamatan dan desa menjadi satu alamat
-    $alamat = $kecamatan . ', ' . $desa;
+    // Menyimpan data ke tabel action
+    $sql = "INSERT INTO action (patient_id, notes, diagnosis, medicine) VALUES (:patient_id, :notes, :diagnosis, :medicine)";
+    try {
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':patient_id', $patient_id);
+      $stmt->bindParam(':notes', $notes);
+      $stmt->bindParam(':diagnosis', $diagnosis);
+      $stmt->bindParam(':medicine', $medicine);
 
-    // Mengikat parameter
-    $stmt->bindParam(':fullname', $nama_pasien);
-    $stmt->bindParam(':address', $alamat);
-    $stmt->bindParam(':phone', $telepon);
-    $stmt->bindParam(':category', $kategori);
+      if ($stmt->execute())
 
-    // Menjalankan statement
-    $stmt->execute();
-
-    $message = "New record created successfully";
-  } catch (PDOException $e) {
-    $message = "Error: " . $e->getMessage();
+        $message = "New record created successfully";
+    } catch (PDOException $e) {
+      $message = "Error: " . $e->getMessage();
+    }
   }
 
-  // Menutup koneksi
-  $conn = null;
+  $conn = null; // Menutup koneksi
 }
 ?>
 
@@ -56,6 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body class="app">
+  <?php if ($message) : ?>
+    <script>
+      alert('<?php echo $message; ?>');
+    </script>
+  <?php endif; ?>
   <header class="app-header fixed-top">
     <div class="app-header-inner">
       <div class="container-fluid py-2">
@@ -95,13 +103,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label class="form-label" for="pasien">Pasien</label>
                 <select id='pasien' name='pasien' class="form-select w-100">
                   <?php foreach ($id as $index => $row) : ?>
-                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id'] . ', ' . $row['nama']; ?></option>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id'] . ', ' . $row['fullname']; ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="catatan">Catatan</label>
-                <textarea class="form-control h-25" id="catatan" rows="6"></textarea>
+                <textarea class="form-control h-25" id="catatan" name="catatan" rows="6" required></textarea>
               </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -119,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   </svg> Tambah</button>
               </div>
               <div class="pt-2">
-                <a href="/data-tindakan.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <a href="./data-tindakan.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                   </svg> Kembali</a>
               </div>

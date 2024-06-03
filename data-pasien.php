@@ -140,13 +140,12 @@ function renderPagination($page, $totalPages, $searchQuery)
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<a class="btn-sm app-btn-primary me-1" href="./data-pasien-edit.php?id=<?php echo htmlspecialchars($row['id'] ?? ''); ?>">Edit</a>
-															<form method="POST" action="./data-pasien-delete.php" onsubmit="return confirm('Are you sure you want to delete this patient?')">
+															<form method="POST" action="data-pasien-delete.php" onsubmit="return confirm('Are you sure you want to delete this patient?')">
 																<input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id'] ?? ''); ?>">
 																<button type="submit" class="btn-sm app-btn-secondary ms-1" name="delete">Delete</button>
 															</form>
 														</div>
 													</td>
-
 												</tr>
 											<?php endforeach; ?>
 										</tbody>

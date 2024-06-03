@@ -1,22 +1,18 @@
 <?php
+include './config/config.php'; // Menghubungkan ke database
 
 $isPage = 'data-tindakan';
 
-$data = [
-	['kode' => 'T001', 'nama' => 'Ika', 'catatan' => 'Pemeriksaan rutin untuk pasien baru', 'diagnosa' => 'Pemeriksaan umum', 'suntik' => 'Tidak', 'obat' => 'Parasetamol'],
-	['kode' => 'T002', 'nama' => 'Pingkan', 'catatan' => 'Imunisasi DPT, dosis pertama', 'diagnosa' => 'Pencegahan penyakit DPT', 'suntik' => 'Ya', 'obat' => 'Tidak ada'],
-	['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
-	['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
-	['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
-	['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],   ['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
-	['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
-	['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
-	['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
-	['kode' => 'T003', 'nama' => 'Nita Amalia', 'catatan' => 'Pemasangan infus karena dehidrasi', 'diagnosa' => 'Dehidrasi akibat diare', 'suntik' => 'Ya', 'obat' => 'Larutan infus'],
-	['kode' => 'T004', 'nama' => 'Ahmad Hakim', 'catatan' => 'Pengobatan infeksi saluran kemih', 'diagnosa' => 'Infeksi Saluran Kemih', 'suntik' => 'Tidak', 'obat' => 'Antibiotik'],
-	['kode' => 'T005', 'nama' => 'Udin Sedunia', 'catatan' => 'Pemeriksaan darah lengkap', 'diagnosa' => 'Pemeriksaan diagnostik', 'suntik' => 'Tidak', 'obat' => 'Tidak ada'],
-	['kode' => 'T006', 'nama' => 'Sedunia Namanya Udin', 'catatan' => 'Penjahitan luka akibat kecelakaan', 'diagnosa' => 'Luka robek', 'suntik' => 'Ya', 'obat' => 'Antibiotik, Analgesik'],
-];
+// Mengambil data dari tabel action dan patient
+$sql = "
+    SELECT a.id AS action_id, a.patient_id, p.fullname, a.notes, a.diagnosis, a.medicine
+    FROM action a
+    JOIN patient p ON a.patient_id = p.id
+";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $itemsPerPage = 10;
 $totalItems = count($data);
@@ -29,11 +25,11 @@ if ($page > $totalPages) $page = $totalPages;
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
 $filteredData = array_filter($data, function ($item) use ($searchQuery) {
-	return stripos($item['kode'], $searchQuery) !== false ||
-		stripos($item['nama'], $searchQuery) !== false ||
-		stripos($item['tempat'], $searchQuery) !== false ||
-		stripos($item['telepon'], $searchQuery) !== false ||
-		stripos($item['kategori'], $searchQuery) !== false;
+	return stripos($item['patient_id'], $searchQuery) !== false ||
+		stripos($item['fullname'], $searchQuery) !== false ||
+		stripos($item['notes'], $searchQuery) !== false ||
+		stripos($item['diagnosis'], $searchQuery) !== false ||
+		stripos($item['medicine'], $searchQuery) !== false;
 });
 
 $totalItems = count($filteredData);
@@ -46,7 +42,9 @@ function renderPagination($page, $totalPages, $searchQuery)
 	include './component/pagination.php';
 }
 
+$conn = null; // Menutup koneksi
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,8 +124,8 @@ function renderPagination($page, $totalPages, $searchQuery)
 										<thead>
 											<tr>
 												<th class="cell">No</th>
-												<th class="cell">Kode Pasien</th>
-												<th class="cell">Nama Pasien</th>
+												<th class="cell">Id Pasien</th>
+												<th class="cell">Fullname Pasien</th>
 												<th class="cell">Catatan</th>
 												<th class="cell">Diagnosa</th>
 												<th class="cell">Obat</th>
@@ -138,19 +136,24 @@ function renderPagination($page, $totalPages, $searchQuery)
 											<?php foreach ($currentItems as $index => $row) : ?>
 												<tr>
 													<td class="cell"><?php echo $offset + $index + 1; ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['kode']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['nama']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['catatan']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['diagnosa']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['obat']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['patient_id']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['fullname']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['notes']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['diagnosis']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['medicine']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<a class="btn-sm app-btn-primary me-1" href="./data-tindakan-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
-															<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, 'dfas')">Delete</button>
+															<a class="btn-sm app-btn-primary me-1" href="./data-tindakan-edit.php?id=<?php echo htmlspecialchars($row['action_id']); ?>">Edit</a>
+															<form method="POST" action="data-tindakan-delete.php" onsubmit="return confirm('Are you sure you want to delete this action?')">
+																<input type="hidden" name="action_id" value="<?php echo htmlspecialchars($row['action_id']); ?>">
+																<!-- Menggunakan input hidden untuk menyimpan action_id yang akan dihapus -->
+																<button type="submit" class="btn-sm app-btn-secondary ms-1" name="delete">Delete</button>
+															</form>
 														</div>
 													</td>
 												</tr>
 											<?php endforeach; ?>
+
 										</tbody>
 									</table>
 								</div>
