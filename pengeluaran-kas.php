@@ -1,55 +1,55 @@
 <?php
-
+include './config/config.php';
 $isPage = 'pengeluaran-kas';
 
-$data = [
-	['kode_nota' => '2887552', 'nama_pasien' => 'Udin', 'nama_dokter' => 'Asep', 'tindakan' => 'suntik dengan obat A', 'subtotal' => '50000'],
-	['kode_nota' => '2887553', 'nama_pasien' => 'Rina', 'nama_dokter' => 'Budi', 'tindakan' => 'pemeriksaan fisik', 'subtotal' => '75000'],
-	['kode_nota' => '2887554', 'nama_pasien' => 'Siti', 'nama_dokter' => 'Cici', 'tindakan' => 'tes darah', 'subtotal' => '60000'],
-	['kode_nota' => '2887555', 'nama_pasien' => 'Eko', 'nama_dokter' => 'Dewi', 'tindakan' => 'röntgen', 'subtotal' => '80000'],
-	['kode_nota' => '2887556', 'nama_pasien' => 'Fajar', 'nama_dokter' => 'Eka', 'tindakan' => 'konsultasi', 'subtotal' => '45000'],
-	['kode_nota' => '2887557', 'nama_pasien' => 'Gita', 'nama_dokter' => 'Fandi', 'tindakan' => 'pemeriksaan mata', 'subtotal' => '70000'],
-	['kode_nota' => '2887558', 'nama_pasien' => 'Hani', 'nama_dokter' => 'Gina', 'tindakan' => 'tes urine', 'subtotal' => '55000'],
-	['kode_nota' => '2887559', 'nama_pasien' => 'Iwan', 'nama_dokter' => 'Hendra', 'tindakan' => 'pemeriksaan gigi', 'subtotal' => '65000'],
-	['kode_nota' => '2887560', 'nama_pasien' => 'Joko', 'nama_dokter' => 'Indra', 'tindakan' => 'konsultasi gizi', 'subtotal' => '70000'],
-	['kode_nota' => '2887561', 'nama_pasien' => 'Kiki', 'nama_dokter' => 'Joni', 'tindakan' => 'pemeriksaan darah', 'subtotal' => '60000'],
-	['kode_nota' => '2887562', 'nama_pasien' => 'Lina', 'nama_dokter' => 'Krisna', 'tindakan' => 'tes kolesterol', 'subtotal' => '55000'],
-	['kode_nota' => '2887563', 'nama_pasien' => 'Mira', 'nama_dokter' => 'Luki', 'tindakan' => 'pemeriksaan jantung', 'subtotal' => '75000'],
-	['kode_nota' => '2887564', 'nama_pasien' => 'Nina', 'nama_dokter' => 'Mila', 'tindakan' => 'konsultasi psikologi', 'subtotal' => '80000'],
-	['kode_nota' => '2887565', 'nama_pasien' => 'Oscar', 'nama_dokter' => 'Nina', 'tindakan' => 'pemeriksaan kulit', 'subtotal' => '65000'],
-	['kode_nota' => '2887566', 'nama_pasien' => 'Puput', 'nama_dokter' => 'Oki', 'tindakan' => 'tes alergi', 'subtotal' => '60000'],
-	['kode_nota' => '2887567', 'nama_pasien' => 'Rudi', 'nama_dokter' => 'Pipit', 'tindakan' => 'pemeriksaan pencernaan', 'subtotal' => '70000'],
-	['kode_nota' => '2887568', 'nama_pasien' => 'Sari', 'nama_dokter' => 'Qori', 'tindakan' => 'konsultasi kehamilan', 'subtotal' => '75000'],
-];
+// Fungsi untuk mendapatkan data dari database
+function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
+{
+	global $conn; // Gunakan variabel $conn dari file config
 
-$itemsPerPage = 10;
-$totalItems = count($data);
-$totalPages = ceil($totalItems / $itemsPerPage);
+	// Mulai dari mana data akan diambil
+	$offset = ($page - 1) * $itemsPerPage;
 
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($page < 1) $page = 1;
-if ($page > $totalPages) $page = $totalPages;
+	// Bangun query SQL untuk mengambil data
+	$sql = "SELECT id, information, total_price, suppliers, created_at
+			FROM transaction_out
+			WHERE 
+			suppliers LIKE :searchQuery OR 
+			information LIKE :searchQuery OR
+			total_price LIKE :searchQuery
+			LIMIT :offset, :itemsPerPage";
 
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+	// Persiapkan dan jalankan query
+	$stmt = $conn->prepare($sql);
+	$searchTerm = '%' . $searchQuery . '%';
+	$stmt->bindParam(':searchQuery', $searchTerm, PDO::PARAM_STR);
+	$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+	$stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+	$stmt->execute();
 
-$filteredData = array_filter($data, function ($item) use ($searchQuery) {
-	return stripos($item['kode'], $searchQuery) !== false ||
-		stripos($item['nama'], $searchQuery) !== false ||
-		stripos($item['tempat'], $searchQuery) !== false ||
-		stripos($item['telepon'], $searchQuery) !== false ||
-		stripos($item['kategori'], $searchQuery) !== false;
-});
+	// Ambil hasil query sebagai array asosiatif
+	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$totalItems = count($filteredData);
-$totalPages = ceil($totalItems / $itemsPerPage);
-$offset = ($page - 1) * $itemsPerPage;
-$currentItems = array_slice($filteredData, $offset, $itemsPerPage);
+	return $data;
+}
 
+// Fungsi untuk render pagination
 function renderPagination($page, $totalPages, $searchQuery)
 {
 	include './component/pagination.php';
 }
 
+// Ambil data dari database
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+$itemsPerPage = 10; // Tetapkan nilai itemsPerPage di sini
+$data = getDataFromDatabase($page, $itemsPerPage, $searchQuery);
+
+// Hitung total halaman
+$totalItems = count($data);
+$totalPages = ceil($totalItems / $itemsPerPage);
+$offset = ($page - 1) * $itemsPerPage;
+$currentItems = array_slice($data, $offset, $itemsPerPage);
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +102,7 @@ function renderPagination($page, $totalPages, $searchQuery)
 			<div class="container-xl">
 				<div class="row g-3 mb-4 align-items-center justify-content-between">
 					<div class="col-auto">
-						<h1 class="app-page-title mb-0">Transaksi Pengeluaran Kas Keluar</h1>
+						<h1 class="app-page-title mb-0">Transaksi Pengeluaran Kas</h1>
 					</div>
 					<div class="col-auto">
 						<div class="page-utilities">
@@ -130,11 +130,11 @@ function renderPagination($page, $totalPages, $searchQuery)
 										<thead>
 											<tr>
 												<th class="cell">No</th>
-												<th class="cell">Kode Nota</th>
-												<th class="cell">Nama Pasien</th>
-												<th class="cell">Dokter</th>
-												<th class="cell">Tindakan</th>
-												<th class="cell">Subtotal</th>
+												<th class="cell">ID Transaksi</th>
+												<th class="cell">Supplier</th>
+												<th class="cell">Catatan</th>
+												<th class="cell">Total Harga</th>
+												<th class="cell">Tanggal</th>
 												<th class="cell">Aksi</th>
 											</tr>
 										</thead>
@@ -142,15 +142,18 @@ function renderPagination($page, $totalPages, $searchQuery)
 											<?php foreach ($currentItems as $index => $row) : ?>
 												<tr>
 													<td class="cell"><?php echo ($offset + $index + 1) ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['kode_nota']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['nama_pasien']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['nama_dokter']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['tindakan']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['subtotal']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['id']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['suppliers']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['information']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['total_price']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['created_at']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<a class="btn-sm app-btn-primary me-1" href="./pengeluaran-kas-edit.php?id=<?php echo htmlspecialchars($row['kode']); ?>">Edit</a>
-															<button class="btn-sm app-btn-secondary ms-1" onclick="showDialog(this, <?php echo htmlspecialchars($row['kode']); ?>)">Delete</button>
+															<a class="btn-sm app-btn-primary me-1" href="./pengeluaran-kas-edit.php?id=<?php echo htmlspecialchars($row['id'] ?? ''); ?>">Edit</a>
+															<form method="POST" action="pengeluaran-kas-delete.php" onsubmit="return confirm('Are you sure you want to delete this transaction?')">
+																<input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id'] ?? ''); ?>">
+																<button type="submit" class="btn-sm app-btn-secondary ms-1" name="delete">Delete</button>
+															</form>
 														</div>
 													</td>
 												</tr>
@@ -169,6 +172,7 @@ function renderPagination($page, $totalPages, $searchQuery)
 			<?php include './footer.php'; ?>
 		</footer>
 	</div>
+
 	<script src="assets/plugins/popper.min.js"></script>
 	<script src="assets/plugins/jquery-3.5.1.slim.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>

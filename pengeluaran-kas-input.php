@@ -1,9 +1,56 @@
 <?php
-
+include './config/config.php';
+$message = '';
 $isPage = 'data-pasien';
 
-?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Ambil data dari form
+  $catatan = $_POST['catatan'];
+  $suppliers = $_POST['suppliers'];
+  $total_price = $_POST['total_price'];
+  $transaction_in_id = !empty($_POST['transaction_in_id']) ? $_POST['transaction_in_id'] : null;
 
+  // Generate UUID untuk `transaction_out` id
+  $uuid = bin2hex(random_bytes(16));
+
+  try {
+    // Mulai transaksi
+    $conn->beginTransaction();
+
+    // Query untuk menambahkan data ke tabel transaction_out
+    $sqlTransactionOut = "INSERT INTO transaction_out (id, information, total_price, suppliers) 
+                              VALUES (:id, :information, :total_price, :suppliers)";
+    $stmtTransactionOut = $conn->prepare($sqlTransactionOut);
+    $stmtTransactionOut->execute([
+      ':id' => $uuid,
+      ':information' => $catatan,
+      ':total_price' => $total_price,
+      ':suppliers' => $suppliers
+    ]);
+
+    // Query untuk menambahkan data ke tabel transaction
+    $sqlTransaction = "INSERT INTO transaction (transaction_out_id, type, comment, suppliers, price, transaction_in_id) 
+                           VALUES (:transaction_out_id, 'out', :comment, :suppliers, :price, :transaction_in_id)";
+    $stmtTransaction = $conn->prepare($sqlTransaction);
+    $stmtTransaction->execute([
+      ':transaction_out_id' => $uuid,
+      ':comment' => $catatan,
+      ':suppliers' => $suppliers,
+      ':price' => $total_price,
+      ':transaction_in_id' => $transaction_in_id
+    ]);
+
+    // Commit transaksi
+    $conn->commit();
+
+    $message = "Transaksi berhasil ditambahkan";
+  } catch (Exception $e) {
+    // Rollback transaksi jika terjadi kesalahan
+    $conn->rollBack();
+    $message = "Gagal menambahkan transaksi: " . $e->getMessage();
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +76,7 @@ $isPage = 'data-pasien';
               <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
                   <title>Menu</title>
-                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                    d="M4 7h22M4 15h22M4 23h22"></path>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                 </svg>
               </a>
             </div>
@@ -52,61 +98,50 @@ $isPage = 'data-pasien';
   <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
       <div class="container-xl">
-        <h1 class="app-page-title">Input Data Pasien</h1>
+        <h1 class="app-page-title">Input Pengeluaran Kas</h1>
         <form class="auth-form login-form" method="POST">
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="kode-pasien">Kode Pasien</label>
-                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" required="required">
+                <label class="form-label" for="id">Id</label>
+                <input id="id" name="id" type="text" class="form-control" disabled>
               </div>
               <div class="text mb-3">
-                <label class="form-label" for="nama-pasien">Nama Pasien</label>
-                <input id="nama-pasien" name="nama-pasien" type="text" class="form-control" required="required">
-              </div>
-              <div class="text mb-3">
-                <label class="form-label" for="kategori">Kategori</label>
-                <input id="kategori" name="kategori" type="text" class="form-control" required="required">
+                <label class="form-label" for="catatan">Catatan</label>
+                <textarea id="catatan" name="catatan" type="text" class="form-control" required="required"></textarea>
               </div>
             </div>
             <div class="col-12 col-lg-6">
-              <div class="row">
-                <div class="col-12 col-lg-6">
-                  <div class="text mb-3">
-                    <label class="form-label" for="kecamatan">Kecamatan</label>
-                    <input id="kecamatan" name="kecamatan" type="text" class="form-control" required="required">
-                  </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                  <div class="text mb-3">
-                    <label class="form-label" for="desa">Desa</label>
-                    <input id="desa" name="desa" type="text" class="form-control" required="required">
-                  </div>
-                </div>
+              <div class="text mb-3">
+                <label class="form-label" for="suppliers">Supplier</label>
+                <input id="suppliers" name="suppliers" type="text" class="form-control" required="required">
               </div>
               <div class="text">
-                <label class="form-label" for="telepon">Nomor Telepon</label>
-                <input id="telepon" name="telepon" type="text" class="form-control" required="required">
+                <label class="form-label" for="total_price">Total Harga</label>
+                <input id="total_price" name="total_price" type="text" class="form-control" required="required">
               </div>
               <div class="pt-2">
-                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
-                    viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-                  </svg> Tambah</button>
+                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                  </svg> Tambah
+                </button>
               </div>
               <div class="pt-1">
-                <a href="/data-pasien.php" class="btn app-btn-secondary w-100 theme-btn mx-auto"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                  </svg> Kembali</a>
+                <a href="./pengeluaran-kas.php" class="btn app-btn-secondary w-100 theme-btn mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                  </svg> Kembali
+                </a>
               </div>
             </div>
           </div>
         </form>
+        <?php if ($message) : ?>
+          <div class="alert alert-info mt-3">
+            <?php echo $message; ?>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
     <footer class="app-footer">
