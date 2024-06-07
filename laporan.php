@@ -17,7 +17,8 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
             patient.address,
             patient.phone,
             patient.category,
-            transaction_in.id AS transaction_id
+            transaction_in.id AS transaction_id,
+            transaction_in.total_price
         FROM 
             patient
         INNER JOIN 
@@ -87,7 +88,7 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 <html lang="en">
 
 <head>
-	<title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+	<title><?php echo $isPage; ?></title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +98,7 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
 	<link id="theme-style" rel="stylesheet" href="assets/css/custom.css">
 	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 
 <body class="app">
@@ -134,7 +135,7 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 			<div class="container-xl">
 				<div class="row g-3 mb-4 align-items-center justify-content-between">
 					<div class="col-auto">
-						<h1 class="app-page-title mb-0">Daftar Data Pasien</h1>
+						<h1 class="app-page-title mb-0">Daftar Laporan</h1>
 					</div>
 					<div class="col-auto">
 						<div class="page-utilities">
@@ -143,11 +144,7 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 									<?php include './component/search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<a class="btn app-btn-primary" href="./data-pasien-input.php">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-											<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-										</svg> Tambah
-									</a>
+									<button class="btn-sm app-btn-primary me-1" onclick="generateCSV()">Download CSV</button>
 								</div>
 							</div>
 						</div>
@@ -168,6 +165,7 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 												<th class="cell">Nomor Telepon</th>
 												<th class="cell">Kategori</th>
 												<th class="cell">Transaksi</th>
+												<th class="cell">Harga</th>
 												<th class="cell">Aksi</th>
 											</tr>
 										</thead>
@@ -181,9 +179,10 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 													<td class="cell"><?php echo htmlspecialchars($row['phone']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['category']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['transaction_id']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['total_price']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<button class="btn-sm app-btn-primary me-1" onclick="printReceipt('row-<?php echo $index; ?>')">Print</button>
+															<button class="btn-sm app-btn-primary me-1" onclick="generateInvoice(<?php echo $index; ?>)">Receipt</button>
 														</div>
 													</td>
 												</tr>
@@ -213,17 +212,100 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 	<script src="assets/js/custom.js"></script>
 	<script>
 		function printReceipt(rowId) {
-			var row = document.getElementById(rowId);
-			var receipt = row.innerHTML;
+			var printContents = document.getElementById(rowId).innerHTML;
+			var originalContents = document.body.innerHTML;
+			document.body.innerHTML = '<html><head><title>Print Receipt</title></head><body>' + printContents + '</body></html>';
+			window.print();
+			document.body.innerHTML = originalContents;
+		}
 
-			// Print the receipt
-			printJS({
-				printable: receipt,
-				type: 'raw-html',
-				targetStyles: ['*']
+		function generateCSV() {
+			var csv = [];
+			var rows = document.querySelectorAll("table tr");
+
+			for (var i = 0; i < rows.length; i++) {
+				var row = [],
+					cols = rows[i].querySelectorAll("td, th");
+				for (var j = 0; j < cols.length; j++)
+					row.push(cols[j].innerText);
+				csv.push(row.join(","));
+			}
+
+			// Download CSV file
+			downloadCSV(csv.join("\n"), 'table.csv');
+		}
+
+		function downloadCSV(csv, filename) {
+			var csvFile;
+			var downloadLink;
+
+			// CSV file
+			csvFile = new Blob([csv], {
+				type: "text/csv"
 			});
+
+			// Download link
+			downloadLink = document.createElement("a");
+
+			// File name
+			downloadLink.download = filename;
+
+			// Create a link to the file
+			downloadLink.href = window.URL.createObjectURL(csvFile);
+
+			// Hide download link
+			downloadLink.style.display = "none";
+
+			// Add the link to the DOM
+			document.body.appendChild(downloadLink);
+
+			// Click download link
+			downloadLink.click();
+		}
+
+		function generateInvoice(index) {
+			// Get data for the selected row
+			var row = <?php echo json_encode($data); ?>[index];
+
+			// Create a new window for the invoice
+			var invoiceWindow = window.open('', '_blank');
+			invoiceWindow.document.write('<html><head><title>Invoice</title>');
+			invoiceWindow.document.write('<style>');
+			invoiceWindow.document.write('body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }');
+			invoiceWindow.document.write('.invoice-container { width: 80%; text-align: center; }');
+			invoiceWindow.document.write('table { border-collapse: collapse; margin: 0 auto; }');
+			invoiceWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
+			invoiceWindow.document.write('tr:nth-child(even) { background-color: #f2f2f2; }');
+			invoiceWindow.document.write('</style>');
+			invoiceWindow.document.write('</head><body>');
+
+			// Add invoice container
+			invoiceWindow.document.write('<div class="invoice-container">');
+
+			// Add header information
+			invoiceWindow.document.write('<h1>Invoice</h1>');
+			invoiceWindow.document.write('<p><strong>Invoice ID:</strong> ' + row['transaction_id'] + '</p>');
+			invoiceWindow.document.write('<p><strong>Tanggal:</strong> ' + new Date().toLocaleDateString() + '</p>');
+			invoiceWindow.document.write('<p><strong>Dokter:</strong> Dr. Achmad Irawan</p>');
+
+			// Add table for invoice items
+			invoiceWindow.document.write('<table>');
+			invoiceWindow.document.write('<thead><tr><th>Fullname</th><th>Address</th><th>Phone</th><th>Category</th><th>Price</th></tr></thead><tbody>');
+
+			// Add invoice item for the selected row
+			invoiceWindow.document.write('<tr><td>' + row['fullname'] + '</td><td>' + row['address'] + '</td><td>' + row['phone'] + '</td><td>' + row['category'] + '</td><td>' + row['total_price'] + '</td></tr>');
+
+			// Close table and body
+			invoiceWindow.document.write('</tbody></table>');
+			invoiceWindow.document.write('</div>'); // Close invoice container
+			invoiceWindow.document.write('</body></html>');
+
+			// Close the document
+			invoiceWindow.document.close();
+			invoiceWindow.print();
 		}
 	</script>
+
 
 </body>
 <?php include './component/dialog.php'; ?>
