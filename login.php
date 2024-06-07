@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Log In</button>
 							</div>
 						</form>
-						<div class="auth-option text-center pt-5"><a class="text-link" href="signup.html">here</a>.</div>
+						<div class="auth-option text-center pt-5"><a class="text-link" href="signup.html"></a>.</div>
 					</div>
 				</div>
 				<footer class="app-auth-footer">
