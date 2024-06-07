@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Query untuk menambahkan data ke tabel transaction
     $sqlTransaction = "INSERT INTO transaction (transaction_out_id, type, comment, suppliers, price, transaction_in_id) 
-                           VALUES (:transaction_out_id, 'out', :comment, :suppliers, :price, :transaction_in_id)";
+                           VALUES (:transaction_out_id, 'OUT', :comment, :suppliers, :price, :transaction_in_id)";
     $stmtTransaction = $conn->prepare($sqlTransaction);
     $stmtTransaction->execute([
       ':transaction_out_id' => $uuid,

@@ -63,7 +63,6 @@ if (!isset($_SESSION['user_id'])) {
 				<h1 class="app-page-title">Overview</h1>
 				<?php include './card/welcome-dashboard-card.php'; ?>
 				<?php include './card/stats-dashboard-card.php'; ?>
-				<?php include './card/chart-dashboard-card.php'; ?>
 				<?php include './card/bottom-card.php'; ?>
 			</div>
 		</div>

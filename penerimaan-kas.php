@@ -6,12 +6,12 @@ $isPage = 'penerimaan-kas';
 // Fungsi untuk mendapatkan data dari database
 function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 {
-	global $conn; // Gunakan variabel $conn dari file config
+	global $conn; // Use the $conn variable from the config file
 
-	// Mulai dari mana data akan diambil
+	// Start from where the data will be fetched
 	$offset = ($page - 1) * $itemsPerPage;
 
-	// Bangun query SQL untuk mengambil data
+	// Build the SQL query to fetch data
 	$sql = "SELECT t.id, a.notes, a.diagnosis, a.medicine, t.created_at, t.doctor, t.total_price, p.fullname AS nama_pasien
         FROM transaction_in t
         INNER JOIN action a ON t.action_id = a.id
@@ -24,23 +24,20 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
         a.medicine LIKE '%$searchQuery%'
         LIMIT $offset, $itemsPerPage";
 
-
-
-	// Jalankan query
+	// Run the query
 	$result = $conn->query($sql);
 
-	// Periksa jumlah baris hasil
+	$data = []; // Initialize $data as an empty array
+
+	// Check the number of result rows
 	if ($result->rowCount() > 0) {
-		// Loop melalui hasil query dan simpan ke dalam array
+		// Loop through the query result and store it in the array
 		while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			$data[] = $row;
 		}
 	}
 
-	// Tutup koneksi database
-	// $conn->close(); // Tidak perlu ditutup di sini
-
-	// Kembalikan data
+	// Return the data
 	return $data;
 }
 
