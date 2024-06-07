@@ -148,7 +148,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 									<?php include './component/search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<button class="btn-sm app-btn-primary me-1" onclick="generateCSV()">Download CSV</button>
+									<button class="btn app-btn-primary" onclick="generateCSV()">Download CSV</button>
 								</div>
 							</div>
 						</div>
@@ -186,7 +186,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell"><?php echo htmlspecialchars($row['total_price']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<button class="btn-sm app-btn-primary me-1" onclick="generateInvoice(<?php echo $index; ?>)">Receipt</button>
+															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Receipt</button>
 														</div>
 													</td>
 												</tr>

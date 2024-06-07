@@ -6,7 +6,6 @@ $isPage = 'data-pasien';
 // Definisikan variabel ini sebelum digunakan
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 $itemsPerPage = 10;
-
 try {
 	// Fetch total number of items
 	$totalItemsQuery = "
@@ -29,6 +28,7 @@ try {
 	if ($page > $totalPages) $page = $totalPages;
 
 	$offset = ($page - 1) * $itemsPerPage;
+	if ($offset < 0) $offset = 0; // Ensure offset is not negative
 
 	// Fetch current page items
 	$fetchDataQuery = "
@@ -49,17 +49,13 @@ try {
 	$stmt->execute();
 	$currentItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$filteredData = array_filter($currentItems, function ($item) use ($searchQuery) {
-		return stripos($item['id'], $searchQuery) !== false ||
-			stripos($item['fullname'], $searchQuery) !== false ||
-			stripos($item['address'], $searchQuery) !== false ||
-			stripos($item['phone'], $searchQuery) !== false ||
-			stripos($item['category'], $searchQuery) !== false;
-	});
+	// Handle empty result set
+	if (empty($currentItems)) {
+		echo "No records found.";
+	}
 
-	$totalItems = count($filteredData);
-	$totalPages = ceil($totalItems / $itemsPerPage);
-	$currentItems = array_slice($filteredData, $offset, $itemsPerPage);
+	// Perform additional processing if necessary
+
 } catch (PDOException $e) {
 	echo "Error: " . $e->getMessage();
 }
@@ -71,6 +67,7 @@ function renderPagination($page, $totalPages, $searchQuery)
 
 $conn = null; // Menutup koneksi
 ?>
+
 
 
 

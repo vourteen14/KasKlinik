@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     redirectToPatientPage("Patient deleted successfully.");
   } catch (PDOException $e) {
     // Beri respons gagal ke klien jika terjadi kesalahan
-    redirectToPatientPage("Error deleting patient: " . $e->getMessage());
+    echo ("Error deleting patient: " . $e->getMessage());
   }
 } else {
   // Beri respons jika metode bukan POST atau ID tidak diterima

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 09:21 AM
+-- Generation Time: Jun 07, 2024 at 12:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -36,10 +36,6 @@ CREATE TABLE `action` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `action`
---
-
 -- --------------------------------------------------------
 
 --
@@ -56,9 +52,6 @@ CREATE TABLE `patient` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `patient`
---
 -- --------------------------------------------------------
 
 --
@@ -76,9 +69,6 @@ CREATE TABLE `transaction` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `transaction`
---
 -- --------------------------------------------------------
 
 --
@@ -93,9 +83,6 @@ CREATE TABLE `transaction_in` (
   `total_price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `transaction_in`
---
 -- --------------------------------------------------------
 
 --
@@ -110,9 +97,6 @@ CREATE TABLE `transaction_out` (
   `suppliers` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `transaction_out`
---
 -- --------------------------------------------------------
 
 --
@@ -187,19 +171,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `action`
 --
 ALTER TABLE `action`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63073061;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63073062;
 
 --
 -- Constraints for dumped tables
@@ -223,7 +207,7 @@ ALTER TABLE `transaction`
 -- Constraints for table `transaction_in`
 --
 ALTER TABLE `transaction_in`
-  ADD CONSTRAINT `transaction_in_action_id_foreign` FOREIGN KEY (`action_id`) REFERENCES `action` (`id`);
+  ADD CONSTRAINT `transaction_in_action_id_foreign` FOREIGN KEY (`action_id`) REFERENCES `action` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
