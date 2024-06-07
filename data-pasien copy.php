@@ -1,46 +1,25 @@
 <?php
-include './config/config.php'; // Menghubungkan ke database
+require './config/config.php';
 
 $isPage = 'data-pasien';
 
-// Definisikan variabel ini sebelum digunakan
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+// Pagination settings
 $itemsPerPage = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+$offset = ($page - 1) * $itemsPerPage;
 
 try {
 	// Fetch total number of items
-	$totalItemsQuery = "
-        SELECT COUNT(*) 
-        FROM patient 
-        WHERE 
-            fullname LIKE :searchQuery OR 
-            address LIKE :searchQuery OR 
-            phone LIKE :searchQuery OR 
-            category LIKE :searchQuery
-    ";
+	$totalItemsQuery = "SELECT COUNT(*) FROM patient WHERE fullname LIKE :searchQuery OR address LIKE :searchQuery OR phone LIKE :searchQuery OR category LIKE :searchQuery";
 	$stmt = $conn->prepare($totalItemsQuery);
 	$stmt->execute([':searchQuery' => '%' . $searchQuery . '%']);
 	$totalItems = $stmt->fetchColumn();
 
 	$totalPages = ceil($totalItems / $itemsPerPage);
 
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	if ($page < 1) $page = 1;
-	if ($page > $totalPages) $page = $totalPages;
-
-	$offset = ($page - 1) * $itemsPerPage;
-
 	// Fetch current page items
-	$fetchDataQuery = "
-        SELECT * 
-        FROM patient 
-        WHERE 
-            fullname LIKE :searchQuery OR 
-            address LIKE :searchQuery OR 
-            phone LIKE :searchQuery OR 
-            category LIKE :searchQuery 
-        LIMIT :offset, :itemsPerPage
-    ";
+	$fetchDataQuery = "SELECT * FROM patient WHERE fullname LIKE :searchQuery OR address LIKE :searchQuery OR phone LIKE :searchQuery OR category LIKE :searchQuery LIMIT :offset, :itemsPerPage";
 	$stmt = $conn->prepare($fetchDataQuery);
 	$stmt->bindParam(':searchQuery', $searchQueryWithWildcards, PDO::PARAM_STR);
 	$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -49,17 +28,9 @@ try {
 	$stmt->execute();
 	$currentItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$filteredData = array_filter($currentItems, function ($item) use ($searchQuery) {
-		return stripos($item['id'], $searchQuery) !== false ||
-			stripos($item['fullname'], $searchQuery) !== false ||
-			stripos($item['address'], $searchQuery) !== false ||
-			stripos($item['phone'], $searchQuery) !== false ||
-			stripos($item['category'], $searchQuery) !== false;
-	});
+	// Debugging output (optional)
+	// echo '<pre>'; print_r($currentItems); echo '</pre>';
 
-	$totalItems = count($filteredData);
-	$totalPages = ceil($totalItems / $itemsPerPage);
-	$currentItems = array_slice($filteredData, $offset, $itemsPerPage);
 } catch (PDOException $e) {
 	echo "Error: " . $e->getMessage();
 }
@@ -69,10 +40,7 @@ function renderPagination($page, $totalPages, $searchQuery)
 	include './component/pagination.php';
 }
 
-$conn = null; // Menutup koneksi
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -139,9 +107,6 @@ $conn = null; // Menutup koneksi
 										</svg> Tambah
 									</a>
 								</div>
-								<div class="col-auto">
-									<button class="btn app-btn-primary" onclick="generateCSV()">Download CSV</button>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -205,54 +170,6 @@ $conn = null; // Menutup koneksi
 	<script src="assets/js/charts-demo.js"></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
-	<script>
-		function generateCSV() {
-			var csv = [];
-			var rows = document.querySelectorAll("table tr");
-
-			for (var i = 0; i < rows.length; i++) {
-				var row = [],
-					cols = rows[i].querySelectorAll("td, th");
-				for (var j = 0; j < cols.length; j++)
-					row.push(cols[j].innerText);
-				csv.push(row.join(","));
-			}
-
-			// Download CSV file
-			downloadCSV(csv.join("\n"), 'table.csv');
-		}
-
-		function downloadCSV(csv, filename) {
-			var csvFile;
-			var downloadLink;
-
-			csvFile = new Blob([csv], {
-				type: "text/csv"
-			});
-
-			// Create a download link
-			downloadLink = document.createElement("a");
-
-			// File name
-			downloadLink.download = filename;
-
-			// Create a link to the file
-			downloadLink.href = window.URL.createObjectURL(csvFile);
-
-			// Hide download link
-			downloadLink.style.display = "none";
-
-			// Add the link to DOM
-			document.body.appendChild(downloadLink);
-
-			// Click download link
-			downloadLink.click();
-		}
-
-		function generateInvoice(index) {
-			// Add your code for generating the invoice as PDF
-		}
-	</script>
 </body>
 <?php include './component/dialog.php'; ?>
 

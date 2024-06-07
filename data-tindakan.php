@@ -111,6 +111,9 @@ $conn = null; // Menutup koneksi
 										</svg> Tambah
 									</a>
 								</div>
+								<div class="col-auto">
+									<button class="btn app-btn-primary" onclick="generateCSV()">Download CSV</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -175,6 +178,54 @@ $conn = null; // Menutup koneksi
 	<script src="assets/js/charts-demo.js"></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
+	<script>
+		function generateCSV() {
+			var csv = [];
+			var rows = document.querySelectorAll("table tr");
+
+			for (var i = 0; i < rows.length; i++) {
+				var row = [],
+					cols = rows[i].querySelectorAll("td, th");
+				for (var j = 0; j < cols.length; j++)
+					row.push(cols[j].innerText);
+				csv.push(row.join(","));
+			}
+
+			// Download CSV file
+			downloadCSV(csv.join("\n"), 'table.csv');
+		}
+
+		function downloadCSV(csv, filename) {
+			var csvFile;
+			var downloadLink;
+
+			csvFile = new Blob([csv], {
+				type: "text/csv"
+			});
+
+			// Create a download link
+			downloadLink = document.createElement("a");
+
+			// File name
+			downloadLink.download = filename;
+
+			// Create a link to the file
+			downloadLink.href = window.URL.createObjectURL(csvFile);
+
+			// Hide download link
+			downloadLink.style.display = "none";
+
+			// Add the link to DOM
+			document.body.appendChild(downloadLink);
+
+			// Click download link
+			downloadLink.click();
+		}
+
+		function generateInvoice(index) {
+			// Add your code for generating the invoice as PDF
+		}
+	</script>
 </body>
 <?php include './component/dialog.php'; ?>
 

@@ -2,70 +2,54 @@
 include './config/config.php';
 $isPage = 'laporan';
 
-// Fungsi untuk mendapatkan total item dari database
-function getTotalItems($searchQuery)
-{
-	global $conn; // Gunakan variabel $conn dari file config
-
-	// SQL query untuk menghitung total item berdasarkan search query
-	$sql = "SELECT COUNT(*) AS total
-            FROM patient 
-            INNER JOIN action ON patient.id = action.patient_id
-            INNER JOIN transaction_in ON action.id = transaction_in.action_id
-            WHERE 
-                patient.fullname LIKE :searchQuery OR
-                patient.address LIKE :searchQuery OR
-                patient.phone LIKE :searchQuery OR
-                patient.category LIKE :searchQuery";
-
-	$stmt = $conn->prepare($sql);
-	$searchTerm = '%' . $searchQuery . '%';
-	$stmt->bindParam(':searchQuery', $searchTerm, PDO::PARAM_STR);
-	$stmt->execute();
-	$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-	return $result['total'];
-}
-
 // Fungsi untuk mendapatkan data dari database
 function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 {
-	global $conn; // Gunakan variabel $conn dari file config
+	global $conn; // Use the $conn variable from the config file
 
-	// Mulai dari mana data akan diambil
+	// Start from where the data will be fetched
 	$offset = ($page - 1) * $itemsPerPage;
 
-	// Bangun query SQL untuk mengambil data
+	// Build the SQL query to fetch data
 	$sql = "SELECT 
-                patient.id AS patient_id,
-                patient.fullname,
-                patient.address,
-                patient.phone,
-                patient.category,
-                transaction_in.id AS transaction_id,
-                transaction_in.total_price
-            FROM 
-                patient
-            INNER JOIN 
-                action ON patient.id = action.patient_id
-            INNER JOIN 
-                transaction_in ON action.id = transaction_in.action_id
-            WHERE 
-                patient.fullname LIKE :searchQuery OR
-                patient.address LIKE :searchQuery OR
-                patient.phone LIKE :searchQuery OR
-                patient.category LIKE :searchQuery
-            LIMIT :offset, :itemsPerPage";
+            patient.id AS patient_id,
+            patient.fullname,
+            patient.address,
+            patient.phone,
+            patient.category,
+            transaction_in.id AS transaction_id,
+            transaction_in.total_price
+        FROM 
+            patient
+        INNER JOIN 
+            action ON patient.id = action.patient_id
+        INNER JOIN 
+            transaction_in ON action.id = transaction_in.action_id
+        WHERE 
+            patient.fullname LIKE CONCAT('%', :searchQuery, '%') OR
+            patient.address LIKE CONCAT('%', :searchQuery, '%') OR
+            patient.phone LIKE CONCAT('%', :searchQuery, '%') OR
+            patient.category LIKE CONCAT('%', :searchQuery, '%')
+        LIMIT :offset, :itemsPerPage";
 
 	$stmt = $conn->prepare($sql);
-	$searchTerm = '%' . $searchQuery . '%';
-	$stmt->bindParam(':searchQuery', $searchTerm, PDO::PARAM_STR);
+	$stmt->bindParam(':searchQuery', $searchQuery, PDO::PARAM_STR);
 	$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 	$stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
 	$stmt->execute();
 
-	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+	$data = []; // Initialize $data as an empty array
+
+	// Check the number of result rows
+	if ($stmt->rowCount() > 0) {
+		// Loop through the query result and store it in the array
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$data[] = $row;
+		}
+	}
+
+	// Return the data
 	return $data;
 }
 
@@ -78,13 +62,25 @@ function renderPagination($page, $totalPages, $searchQuery)
 // Ambil data dari database
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-$itemsPerPage = 10; // Tetapkan nilai itemsPerPage di sini
-
-$totalItems = getTotalItems($searchQuery); // Hitung total item dari database berdasarkan search query
-$totalPages = ceil($totalItems / $itemsPerPage);
+$itemsPerPage = 10; // Set the number of items per page
 $data = getDataFromDatabase($page, $itemsPerPage, $searchQuery);
 
-$offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
+// Count total records for pagination
+$totalItemsSql = "SELECT COUNT(*) AS total FROM patient 
+                INNER JOIN action ON patient.id = action.patient_id
+                INNER JOIN transaction_in ON action.id = transaction_in.action_id
+                WHERE 
+                    patient.fullname LIKE :searchQuery OR
+                    patient.address LIKE :searchQuery OR
+                    patient.phone LIKE :searchQuery OR
+                    patient.category LIKE :searchQuery";
+$stmtTotal = $conn->prepare($totalItemsSql);
+$searchQuery = "$searchQuery";
+$stmtTotal->bindParam(':searchQuery', $searchQuery, PDO::PARAM_STR);
+$stmtTotal->execute();
+$totalRow = $stmtTotal->fetch(PDO::FETCH_ASSOC);
+$totalRecords = $totalRow['total'];
+$totalPages = ceil($totalRecords / $itemsPerPage);
 
 ?>
 
@@ -176,7 +172,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 										<tbody>
 											<?php foreach ($data as $index => $row) : ?>
 												<tr id="row-<?php echo $index; ?>">
-													<td class="cell"><?php echo ($offset + $index + 1); ?></td>
+													<td class="cell"><?php echo $index + 1; ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['patient_id']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['fullname']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['address']); ?></td>
@@ -192,6 +188,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 												</tr>
 											<?php endforeach; ?>
 										</tbody>
+
 									</table>
 								</div>
 							</div>

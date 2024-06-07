@@ -1,78 +1,56 @@
 <?php
-include './config/config.php'; // Menghubungkan ke database
+include './config/config.php';
+$isPage = 'pengeluaran-kas';
 
-$isPage = 'data-pasien';
+// Fungsi untuk mendapatkan data dari database
+function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
+{
+	global $conn; // Gunakan variabel $conn dari file config
 
-// Definisikan variabel ini sebelum digunakan
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-$itemsPerPage = 10;
-
-try {
-	// Fetch total number of items
-	$totalItemsQuery = "
-        SELECT COUNT(*) 
-        FROM patient 
-        WHERE 
-            fullname LIKE :searchQuery OR 
-            address LIKE :searchQuery OR 
-            phone LIKE :searchQuery OR 
-            category LIKE :searchQuery
-    ";
-	$stmt = $conn->prepare($totalItemsQuery);
-	$stmt->execute([':searchQuery' => '%' . $searchQuery . '%']);
-	$totalItems = $stmt->fetchColumn();
-
-	$totalPages = ceil($totalItems / $itemsPerPage);
-
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	if ($page < 1) $page = 1;
-	if ($page > $totalPages) $page = $totalPages;
-
+	// Mulai dari mana data akan diambil
 	$offset = ($page - 1) * $itemsPerPage;
 
-	// Fetch current page items
-	$fetchDataQuery = "
-        SELECT * 
-        FROM patient 
-        WHERE 
-            fullname LIKE :searchQuery OR 
-            address LIKE :searchQuery OR 
-            phone LIKE :searchQuery OR 
-            category LIKE :searchQuery 
-        LIMIT :offset, :itemsPerPage
-    ";
-	$stmt = $conn->prepare($fetchDataQuery);
-	$stmt->bindParam(':searchQuery', $searchQueryWithWildcards, PDO::PARAM_STR);
+	// Bangun query SQL untuk mengambil data
+	$sql = "SELECT id, information, total_price, suppliers, created_at
+			FROM transaction_out
+			WHERE 
+			suppliers LIKE :searchQuery OR 
+			information LIKE :searchQuery OR
+			total_price LIKE :searchQuery
+			LIMIT :offset, :itemsPerPage";
+
+	// Persiapkan dan jalankan query
+	$stmt = $conn->prepare($sql);
+	$searchTerm = '%' . $searchQuery . '%';
+	$stmt->bindParam(':searchQuery', $searchTerm, PDO::PARAM_STR);
 	$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 	$stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
-	$searchQueryWithWildcards = '%' . $searchQuery . '%';
 	$stmt->execute();
-	$currentItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$filteredData = array_filter($currentItems, function ($item) use ($searchQuery) {
-		return stripos($item['id'], $searchQuery) !== false ||
-			stripos($item['fullname'], $searchQuery) !== false ||
-			stripos($item['address'], $searchQuery) !== false ||
-			stripos($item['phone'], $searchQuery) !== false ||
-			stripos($item['category'], $searchQuery) !== false;
-	});
+	// Ambil hasil query sebagai array asosiatif
+	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$totalItems = count($filteredData);
-	$totalPages = ceil($totalItems / $itemsPerPage);
-	$currentItems = array_slice($filteredData, $offset, $itemsPerPage);
-} catch (PDOException $e) {
-	echo "Error: " . $e->getMessage();
+	return $data;
 }
 
+// Fungsi untuk render pagination
 function renderPagination($page, $totalPages, $searchQuery)
 {
 	include './component/pagination.php';
 }
 
-$conn = null; // Menutup koneksi
+// Ambil data dari database
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+$itemsPerPage = 10; // Tetapkan nilai itemsPerPage di sini
+$data = getDataFromDatabase($page, $itemsPerPage, $searchQuery);
+
+// Hitung total halaman
+$totalItems = count($data);
+$totalPages = ceil($totalItems / $itemsPerPage);
+$offset = ($page - 1) * $itemsPerPage;
+$currentItems = array_slice($data, $offset, $itemsPerPage);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -124,23 +102,20 @@ $conn = null; // Menutup koneksi
 			<div class="container-xl">
 				<div class="row g-3 mb-4 align-items-center justify-content-between">
 					<div class="col-auto">
-						<h1 class="app-page-title mb-0">Daftar Data Pasien</h1>
+						<h1 class="app-page-title mb-0">Transaksi Pengeluaran Kas</h1>
 					</div>
 					<div class="col-auto">
 						<div class="page-utilities">
 							<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 								<div class="col-auto">
-									<?php include './component/search-box.php'; ?>
+									<?php include './component/pasien-search-box.php'; ?>
 								</div>
 								<div class="col-auto">
-									<a class="btn app-btn-primary" href="./data-pasien-input.php">
+									<a class="btn app-btn-primary" href="./pengeluaran-kas-input.php">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
 										</svg> Tambah
 									</a>
-								</div>
-								<div class="col-auto">
-									<button class="btn app-btn-primary" onclick="generateCSV()">Download CSV</button>
 								</div>
 							</div>
 						</div>
@@ -155,27 +130,27 @@ $conn = null; // Menutup koneksi
 										<thead>
 											<tr>
 												<th class="cell">No</th>
-												<th class="cell">Kode Pasien</th>
-												<th class="cell">Nama Pasien</th>
-												<th class="cell">Alamat</th>
-												<th class="cell">Nomor Telepon</th>
-												<th class="cell">Kategori</th>
+												<th class="cell">ID Transaksi</th>
+												<th class="cell">Supplier</th>
+												<th class="cell">Catatan</th>
+												<th class="cell">Total Harga</th>
+												<th class="cell">Tanggal</th>
 												<th class="cell">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php foreach ($currentItems as $index => $row) : ?>
 												<tr>
-													<td class="cell"><?php echo ($offset + $index + 1); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['id'] ?? 'N/A'); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['fullname'] ?? 'N/A'); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['address'] ?? 'N/A'); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['phone'] ?? 'N/A'); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['category'] ?? 'N/A'); ?></td>
+													<td class="cell"><?php echo ($offset + $index + 1) ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['id']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['suppliers']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['information']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['total_price']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['created_at']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<a class="btn-sm app-btn-primary me-1" href="./data-pasien-edit.php?id=<?php echo htmlspecialchars($row['id'] ?? ''); ?>">Edit</a>
-															<form method="POST" action="data-pasien-delete.php" onsubmit="return confirm('Are you sure you want to delete this patient?')">
+															<a class="btn-sm app-btn-primary me-1" href="./pengeluaran-kas-edit.php?id=<?php echo htmlspecialchars($row['id'] ?? ''); ?>">Edit</a>
+															<form method="POST" action="pengeluaran-kas-delete.php" onsubmit="return confirm('Are you sure you want to delete this transaction?')">
 																<input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id'] ?? ''); ?>">
 																<button type="submit" class="btn-sm app-btn-secondary ms-1" name="delete">Delete</button>
 															</form>
@@ -205,54 +180,6 @@ $conn = null; // Menutup koneksi
 	<script src="assets/js/charts-demo.js"></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
-	<script>
-		function generateCSV() {
-			var csv = [];
-			var rows = document.querySelectorAll("table tr");
-
-			for (var i = 0; i < rows.length; i++) {
-				var row = [],
-					cols = rows[i].querySelectorAll("td, th");
-				for (var j = 0; j < cols.length; j++)
-					row.push(cols[j].innerText);
-				csv.push(row.join(","));
-			}
-
-			// Download CSV file
-			downloadCSV(csv.join("\n"), 'table.csv');
-		}
-
-		function downloadCSV(csv, filename) {
-			var csvFile;
-			var downloadLink;
-
-			csvFile = new Blob([csv], {
-				type: "text/csv"
-			});
-
-			// Create a download link
-			downloadLink = document.createElement("a");
-
-			// File name
-			downloadLink.download = filename;
-
-			// Create a link to the file
-			downloadLink.href = window.URL.createObjectURL(csvFile);
-
-			// Hide download link
-			downloadLink.style.display = "none";
-
-			// Add the link to DOM
-			document.body.appendChild(downloadLink);
-
-			// Click download link
-			downloadLink.click();
-		}
-
-		function generateInvoice(index) {
-			// Add your code for generating the invoice as PDF
-		}
-	</script>
 </body>
 <?php include './component/dialog.php'; ?>
 
