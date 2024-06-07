@@ -1,7 +1,7 @@
 <?php
 include './config/config.php'; // Menghubungkan ke database
 
-$isPage = 'data-pasien';
+$isPage = 'data-tindakan';
 $message = '';
 // Mengambil data dari tabel patient
 $sql = "SELECT id, fullname FROM patient";
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+  <title><?php echo $isPage; ?></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -3,27 +3,27 @@ require './config/config.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $username = $_POST['signin-username'];
-  $password = $_POST['signin-password'];
-  $remember = isset($_POST['RememberPassword']);
+	$username = $_POST['signin-username'];
+	$password = $_POST['signin-password'];
+	$remember = isset($_POST['RememberPassword']);
 
-  $stmt = $conn->prepare("SELECT * FROM user WHERE username = :username");
-  $stmt->bindParam(':username', $username);
-  $stmt->execute();
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+	$stmt = $conn->prepare("SELECT * FROM user WHERE username = :username");
+	$stmt->bindParam(':username', $username);
+	$stmt->execute();
+	$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user_id'] = $user['id'];
+	if ($user && password_verify($password, $user['password'])) {
+		$_SESSION['user_id'] = $user['id'];
 
-    if ($remember) {
-      setcookie('user_id', $user['id'], time() + (86400 * 30), "/");
-    }
+		if ($remember) {
+			setcookie('user_id', $user['id'], time() + (86400 * 30), "/");
+		}
 
-    header("Location: index.php");
-    exit();
-  } else {
+		header("Location: index.php");
+		exit();
+	} else {
 		error_log("Invalid username or password");
-  }
+	}
 }
 ?>
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <head>
-	<title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+	<title>Login</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,20 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
 			<div class="d-flex flex-column align-content-end">
 				<div class="app-auth-body mx-auto">
-					<div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2"
-								src="assets/images/app-logo.svg" alt="logo"></a></div>
+					<div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"></a></div>
 					<h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
 					<div class="auth-form-container text-start">
 						<form class="auth-form login-form" method="POST">
 							<div class="email mb-3">
 								<label class="sr-only" for="signin-username">Username</label>
-								<input id="signin-username" name="signin-username" type="text" class="form-control signin-username"
-									placeholder="Username" required="required">
+								<input id="signin-username" name="signin-username" type="text" class="form-control signin-username" placeholder="Username" required="required">
 							</div>
 							<div class="password mb-3">
 								<label class="sr-only" for="signin-password">Password</label>
-								<input id="signin-password" name="signin-password" type="password" class="form-control signin-password"
-									placeholder="Password" required="required">
+								<input id="signin-password" name="signin-password" type="password" class="form-control signin-password" placeholder="Password" required="required">
 								<div class="extra mt-3 row justify-content-between">
 									<div class="col-6">
 										<div class="form-check">
@@ -81,15 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Log In</button>
 							</div>
 						</form>
-						<div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link"
-								href="signup.html">here</a>.</div>
+						<div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="signup.html">here</a>.</div>
 					</div>
 				</div>
 				<footer class="app-auth-footer">
 					<div class="container text-center py-3">
-						<small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
-								style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com"
-								target="_blank">Xiaoying Riley</a> for developers</small>
+						<small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
 					</div>
 				</footer>
 			</div>
@@ -104,8 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="overlay-content p-3 p-lg-4 rounded">
 						<h5 class="mb-3 overlay-title">Explore Portal Admin Template</h5>
 						<div>Portal is a free Bootstrap 5 admin dashboard template. You can download and view the template license
-							<a
-								href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">here</a>.
+							<a href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">here</a>.
 						</div>
 					</div>
 				</div>
@@ -113,4 +106,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 </body>
+
 </html>

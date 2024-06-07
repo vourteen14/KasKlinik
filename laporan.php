@@ -211,14 +211,6 @@ $totalPages = ceil($totalRecords / $itemsPerPage);
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/custom.js"></script>
 	<script>
-		function printReceipt(rowId) {
-			var printContents = document.getElementById(rowId).innerHTML;
-			var originalContents = document.body.innerHTML;
-			document.body.innerHTML = '<html><head><title>Print Receipt</title></head><body>' + printContents + '</body></html>';
-			window.print();
-			document.body.innerHTML = originalContents;
-		}
-
 		function generateCSV() {
 			var csv = [];
 			var rows = document.querySelectorAll("table tr");

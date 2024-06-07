@@ -59,7 +59,7 @@ $conn = null; // Menutup koneksi
 <html lang="en">
 
 <head>
-  <title>Edit Data Tindakan - Bootstrap 5 Admin Dashboard Template For Developers</title>
+  <title><?php echo $isPage; ?></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
