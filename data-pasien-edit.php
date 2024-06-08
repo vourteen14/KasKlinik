@@ -1,6 +1,6 @@
 <?php
 require './config/config.php';
-
+$message = '';
 $isPage = 'data-pasien';
 
 // Initialize variables
@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':id' => $id
     ]);
     // Set success message
-    $message = 'success';
+    $message = 'Pasien berhasil diperbarui';
     // Redirect to data-pasien.php after update
     header('Location: ./data-pasien.php');
     exit();
   } catch (PDOException $e) {
     // Set error message
-    $message = 'Error: ' . $e->getMessage();
+    $message = 'Gagal memperbarui pasien: ' . $e->getMessage();
   }
 }
 ?>

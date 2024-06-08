@@ -35,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
-	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+	<meta name="description">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 	<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
@@ -81,11 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<div class="auth-option text-center pt-5"><a class="text-link" href="signup.html"></a>.</div>
 					</div>
 				</div>
-				<footer class="app-auth-footer">
-					<div class="container text-center py-3">
-						<small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-					</div>
-				</footer>
 			</div>
 		</div>
 		<div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">

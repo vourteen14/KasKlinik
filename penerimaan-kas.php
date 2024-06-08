@@ -169,7 +169,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 											<tr>
 												<th class="cell">No</th>
 												<th class="cell">Nama Pasien</th>
-												<th class="cell">Catatan</th>
+												<th class="cell">Catatan Pasien</th>
 												<th class="cell">Diagnosis</th>
 												<th class="cell">Obat</th>
 												<th class="cell">Tanggal</th>

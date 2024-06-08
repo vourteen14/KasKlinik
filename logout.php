@@ -1,10 +1,17 @@
 <?php
-  session_start();
-  session_unset();
-  session_destroy();
+session_start();
 
-  setcookie('user_id', '', time() - 3600, "/");
+// Menghapus semua variabel sesi
+$_SESSION = array();
 
-  header("Location: login.php");
-  exit();
-?>
+// Jika ada cookie yang diset untuk mengingat pengguna, hapus juga
+if (isset($_COOKIE['user_id'])) {
+  setcookie('user_id', '', time() - 3600, "/"); // Hapus cookie dengan mengatur waktu kedaluwarsa di masa lalu
+}
+
+// Menghapus sesi
+session_destroy();
+
+// Redirect ke halaman login atau halaman lain setelah logout
+header("Location: login.php");
+exit();

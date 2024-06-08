@@ -80,11 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body class="app">
-  <?php if ($message) : ?>
-    <script>
-      alert('<?php echo $message; ?>');
-    </script>
-  <?php endif; ?>
   <header class="app-header fixed-top">
     <div class="app-header-inner">
       <div class="container-fluid py-2">
@@ -219,6 +214,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
           </div>
         </form>
+        <?php if ($message) : ?>
+          <div class="alert alert-info mt-3">
+            <?php echo $message; ?>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
     <footer class="app-footer">

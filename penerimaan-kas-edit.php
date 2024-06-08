@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
       <div class="container-xl">
-        <h1 class="app-page-title">Input Data Transaksi Pasien</h1>
+        <h1 class="app-page-title">Edit Data Transaksi Pasien</h1>
 
         <form class="auth-form login-form" method="POST">
           <div class="row">
@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="id">Kode Nota</label>
-                    <input readonly name="id" value="<?php echo $transaction['id']; ?>">
+                    <input readonly name="id" type="text" class="form-control" value="<?php echo $transaction['id']; ?>">
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">

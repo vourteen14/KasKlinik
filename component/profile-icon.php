@@ -7,7 +7,7 @@
       </svg>
     </a>
     <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-      <li><button class="dropdown-item" onclick="logout()">Log Out</button></li>
+      <li><a class="dropdown-item" href="./logout.php">Log Out</a></li>
     </ul>
   </div>
 </div>
