@@ -66,7 +66,24 @@ include './config/config.php';
 		<div class="app-card app-card-stat shadow-sm h-100">
 			<div class="app-card-body p-3 p-lg-4">
 				<h4 class="stats-type mb-1">Saldo</h4>
-				<div class="stats-figure">100 juta</div>
+				<?php
+				$sql = "SELECT balance FROM balance WHERE id = 1";
+				$result = $conn->query($sql);
+
+				if ($result->rowCount() > 0) {
+					$row = $result->fetch(PDO::FETCH_ASSOC);
+					$balance = $row["balance"];
+					if ($balance >= 1000000) {
+						echo "<div class=\"stats-figure\">" . number_format($balance / 1000000, 1, ',', '.') . " juta</div>";
+					} elseif ($balance >= 1000) {
+						echo "<div class=\"stats-figure\">" . round($balance / 1000) . " ribu</div>";
+					} else {
+						echo "<div class=\"stats-figure\">" . $balance . "</div>";
+					}
+				} else {
+					echo "<div class=\"stats-figure\">0</div>";
+				}
+				?>
 				<div class="stats-meta text-success">Rupiah</div>
 			</div>
 			<a class="app-card-link-mask" href="#"></a>

@@ -33,9 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if ($stmt->execute())
 
-        $message = "New record created successfully";
+        $message = "Tindakan berhasil ditambahkan";
     } catch (PDOException $e) {
-      $message = "Error: " . $e->getMessage();
+      $message = "Gagal menambahkan tindakan: " . $e->getMessage();
     }
   }
 
@@ -59,11 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="app">
-  <?php if ($message) : ?>
-    <script>
-      alert('<?php echo $message; ?>');
-    </script>
-  <?php endif; ?>
   <header class="app-header fixed-top">
     <div class="app-header-inner">
       <div class="container-fluid py-2">
@@ -95,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="app-wrapper">
     <div class="app-content pt-3 p-md-3 p-lg-4">
       <div class="container-xl">
-        <h1 class="app-page-title">Input Data Pasien</h1>
+        <h1 class="app-page-title">Input Data Tindakan</h1>
         <form class="auth-form login-form" method="POST">
           <div class="row">
             <div class="col-12 col-lg-6">
@@ -134,6 +129,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
         </form>
+        <?php if ($message) : ?>
+          <div class="alert alert-info mt-3">
+            <?php echo $message; ?>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
     <footer class="app-footer">
