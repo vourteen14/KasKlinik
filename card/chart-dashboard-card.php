@@ -105,7 +105,6 @@ function format_nominal($amount)
           </div>
         </div>
         <div style="width: 80%; margin: auto;">
-          <h2>Statistik Mingguan</h2>
           <canvas id="weeklyChart"></canvas>
         </div>
       </div>
