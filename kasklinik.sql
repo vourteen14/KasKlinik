@@ -63,3 +63,50 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+DELIMITER //
+CREATE TRIGGER after_transaction_insert
+AFTER INSERT ON transaction
+FOR EACH ROW
+BEGIN
+    IF NEW.type = 'IN' THEN
+        UPDATE balance
+        SET balance = balance + NEW.price
+        WHERE id = 1;
+    ELSEIF NEW.type = 'OUT' THEN
+        UPDATE balance
+        SET balance = balance - NEW.price
+        WHERE id = 1;
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER after_transaction_update
+AFTER UPDATE ON transaction
+FOR EACH ROW
+BEGIN
+    IF OLD.type = 'IN' THEN
+        UPDATE balance
+        SET balance = balance - OLD.price
+        WHERE id = 1;
+    ELSEIF OLD.type = 'OUT' THEN
+        UPDATE balance
+        SET balance = balance + OLD.price
+        WHERE id = 1;
+    END IF;
+
+    IF NEW.type = 'IN' THEN
+        UPDATE balance
+        SET balance = balance + NEW.price
+        WHERE id = 1;
+    ELSEIF NEW.type = 'OUT' THEN
+        UPDATE balance
+        SET balance = balance - NEW.price
+        WHERE id = 1;
+    END IF;
+END //
+
+DELIMITER ;
+
