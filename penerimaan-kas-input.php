@@ -3,6 +3,8 @@ include './config/config.php';
 $message = '';
 $isPage = 'penerimaan-kas';
 
+$payments = ['BPJS', 'Asuransi', 'Umum'];
+
 // Mengambil data dari tabel action untuk dropdown
 $sql = "SELECT a.id, p.fullname, a.diagnosis, a.notes 
         FROM action a 
@@ -181,8 +183,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="row">
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
-                    <label class="form-label" for="doctor">Metode Pembayaran</label>
-                    <input id="doctor" name="doctor" type="text" class="form-control" required="required" value="Metode Pembayaran">
+                    <label class="form-label" for="payment">Metode Pembayaran</label>
+                      <select id="payment" name="payment">
+                        <?php foreach ($options as $option): ?>
+                            <option value="<?php echo htmlspecialchars($option); ?>">
+                                <?php echo htmlspecialchars($option); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">
