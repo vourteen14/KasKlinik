@@ -2,8 +2,11 @@
 require './config/config.php';
 $isPage = 'data-pasien';
 
+$category = ['BPJS', 'Asuransi', 'Umum'];
+
 // Variabel untuk menyimpan pesan
 $message = '';
+$pasientid = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nama_pasien = $_POST['nama-pasien'];
@@ -11,8 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
   $telepon = $_POST['telepon'];
+  $selectedcategory = $_POST['kategori'];
 
-  // Menyusun query SQL menggunakan prepared statements untuk keamanan
+  if ($selectedCategory === 'BPJS') {
+    echo "You selected BPJS.";
+  } elseif ($selectedCategory === 'Asuransi') {
+    echo "You selected Asuransi.";
+  } else {
+    echo "You selected Umum.";
+  }
+
   $sql = "INSERT INTO patient (fullname, address, phone, category)
     VALUES (:fullname, :address, :phone, :category)";
 
@@ -104,7 +115,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="kategori">Kategori</label>
-                <input id="kategori" name="kategori" type="text" class="form-control" required="required">
+                <select id="kategori" name="kategori" class="form-select w-100">
+                  <?php foreach ($category as $option): ?>
+                    <option value="<?php echo htmlspecialchars($option); ?>">
+                      <?php echo htmlspecialchars($option); ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
             <div class="col-12 col-lg-6">
