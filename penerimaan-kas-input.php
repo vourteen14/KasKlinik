@@ -184,12 +184,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="payment">Metode Pembayaran</label>
-                      <select id="payment" name="payment">
-                        <?php foreach ($options as $option): ?>
-                            <option value="<?php echo htmlspecialchars($option); ?>">
-                                <?php echo htmlspecialchars($option); ?>
-                            </option>
-                        <?php endforeach; ?>
+                    <select id="payment" name="payment" class="form-select w-100">
+                      <?php foreach ($payments as $option): ?>
+                        <option value="<?php echo htmlspecialchars($option); ?>">
+                          <?php echo htmlspecialchars($option); ?>
+                        </option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
