@@ -119,14 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="row">
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
-                    <label class="form-label" for="id">Kode Nota</label>
-                    <input id="id" name="id" type="text" class="form-control" required="required" disabled>
+                    <label class="form-label" for="doctor">Doctor</label>
+                    <input id="doctor" name="doctor" type="text" class="form-control" required="required" value="Dr. Achmad Irawan" disabled>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="tanggal">Tanggal</label>
-                    <input id="tanggal" name="tanggal" type="text" class="form-control" required="required" disabled>
+                    <input id="tanggal" value="<?php echo date('Y-m-d'); ?>" name="tanggal" type="text" class="form-control" required="required" disabled>
                   </div>
                 </div>
               </div>
@@ -181,8 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="row">
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
-                    <label class="form-label" for="doctor">Doctor</label>
-                    <input id="doctor" name="doctor" type="text" class="form-control" required="required" value="Dr. Achmad Irawan" disabled>
+                    <label class="form-label" for="doctor">Metode Pembayaran</label>
+                    <input id="doctor" name="doctor" type="text" class="form-control" required="required" value="Metode Pembayaran">
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">
