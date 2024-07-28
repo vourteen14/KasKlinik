@@ -1,25 +1,25 @@
 <?php
-
 include './config/config.php';
 $tableName = 'patient';
-$sql = "SELECT COUNT(*) AS total FROM $tableName";
 
-// Execute the query
-$result = $conn->query($sql);
+try {
+    // SQL query to count rows
+    $sql = "SELECT COUNT(*) AS total FROM $tableName";
 
-// Check if query execution was successful
-if ($result) {
+    // Prepare and execute the query
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
     // Fetch the result as an associative array
-    $row = $result->fetch_assoc();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
     // Get the count value
     $count = $row['total'];
+
     // Output the count using echo
     echo "Number of rows in '$tableName': $count";
-} else {
+} catch (PDOException $e) {
     // Output an error message if the query fails
-    echo "Error: " . $conn->error;
+    echo "Error: " . $e->getMessage();
 }
-
-// Close the connection
-$conn->close();
 ?>
