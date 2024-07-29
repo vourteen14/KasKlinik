@@ -40,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $desa = $_POST['desa'];
   $phone = $_POST['phone'];
 
+  echo $patientData['id'];
+
   try {
     // Combine kecamatan and desa into the address
     $address = $kecamatan . ', ' . $desa;
@@ -60,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } catch (PDOException $e) {
     // Set error message
     $message = 'Gagal memperbarui pasien: ' . $e->getMessage();
-    echo "<script> alert(<?php echo $message ?>);</script>";
   }
 }
 ?>
