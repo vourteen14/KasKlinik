@@ -35,9 +35,8 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $_POST['id-pasien'];
+  $id = $_GET['id'];
   $fullname = $_POST['fullname'];
-  $category = $_POST['category'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
   $phone = $_POST['phone'];
@@ -46,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Combine kecamatan and desa into the address
     $address = $kecamatan . ', ' . $desa;
 
-    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone WHERE patient_id = :id";
+    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone WHERE id = :id";
     $stmt = $conn->prepare($updateQuery);
     $stmt->execute([
       ':fullname' => $fullname,
