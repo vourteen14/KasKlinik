@@ -3,6 +3,7 @@ require './config/config.php';
 $message = '';
 $isPage = 'data-pasien';
 $ids = $_GET['id'];
+echo $ids;
 
 // Initialize variables
 $patientData = [
