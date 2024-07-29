@@ -17,7 +17,7 @@ try {
     $count = $row['total'];
 
     // Output the count using echo
-    echo "$count";
+    return "$count";
 } catch (PDOException $e) {
     // Output an error message if the query fails
     echo "Error: " . $e->getMessage();
