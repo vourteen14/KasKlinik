@@ -46,11 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Combine kecamatan and desa into the address
     $address = $kecamatan . ', ' . $desa;
 
-    $updateQuery = "UPDATE patient SET fullname = :fullname, category = :category, address = :address, phone = :phone WHERE patient_id = :id";
+    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone WHERE patient_id = :id";
     $stmt = $conn->prepare($updateQuery);
     $stmt->execute([
       ':fullname' => $fullname,
-      ':category' => $category,
       ':address' => $address,
       ':phone' => $phone,
       ':id' => $id
@@ -131,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="category">Category</label>
-                <input id="category" name="category" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['category']); ?>" required="required">
+                <input id="category" name="category" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['category']); ?>" required="required" disabled>
               </div>
             </div>
             <div class="col-12 col-lg-6">
