@@ -2,6 +2,7 @@
 require './config/config.php';
 $message = '';
 $isPage = 'data-pasien';
+$ids = $_GET['id'];
 
 // Initialize variables
 $patientData = [
@@ -35,7 +36,7 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $_GET['id'];
+  $id = $ids
   $fullname = $_POST['fullname'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
