@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     $patientData['kecamatan'] = $addressParts[0];
     $patientData['desa'] = $addressParts[1];
   } catch (PDOException $e) {
-    echo "<script> alert(Error: . $e->getMessage())</script>";
+    echo "Error: " . $e->getMessage();
   }
 }
 
@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } catch (PDOException $e) {
     // Set error message
     $message = 'Gagal memperbarui pasien: ' . $e->getMessage();
+    echo "<script> alert(<?php echo $message ?>);</script>";
   }
 }
 ?>
