@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     $patientData['kecamatan'] = $addressParts[0];
     $patientData['desa'] = $addressParts[1];
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo "<script> alert(Error: . $e->getMessage())</script>";
   }
 }
 
@@ -183,9 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="assets/plugins/chart.js/chart.min.js"></script>
   <script src="assets/js/index-charts.js"></script>
   <script src="assets/js/app.js"></script>
-  <script>
-    alert("<?php echo $message ?>");
-  </script>
 </body>
 
 </html>
