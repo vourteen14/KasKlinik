@@ -2,8 +2,6 @@
 require './config/config.php';
 $message = '';
 $isPage = 'data-pasien';
-$ids = $_GET['id'];
-echo $ids;
 
 // Initialize variables
 $patientData = [
@@ -52,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':fullname' => $fullname,
       ':address' => $address,
       ':phone' => $phone,
-      ':id' => $ids
+      ':id' => $patientData['id']
     ]);
     // Set success message
     $message = 'Pasien berhasil diperbarui';
