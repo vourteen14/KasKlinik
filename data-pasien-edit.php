@@ -36,7 +36,6 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $ids;
   $fullname = $_POST['fullname'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
@@ -52,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':fullname' => $fullname,
       ':address' => $address,
       ':phone' => $phone,
-      ':id' => $id
+      ':id' => $ids
     ]);
     // Set success message
     $message = 'Pasien berhasil diperbarui';
