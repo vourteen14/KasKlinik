@@ -35,7 +35,7 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $_POST['id-pasien'];
+  $id = $_POST['pasienid'];
   $fullname = $_POST['fullname'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
@@ -120,8 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="id">ID Pasien</label>
-                <input id="id" name="id-pasien" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['id']); ?>" required="required" disabled>
+                <label class="form-label" for="pasienid">ID Pasien</label>
+                <input id="pasienid" name="pasienid" type="hidden" class="form-control" value="<?php echo htmlspecialchars($patientData['id']); ?>" required="required" disabled>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="id">ID Pasien</label>
