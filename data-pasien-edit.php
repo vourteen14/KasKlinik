@@ -35,7 +35,7 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $_POST['pasienid'];
+  $id = $_POST['id'];
   $fullname = $_POST['fullname'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Combine kecamatan and desa into the address
     $address = $kecamatan . ', ' . $desa;
 
-    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone WHERE id = :id";
+    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone WHERE patient_id = :id";
     $stmt = $conn->prepare($updateQuery);
     $stmt->execute([
       ':fullname' => $fullname,
@@ -120,12 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
-                <label class="form-label" for="pasienid">ID Pasien</label>
-                <input id="pasienid" name="pasienid" type="hidden" class="form-control" value="<?php echo htmlspecialchars($patientData['id']); ?>" required="required" disabled>
-              </div>
-              <div class="text mb-3">
                 <label class="form-label" for="id">ID Pasien</label>
-                <input id="id" name="id-pp" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required" disabled>
+                <input id="id" name="id" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required" disabled>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="fullname">Nama Pasien</label>
