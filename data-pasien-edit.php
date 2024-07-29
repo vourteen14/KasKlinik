@@ -35,12 +35,11 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $id = $_POST['id-pasien'];
   $fullname = $_POST['fullname'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
   $phone = $_POST['phone'];
-
-  echo $patientData['id'];
 
   try {
     // Combine kecamatan and desa into the address
@@ -52,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':fullname' => $fullname,
       ':address' => $address,
       ':phone' => $phone,
-      ':id' => $patientData['id']
+      ':id' => $id
     ]);
     // Set success message
     $message = 'Pasien berhasil diperbarui';
@@ -122,7 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
                 <label class="form-label" for="id">ID Pasien</label>
-                <input id="id" name="id-pasien" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required" disabled>
+                <input id="id" name="id-pasien" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['id']); ?>" required="required" disabled>
+              </div>
+              <div class="text mb-3">
+                <label class="form-label" for="id">ID Pasien</label>
+                <input id="id" name="id-pp" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required" disabled>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="fullname">Nama Pasien</label>
