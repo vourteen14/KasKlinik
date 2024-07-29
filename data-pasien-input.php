@@ -6,7 +6,7 @@ $category = ['BPJS', 'Asuransi', 'Umum'];
 
 // Variabel untuk menyimpan pesan
 $message = '';
-$patientcount = include 'count.php';
+$patientcount = include 'count.php' + 1;
 $pasientid = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
