@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
                 <label class="form-label" for="id">ID Pasien</label>
-                <input id="id" name="id" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required" disabled>
+                <input id="id" name="id" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required">
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="fullname">Nama Pasien</label>
