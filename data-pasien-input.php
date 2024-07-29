@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $selectedcategory = $_POST['kategori'];
 
   if ($selectedCategory === 'BPJS') {
-    $pasientid = "bp1-0" + $patientcount;
+    $pasientid = "bp1-0" . $patientcount;
   } elseif ($selectedCategory === 'Asuransi') {
-    $pasientid = "as1-0" + $patientcount;
+    $pasientid = "as1-0" . $patientcount;
   } else {
-   $pasientid = "um1-0" + $patientcount;
+   $pasientid = "um1-0" . $patientcount;
   }
 
   $sql = "INSERT INTO patient (patient_id, fullname, address, phone, category)
