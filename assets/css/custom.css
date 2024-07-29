@@ -29,3 +29,10 @@
         transform: translate(-50%, -50%);
     }
 }
+
+.readonly-field {
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    cursor: not-allowed;
+}

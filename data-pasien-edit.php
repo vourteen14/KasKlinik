@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
   <link rel="shortcut icon" href="favicon.ico">
   <link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+  <link id="theme-style" rel="stylesheet" href="assets/css/custom.css">
   <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
 </head>
 
@@ -121,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
                 <label class="form-label" for="id">ID Pasien</label>
-                <input id="id" name="id" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required">
+                <input id="id" name="id" type="text" class="form-control readonly-field" value="<?php echo htmlspecialchars($patientData['patient_id']); ?>" required="required" readonly>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="fullname">Nama Pasien</label>
