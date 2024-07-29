@@ -164,7 +164,7 @@ $conn = null; // Menutup koneksi
 											<?php foreach ($currentItems as $index => $row) : ?>
 												<tr>
 													<td class="cell"><?php echo ($offset + $index + 1); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['id'] ?? 'N/A'); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['patient_id'] ?? 'N/A'); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['fullname'] ?? 'N/A'); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['address'] ?? 'N/A'); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['phone'] ?? 'N/A'); ?></td>
