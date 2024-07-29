@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Combine kecamatan and desa into the address
     $address = $kecamatan . ', ' . $desa;
 
-    $updateQuery = "UPDATE patient SET fullname = :fullname, category = :category, address = :address, phone = :phone WHERE id = :id";
+    $updateQuery = "UPDATE patient SET fullname = :fullname, category = :category, address = :address, phone = :phone WHERE patient_id = :id";
     $stmt = $conn->prepare($updateQuery);
     $stmt->execute([
       ':fullname' => $fullname,
