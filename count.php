@@ -17,7 +17,7 @@ try {
     $count = $row['total'];
 
     // Output the count using echo
-    echo "Number of rows in '$tableName': $count";
+    echo "$count";
 } catch (PDOException $e) {
     // Output an error message if the query fails
     echo "Error: " . $e->getMessage();

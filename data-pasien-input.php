@@ -6,6 +6,7 @@ $category = ['BPJS', 'Asuransi', 'Umum'];
 
 // Variabel untuk menyimpan pesan
 $message = '';
+$patientcount = include 'count.php';
 $pasientid = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -17,15 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $selectedcategory = $_POST['kategori'];
 
   if ($selectedCategory === 'BPJS') {
-    echo "You selected BPJS.";
+    $pasientid = "bp1-0" + $patientcount;
   } elseif ($selectedCategory === 'Asuransi') {
-    echo "You selected Asuransi.";
+    $pasientid = "as1-0" + $patientcount;
   } else {
-    echo "You selected Umum.";
+   $pasientid = "um1-0" + $patientcount;
   }
 
-  $sql = "INSERT INTO patient (fullname, address, phone, category)
-    VALUES (:fullname, :address, :phone, :category)";
+  $sql = "INSERT INTO patient (patient_id, fullname, address, phone, category)
+    VALUES (:patientid, :fullname, :address, :phone, :category)";
 
   try {
     // Mempersiapkan statement
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $alamat = $kecamatan . ', ' . $desa;
 
     // Mengikat parameter
+    $stmt->bindParam(':patientid', $pasientid);
     $stmt->bindParam(':fullname', $nama_pasien);
     $stmt->bindParam(':address', $alamat);
     $stmt->bindParam(':phone', $telepon);
