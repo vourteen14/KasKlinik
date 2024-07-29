@@ -36,7 +36,7 @@ $successMessage = '';
 $errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $ids
+  $id = $ids;
   $fullname = $_POST['fullname'];
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
