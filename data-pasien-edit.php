@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="category">Category</label>
-                <input id="category" name="category" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['category']); ?>" required="required" disabled>
+                <input id="category" name="category" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['category']); ?>" required="required" readonly>
               </div>
             </div>
             <div class="col-12 col-lg-6">
