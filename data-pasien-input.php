@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $telepon = $_POST['telepon'];
   $selectedcategory = $_POST['kategori'];
 
-  if ($selectedCategory === 'BPJS') {
+  if ($selectedCategory == 'BPJS') {
     $pasientid = "bp1-0" . $patientcount;
-  } elseif ($selectedCategory === 'Asuransi') {
+  } elseif ($selectedCategory == 'Asuransi') {
     $pasientid = "as1-0" . $patientcount;
   } else {
    $pasientid = "um1-0" . $patientcount;
