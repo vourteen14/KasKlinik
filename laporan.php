@@ -266,11 +266,13 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			var invoiceWindow = window.open('', '_blank');
 			invoiceWindow.document.write('<html><head><title>Invoice</title>');
 			invoiceWindow.document.write('<style>');
-			invoiceWindow.document.write('body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }');
-			invoiceWindow.document.write('.invoice-container { width: 80%; text-align: center; }');
-			invoiceWindow.document.write('table { border-collapse: collapse; margin: 0 auto; }');
+			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
+			invoiceWindow.document.write('.invoice-container { width: 80%; margin: 0 auto; }');
+			invoiceWindow.document.write('.header { text-align: center; margin-bottom: 30px; }');
+			invoiceWindow.document.write('table { border-collapse: collapse; width: 100%; margin-top: 20px; }');
 			invoiceWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
-			invoiceWindow.document.write('tr:nth-child(even) { background-color: #f2f2f2; }');
+			invoiceWindow.document.write('th { background-color: #f2f2f2; }');
+			invoiceWindow.document.write('tr:nth-child(even) { background-color: #f9f9f9; }');
 			invoiceWindow.document.write('</style>');
 			invoiceWindow.document.write('</head><body>');
 
@@ -278,10 +280,12 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('<div class="invoice-container">');
 
 			// Add header information
+			invoiceWindow.document.write('<div class="header">');
 			invoiceWindow.document.write('<h1>Invoice</h1>');
 			invoiceWindow.document.write('<p><strong>Invoice ID:</strong> ' + row['transaction_id'] + '</p>');
-			invoiceWindow.document.write('<p><strong>Tanggal:</strong> ' + new Date().toLocaleDateString() + '</p>');
-			invoiceWindow.document.write('<p><strong>Dokter:</strong> Dr. Achmad Irawan</p>');
+			invoiceWindow.document.write('<p><strong>Date:</strong> ' + new Date().toLocaleDateString() + '</p>');
+			invoiceWindow.document.write('<p><strong>Doctor:</strong> Dr. Achmad Irawan</p>');
+			invoiceWindow.document.write('</div>');
 
 			// Add table for invoice items
 			invoiceWindow.document.write('<table>');
