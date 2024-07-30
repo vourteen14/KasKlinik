@@ -268,7 +268,10 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('<style>');
 			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
 			invoiceWindow.document.write('.invoice-container { width: 80%; margin: 0 auto; }');
-			invoiceWindow.document.write('.header { text-align: center; margin-bottom: 30px; }');
+			invoiceWindow.document.write('.header { margin-bottom: 30px; }');
+			invoiceWindow.document.write('.header p { margin: 5px 0; }');
+			invoiceWindow.document.write('.label { display: inline-block; width: 150px; font-weight: bold; }');
+			invoiceWindow.document.write('.value { display: inline-block; margin-left: 10px; }');
 			invoiceWindow.document.write('table { border-collapse: collapse; width: 100%; margin-top: 20px; }');
 			invoiceWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
 			invoiceWindow.document.write('th { background-color: #f2f2f2; }');
@@ -279,12 +282,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Add invoice container
 			invoiceWindow.document.write('<div class="invoice-container">');
 
-			// Add header information
+			// Add header information with tab-like spacing
 			invoiceWindow.document.write('<div class="header">');
-			invoiceWindow.document.write('<h1>Invoice</h1>');
-			invoiceWindow.document.write('<p><strong>Invoice ID:</strong> ' + row['transaction_id'] + '</p>');
-			invoiceWindow.document.write('<p><strong>Date:</strong> ' + new Date().toLocaleDateString() + '</p>');
-			invoiceWindow.document.write('<p><strong>Doctor:</strong> Dr. Achmad Irawan</p>');
+			invoiceWindow.document.write('<p><span class="label">Invoice ID:</span><span class="value">' + row['transaction_id'] + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Date:</span><span class="value">' + new Date().toLocaleDateString() + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Doctor:</span><span class="value">Dr. Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
 
 			// Add table for invoice items
@@ -303,6 +305,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.close();
 			invoiceWindow.print();
 		}
+
 	</script>
 
 
