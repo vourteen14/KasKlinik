@@ -269,6 +269,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
 			invoiceWindow.document.write('.invoice-container { width: 80%; margin: 0 auto; }');
 			invoiceWindow.document.write('.header { margin-bottom: 30px; }');
+			invoiceWindow.document.write('.title { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 20px; }');
 			invoiceWindow.document.write('.header p { margin: 5px 0; }');
 			invoiceWindow.document.write('.label { display: inline-block; width: 150px; font-weight: bold; }');
 			invoiceWindow.document.write('.value { display: inline-block; margin-left: 10px; }');
@@ -282,7 +283,8 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Add invoice container
 			invoiceWindow.document.write('<div class="invoice-container">');
 
-			// Add header information with tab-like spacing
+			// Add title and header information
+			invoiceWindow.document.write('<div class="title">Invoice</div>');
 			invoiceWindow.document.write('<div class="header">');
 			invoiceWindow.document.write('<p><span class="label">Invoice ID:</span><span class="value">' + row['transaction_id'] + '</span></p>');
 			invoiceWindow.document.write('<p><span class="label">Date:</span><span class="value">' + new Date().toLocaleDateString() + '</span></p>');
@@ -305,6 +307,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.close();
 			invoiceWindow.print();
 		}
+
 
 	</script>
 
