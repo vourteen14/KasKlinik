@@ -262,7 +262,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		}
 
 		function generateBilling(index) {
-			// Get data for the selected row
+    	// Get data for the selected row
 			var row = <?php echo json_encode($data); ?>[index];
 
 			// Create a new window for the billing statement
@@ -270,7 +270,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.write('<html><head><title>Billing Statement</title>');
 			billingWindow.document.write('<style>');
 			billingWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
-			billingWindow.document.write('.billing-container { width: 70%; margin: 0 auto; border: 1px solid #ddd; padding: 20px; }');
 			billingWindow.document.write('.header { margin-bottom: 30px; }');
 			billingWindow.document.write('.title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; }');
 			billingWindow.document.write('.label { font-weight: bold; }');
@@ -281,9 +280,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.write('tr:nth-child(even) { background-color: #f9f9f9; }');
 			billingWindow.document.write('</style>');
 			billingWindow.document.write('</head><body>');
-
-			// Add billing container
-			billingWindow.document.write('<div class="billing-container">');
 
 			// Add title and header information
 			billingWindow.document.write('<div class="title">Billing Statement</div>');
@@ -304,14 +300,12 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Close table and body
 			billingWindow.document.write('</tbody></table>');
-			billingWindow.document.write('</div>'); // Close billing container
 			billingWindow.document.write('</body></html>');
 
 			// Close the document
 			billingWindow.document.close();
 			billingWindow.print();
 		}
-
 
 		function generateInvoice(index) {
 			// Get data for the selected row
