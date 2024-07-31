@@ -265,10 +265,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Get data for the selected row
 			var row = <?php echo json_encode($data); ?>[index];
 			
-			// Calculate amount after tax
+			// Calculate the total amount with additional fees
 			var totalPrice = parseFloat(row['total_price']);
-			var taxRate = 0.15;
-			var amountAfterTax = totalPrice - (totalPrice * taxRate);
+			var adminFee = 10000; // Biaya administrasi
+			var handlingFee = 15000; // Biaya penanganan
+			var amountAfterFees = totalPrice + adminFee + handlingFee;
 
 			// Create a new window for the billing statement
 			var billingWindow = window.open('', '_blank');
@@ -300,10 +301,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.write('<table>');
 			billingWindow.document.write('<thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody>');
 
-			// Add billing item for the selected row
-			billingWindow.document.write('<tr><td>Consultation Fee (Before Tax)</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Tax (15%)</td><td>' + (totalPrice * taxRate).toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Total Amount (After Tax)</td><td>' + amountAfterTax.toFixed(2) + '</td></tr>');
+			// Add billing items for the selected row
+			billingWindow.document.write('<tr><td>Consultation Fee (Before Additional Fees)</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Administrative Fee</td><td>' + adminFee.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Handling Fee</td><td>' + handlingFee.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Total Amount (After Fees)</td><td>' + amountAfterFees.toFixed(2) + '</td></tr>');
 
 			// Close table and body
 			billingWindow.document.write('</tbody></table>');
@@ -313,7 +315,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.close();
 			billingWindow.print();
 		}
-
 
 		function generateInvoice(index) {
 			// Get data for the selected row
