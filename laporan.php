@@ -331,10 +331,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('<html><head><title>Invoice</title>');
 			invoiceWindow.document.write('<style>');
 			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
-			invoiceWindow.document.write('.header { margin-bottom: 30px; }');
 			invoiceWindow.document.write('.title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; }');
-			invoiceWindow.document.write('.label { font-weight: bold; }');
-			invoiceWindow.document.write('.value { margin-left: 10px; }');
+			invoiceWindow.document.write('.label { display: inline-block; width: 150px; font-weight: bold; }');
+			invoiceWindow.document.write('.value { display: inline; }');
 			invoiceWindow.document.write('table { border-collapse: collapse; width: 100%; margin-top: 20px; }');
 			invoiceWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
 			invoiceWindow.document.write('th { background-color: #f4f4f4; }');
@@ -345,9 +344,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Tambahkan judul dan informasi header
 			invoiceWindow.document.write('<div class="title">Invoice</div>');
 			invoiceWindow.document.write('<div class="header">');
-			invoiceWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value"> ' + row['transaction_id'] + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value"> ' + new Date().toLocaleDateString() + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value"> Dr. Achmad Irawan</span></p>');
+			invoiceWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['transaction_id'] + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">&nbsp;&nbsp;&nbsp;' + new Date().toLocaleDateString() + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">&nbsp;&nbsp;&nbsp;Dr. Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
 
 			// Tambahkan tabel untuk item invoice
@@ -359,17 +358,15 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup tabel dan body
 			invoiceWindow.document.write('</tbody></table>');
-			invoiceWindow.document.write('<p><span class="label">Biaya Administrasi:</span><span class="value"> Rp 10.000</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Biaya Layanan:</span><span class="value"> Rp 5.000</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Jumlah Total:</span><span class="value"> Rp ' + jumlahTotal.toFixed(2) + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Biaya Administrasi:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp 10.000</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Biaya Layanan:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp 5.000</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Jumlah Total:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp ' + jumlahTotal.toFixed(2) + '</span></p>');
 			invoiceWindow.document.write('</body></html>');
 
 			// Tutup dokumen
 			invoiceWindow.document.close();
 			invoiceWindow.print();
 		}
-
-
 
 	</script>
 
