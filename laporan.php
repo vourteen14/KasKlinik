@@ -262,8 +262,13 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		}
 
 		function generateBilling(index) {
-    	// Get data for the selected row
+			// Get data for the selected row
 			var row = <?php echo json_encode($data); ?>[index];
+			
+			// Calculate amount after tax
+			var totalPrice = parseFloat(row['total_price']);
+			var taxRate = 0.15;
+			var amountAfterTax = totalPrice - (totalPrice * taxRate);
 
 			// Create a new window for the billing statement
 			var billingWindow = window.open('', '_blank');
@@ -296,7 +301,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.write('<thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody>');
 
 			// Add billing item for the selected row
-			billingWindow.document.write('<tr><td>Consultation Fee</td><td>' + row['total_price'] + '</td></tr>');
+			billingWindow.document.write('<tr><td>Consultation Fee (Before Tax)</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Tax (15%)</td><td>' + (totalPrice * taxRate).toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Total Amount (After Tax)</td><td>' + amountAfterTax.toFixed(2) + '</td></tr>');
 
 			// Close table and body
 			billingWindow.document.write('</tbody></table>');
@@ -306,6 +313,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.close();
 			billingWindow.print();
 		}
+
 
 		function generateInvoice(index) {
 			// Get data for the selected row
