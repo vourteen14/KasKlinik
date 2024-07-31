@@ -318,51 +318,54 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 
 		function generateInvoice(index) {
-			// Get data for the selected row
+			// Ambil data untuk baris yang dipilih
 			var row = <?php echo json_encode($data); ?>[index];
+			
+			// Hitung total jumlah dengan biaya tambahan
+			var totalPrice = parseFloat(row['total_price']);
+			var biayaAdministrasi = 10000; // Biaya administrasi
+			var biayaLayanan = 5000; // Biaya layanan
+			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
 
-			// Create a new window for the invoice
+			// Buat jendela baru untuk invoice
 			var invoiceWindow = window.open('', '_blank');
 			invoiceWindow.document.write('<html><head><title>Invoice</title>');
 			invoiceWindow.document.write('<style>');
 			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
-			invoiceWindow.document.write('.invoice-container { width: 80%; margin: 0 auto; }');
 			invoiceWindow.document.write('.header { margin-bottom: 30px; }');
-			invoiceWindow.document.write('.title { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 20px; }');
-			invoiceWindow.document.write('.header p { margin: 5px 0; }');
-			invoiceWindow.document.write('.label { display: inline-block; width: 150px; font-weight: bold; }');
-			invoiceWindow.document.write('.value { display: inline-block; margin-left: 10px; }');
+			invoiceWindow.document.write('.title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; }');
+			invoiceWindow.document.write('.label { font-weight: bold; }');
+			invoiceWindow.document.write('.value { margin-left: 10px; }');
 			invoiceWindow.document.write('table { border-collapse: collapse; width: 100%; margin-top: 20px; }');
 			invoiceWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
-			invoiceWindow.document.write('th { background-color: #f2f2f2; }');
+			invoiceWindow.document.write('th { background-color: #f4f4f4; }');
 			invoiceWindow.document.write('tr:nth-child(even) { background-color: #f9f9f9; }');
 			invoiceWindow.document.write('</style>');
 			invoiceWindow.document.write('</head><body>');
 
-			// Add invoice container
-			invoiceWindow.document.write('<div class="invoice-container">');
-
-			// Add title and header information
+			// Tambahkan judul dan informasi header
 			invoiceWindow.document.write('<div class="title">Invoice</div>');
 			invoiceWindow.document.write('<div class="header">');
-			invoiceWindow.document.write('<p><span class="label">Invoice ID:</span><span class="value">' + row['transaction_id'] + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Date:</span><span class="value">' + new Date().toLocaleDateString() + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Doctor:</span><span class="value">Dr. Achmad Irawan</span></p>');
+			invoiceWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value">' + row['transaction_id'] + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">' + new Date().toLocaleDateString() + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">Dr. Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
 
-			// Add table for invoice items
+			// Tambahkan tabel untuk item invoice
 			invoiceWindow.document.write('<table>');
-			invoiceWindow.document.write('<thead><tr><th>Fullname</th><th>Address</th><th>Phone</th><th>Category</th><th>Price</th></tr></thead><tbody>');
+			invoiceWindow.document.write('<thead><tr><th>Nama Lengkap</th><th>Alamat</th><th>Telepon</th><th>Kategori</th><th>Harga</th></tr></thead><tbody>');
 
-			// Add invoice item for the selected row
-			invoiceWindow.document.write('<tr><td>' + row['fullname'] + '</td><td>' + row['address'] + '</td><td>' + row['phone'] + '</td><td>' + row['category'] + '</td><td>' + row['total_price'] + '</td></tr>');
+			// Tambahkan item invoice untuk baris yang dipilih
+			invoiceWindow.document.write('<tr><td>' + row['fullname'] + '</td><td>' + row['address'] + '</td><td>' + row['phone'] + '</td><td>' + row['category'] + '</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
 
-			// Close table and body
+			// Tutup tabel dan body
 			invoiceWindow.document.write('</tbody></table>');
-			invoiceWindow.document.write('</div>'); // Close invoice container
+			invoiceWindow.document.write('<p><span class="label">Biaya Administrasi:</span><span class="value">Rp 10.000</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Biaya Layanan:</span><span class="value">Rp 5.000</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Jumlah Total:</span><span class="value">Rp ' + jumlahTotal.toFixed(2) + '</span></p>');
 			invoiceWindow.document.write('</body></html>');
 
-			// Close the document
+			// Tutup dokumen
 			invoiceWindow.document.close();
 			invoiceWindow.print();
 		}
