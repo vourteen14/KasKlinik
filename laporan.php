@@ -188,7 +188,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 														<div class="d-flex justify-content-between w-50">
 															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Receipt</button>
 															<?php if(htmlspecialchars($row['category']) == "Asuransi") { ?>
-																	<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo htmlspecialchars(json_encode($index), ENT_QUOTES, 'UTF-8'); ?>)">Receipt</button>
+																	<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Receipt</button>
 															<?php } ?>
 														</div>
 													</td>
