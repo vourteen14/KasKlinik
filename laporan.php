@@ -186,9 +186,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell"><?php echo htmlspecialchars($row['total_price']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Receipt</button>
-															<?php if(htmlspecialchars($row['category']) == "Asuransi") { ?>
-																	<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Receipt</button>
+															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
+															<?php if(htmlspecialchars($row['category']) == "Asuransi" || htmlspecialchars($row['category']) == "BPJS") { ?>
+																	<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Tagihan</button>
 															<?php } ?>
 														</div>
 													</td>
@@ -310,7 +310,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.close();
 			
     	// Tambahkan event handler untuk menutup tab jika pengguna membatalkan cetak
-    	invoiceWindow.onbeforeunload = function() {
+    	billingWindow.onbeforeunload = function() {
         window.close();
     	};
 			billingWindow.print();
@@ -366,6 +366,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup dokumen
 			invoiceWindow.document.close();
+			invoiceWindow.onbeforeunload = function() {
+        window.close();
+    	};
 			invoiceWindow.print();
 		}
 
