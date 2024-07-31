@@ -329,7 +329,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Buat jendela baru untuk invoice
 			var invoiceWindow = window.open('', '_blank');
-			invoiceWindow.document.write('<html><head><title>Invoice</title>');
+			invoiceWindow.document.write('<html><head><title>Kuitansi</title>');
 			invoiceWindow.document.write('<style>');
 			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
 			invoiceWindow.document.write('.title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; }');
