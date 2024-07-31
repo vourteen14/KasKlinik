@@ -187,6 +187,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Receipt</button>
+															<?php if(htmlspecialchars($row['category']) == "Asuransi") { ?>
+																	<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo htmlspecialchars(json_encode($index), ENT_QUOTES, 'UTF-8'); ?>)">Receipt</button>
+															<?php } ?>
 														</div>
 													</td>
 												</tr>
@@ -257,6 +260,58 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Click download link
 			downloadLink.click();
 		}
+
+		function generateBilling(index) {
+			// Get data for the selected row
+			var row = <?php echo json_encode($data); ?>[index];
+
+			// Create a new window for the billing statement
+			var billingWindow = window.open('', '_blank');
+			billingWindow.document.write('<html><head><title>Billing Statement</title>');
+			billingWindow.document.write('<style>');
+			billingWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
+			billingWindow.document.write('.billing-container { width: 70%; margin: 0 auto; border: 1px solid #ddd; padding: 20px; }');
+			billingWindow.document.write('.header { margin-bottom: 30px; }');
+			billingWindow.document.write('.title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; }');
+			billingWindow.document.write('.label { font-weight: bold; }');
+			billingWindow.document.write('.value { margin-left: 10px; }');
+			billingWindow.document.write('table { border-collapse: collapse; width: 100%; margin-top: 20px; }');
+			billingWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
+			billingWindow.document.write('th { background-color: #f4f4f4; }');
+			billingWindow.document.write('tr:nth-child(even) { background-color: #f9f9f9; }');
+			billingWindow.document.write('</style>');
+			billingWindow.document.write('</head><body>');
+
+			// Add billing container
+			billingWindow.document.write('<div class="billing-container">');
+
+			// Add title and header information
+			billingWindow.document.write('<div class="title">Billing Statement</div>');
+			billingWindow.document.write('<div class="header">');
+			billingWindow.document.write('<p><span class="label">Insurance ID/Number:</span><span class="value">' + row['insurance_id'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Insurance Type:</span><span class="value">' + row['insurance_type'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Full Name:</span><span class="value">' + row['fullname'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Address:</span><span class="value">' + row['address'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Phone:</span><span class="value">' + row['phone'] + '</span></p>');
+			billingWindow.document.write('</div>');
+
+			// Add table for billing items
+			billingWindow.document.write('<table>');
+			billingWindow.document.write('<thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody>');
+
+			// Add billing item for the selected row
+			billingWindow.document.write('<tr><td>Consultation Fee</td><td>' + row['total_price'] + '</td></tr>');
+
+			// Close table and body
+			billingWindow.document.write('</tbody></table>');
+			billingWindow.document.write('</div>'); // Close billing container
+			billingWindow.document.write('</body></html>');
+
+			// Close the document
+			billingWindow.document.close();
+			billingWindow.print();
+		}
+
 
 		function generateInvoice(index) {
 			// Get data for the selected row
