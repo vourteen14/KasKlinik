@@ -316,7 +316,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.print();
 		}
 
-
 		function generateInvoice(index) {
 			// Ambil data untuk baris yang dipilih
 			var row = <?php echo json_encode($data); ?>[index];
@@ -346,9 +345,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Tambahkan judul dan informasi header
 			invoiceWindow.document.write('<div class="title">Invoice</div>');
 			invoiceWindow.document.write('<div class="header">');
-			invoiceWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value">' + row['transaction_id'] + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">' + new Date().toLocaleDateString() + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">Dr. Achmad Irawan</span></p>');
+			invoiceWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value"> ' + row['transaction_id'] + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value"> ' + new Date().toLocaleDateString() + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value"> Dr. Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
 
 			// Tambahkan tabel untuk item invoice
@@ -360,15 +359,16 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup tabel dan body
 			invoiceWindow.document.write('</tbody></table>');
-			invoiceWindow.document.write('<p><span class="label">Biaya Administrasi:</span><span class="value">Rp 10.000</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Biaya Layanan:</span><span class="value">Rp 5.000</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Jumlah Total:</span><span class="value">Rp ' + jumlahTotal.toFixed(2) + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Biaya Administrasi:</span><span class="value"> Rp 10.000</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Biaya Layanan:</span><span class="value"> Rp 5.000</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Jumlah Total:</span><span class="value"> Rp ' + jumlahTotal.toFixed(2) + '</span></p>');
 			invoiceWindow.document.write('</body></html>');
 
 			// Tutup dokumen
 			invoiceWindow.document.close();
 			invoiceWindow.print();
 		}
+
 
 
 	</script>
