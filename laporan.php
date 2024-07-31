@@ -262,18 +262,18 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		}
 
 		function generateBilling(index) {
-			// Get data for the selected row
+			// Ambil data untuk baris yang dipilih
 			var row = <?php echo json_encode($data); ?>[index];
 			
-			// Calculate the total amount with additional fees
+			// Hitung total jumlah dengan biaya tambahan
 			var totalPrice = parseFloat(row['total_price']);
-			var adminFee = 10000; // Biaya administrasi
-			var handlingFee = 15000; // Biaya penanganan
-			var amountAfterFees = totalPrice + adminFee + handlingFee;
+			var biayaAdministrasi = 10000; // Biaya administrasi
+			var biayaLayanan = 5000; // Biaya layanan
+			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
 
-			// Create a new window for the billing statement
+			// Buat jendela baru untuk pernyataan tagihan
 			var billingWindow = window.open('', '_blank');
-			billingWindow.document.write('<html><head><title>Billing Statement</title>');
+			billingWindow.document.write('<html><head><title>Tagihan</title>');
 			billingWindow.document.write('<style>');
 			billingWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
 			billingWindow.document.write('.header { margin-bottom: 30px; }');
@@ -287,34 +287,35 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.write('</style>');
 			billingWindow.document.write('</head><body>');
 
-			// Add title and header information
-			billingWindow.document.write('<div class="title">Billing Statement</div>');
+			// Tambahkan judul dan informasi header
+			billingWindow.document.write('<div class="title">Tagihan</div>');
 			billingWindow.document.write('<div class="header">');
-			billingWindow.document.write('<p><span class="label">Insurance ID/Number:</span><span class="value">' + row['insurance_id'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Insurance Type:</span><span class="value">' + row['insurance_type'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Full Name:</span><span class="value">' + row['fullname'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Address:</span><span class="value">' + row['address'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Phone:</span><span class="value">' + row['phone'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">ID Asuransi/No:</span><span class="value">' + row['insurance_id'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">' + row['insurance_type'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">' + row['fullname'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">' + row['address'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Telepon:</span><span class="value">' + row['phone'] + '</span></p>');
 			billingWindow.document.write('</div>');
 
-			// Add table for billing items
+			// Tambahkan tabel untuk item tagihan
 			billingWindow.document.write('<table>');
-			billingWindow.document.write('<thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody>');
+			billingWindow.document.write('<thead><tr><th>Deskripsi</th><th>Jumlah</th></tr></thead><tbody>');
 
-			// Add billing items for the selected row
-			billingWindow.document.write('<tr><td>Consultation Fee (Before Additional Fees)</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Administrative Fee</td><td>' + adminFee.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Handling Fee</td><td>' + handlingFee.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Total Amount (After Fees)</td><td>' + amountAfterFees.toFixed(2) + '</td></tr>');
+			// Tambahkan item tagihan untuk baris yang dipilih
+			billingWindow.document.write('<tr><td>Biaya Konsultasi (Sebelum Biaya Tambahan)</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Biaya Administrasi</td><td>' + biayaAdministrasi.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Biaya Layanan</td><td>' + biayaLayanan.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Jumlah Total (Setelah Biaya Tambahan)</td><td>' + jumlahTotal.toFixed(2) + '</td></tr>');
 
-			// Close table and body
+			// Tutup tabel dan body
 			billingWindow.document.write('</tbody></table>');
 			billingWindow.document.write('</body></html>');
 
-			// Close the document
+			// Tutup dokumen
 			billingWindow.document.close();
 			billingWindow.print();
 		}
+
 
 		function generateInvoice(index) {
 			// Get data for the selected row
