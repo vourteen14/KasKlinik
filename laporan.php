@@ -343,9 +343,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('</head><body>');
 
 			// Tambahkan judul dan informasi header
-			invoiceWindow.document.write('<div class="title">Invoice</div>');
+			invoiceWindow.document.write('<div class="title">Kuitansi</div>');
 			invoiceWindow.document.write('<div class="header">');
-			invoiceWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['transaction_id'] + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">ID Kuitansi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['transaction_id'] + '</span></p>');
 			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">&nbsp;&nbsp;&nbsp;' + new Date().toLocaleDateString() + '</span></p>');
 			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">&nbsp;&nbsp;&nbsp;Dr. Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
