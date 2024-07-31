@@ -308,6 +308,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup dokumen
 			billingWindow.document.close();
+			
+    	// Tambahkan event handler untuk menutup tab jika pengguna membatalkan cetak
+    	invoiceWindow.onbeforeunload = function() {
+        window.close();
+    	};
 			billingWindow.print();
 		}
 
