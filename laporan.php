@@ -271,15 +271,14 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			var biayaLayanan = 5000; // Biaya layanan
 			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
 
-			// Buat jendela baru untuk pernyataan tagihan
+			// Buat jendela baru untuk penagihan
 			var billingWindow = window.open('', '_blank');
-			billingWindow.document.write('<html><head><title>Tagihan</title>');
+			billingWindow.document.write('<html><head><title>Penagihan</title>');
 			billingWindow.document.write('<style>');
 			billingWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
-			billingWindow.document.write('.header { margin-bottom: 30px; }');
 			billingWindow.document.write('.title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 20px; }');
-			billingWindow.document.write('.label { font-weight: bold; }');
-			billingWindow.document.write('.value { margin-left: 10px; }');
+			billingWindow.document.write('.label { display: inline-block; width: 200px; font-weight: bold; }');
+			billingWindow.document.write('.value { display: inline; }');
 			billingWindow.document.write('table { border-collapse: collapse; width: 100%; margin-top: 20px; }');
 			billingWindow.document.write('th, td { border: 1px solid #dddddd; text-align: left; padding: 8px; }');
 			billingWindow.document.write('th { background-color: #f4f4f4; }');
@@ -288,26 +287,22 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.write('</head><body>');
 
 			// Tambahkan judul dan informasi header
-			billingWindow.document.write('<div class="title">Tagihan</div>');
+			billingWindow.document.write('<div class="title">Penagihan</div>');
 			billingWindow.document.write('<div class="header">');
-			billingWindow.document.write('<p><span class="label">ID Asuransi/No:</span><span class="value">' + row['insurance_id'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">' + row['insurance_type'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">' + row['fullname'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">' + row['address'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Telepon:</span><span class="value">' + row['phone'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">ID Asuransi/No:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['insurance_id'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['insurance_type'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['fullname'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['address'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Telepon:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['phone'] + '</span></p>');
 			billingWindow.document.write('</div>');
 
-			// Tambahkan tabel untuk item tagihan
+			// Tambahkan tabel untuk rincian penagihan
 			billingWindow.document.write('<table>');
 			billingWindow.document.write('<thead><tr><th>Deskripsi</th><th>Jumlah</th></tr></thead><tbody>');
-
-			// Tambahkan item tagihan untuk baris yang dipilih
-			billingWindow.document.write('<tr><td>Biaya Konsultasi (Sebelum Biaya Tambahan)</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Biaya Administrasi</td><td>' + biayaAdministrasi.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Biaya Layanan</td><td>' + biayaLayanan.toFixed(2) + '</td></tr>');
-			billingWindow.document.write('<tr><td>Jumlah Total (Setelah Biaya Tambahan)</td><td>' + jumlahTotal.toFixed(2) + '</td></tr>');
-
-			// Tutup tabel dan body
+			billingWindow.document.write('<tr><td>Total Harga</td><td>Rp ' + totalPrice.toFixed(2) + '</td></tr>');
+			billingWindow.document.write('<tr><td>Biaya Administrasi</td><td>Rp 10.000</td></tr>');
+			billingWindow.document.write('<tr><td>Biaya Layanan</td><td>Rp 5.000</td></tr>');
+			billingWindow.document.write('<tr><td><strong>Jumlah Total</strong></td><td><strong>Rp ' + jumlahTotal.toFixed(2) + '</strong></td></tr>');
 			billingWindow.document.write('</tbody></table>');
 			billingWindow.document.write('</body></html>');
 
@@ -315,6 +310,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			billingWindow.document.close();
 			billingWindow.print();
 		}
+
 
 		function generateInvoice(index) {
 			// Ambil data untuk baris yang dipilih
