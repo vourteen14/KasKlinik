@@ -218,10 +218,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																$stmt->bindParam(':transaction_id', $row['transaction_id']);
 																$stmt->execute();
 																$data1 = $stmt->fetch(PDO::FETCH_ASSOC);
+																$data2 = json_encode(data1);
 
 																if(htmlspecialchars($data1['category']) == "Asuransi" || htmlspecialchars($data1['category']) == "BPJS") { ?>
 																<?php ?>
-																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo json_encode($data1); ?>)">Tagihan</button>
+																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $data2; ?>)">Tagihan</button>
 															<?php }}; ?>
 														</div>
 													</td>
