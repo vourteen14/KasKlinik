@@ -4,7 +4,7 @@ include './config/config.php'; // Menghubungkan ke database
 $isPage = 'data-tindakan';
 $message = '';
 // Mengambil data dari tabel patient
-$sql = "SELECT patient_id, fullname FROM patient";
+$sql = "SELECT id, patient_id, fullname FROM patient";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
