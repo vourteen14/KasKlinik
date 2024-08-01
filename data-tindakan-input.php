@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="form-label" for="pasien">Pasien</label>
                 <select id='pasien' name='pasien' class="form-select w-100">
                   <?php foreach ($id as $index => $row) : ?>
-                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id'] . ', ' . $row['fullname']; ?></option>
+                    <option value="<?php echo $row['patient_id']; ?>"><?php echo $row['patient_id'] . ', ' . $row['fullname']; ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>
