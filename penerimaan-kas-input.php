@@ -6,7 +6,7 @@ $isPage = 'penerimaan-kas';
 $payments = ['BPJS', 'Asuransi', 'Umum'];
 
 // Mengambil data dari tabel action untuk dropdown
-$sql = "SELECT a.id, p.fullname, a.diagnosis, a.notes 
+$sql = "SELECT a.id, p.fullname, p.assurance, a.diagnosis, a.notes 
         FROM action a 
         JOIN patient p ON a.patient_id = p.id";
 $stmt = $conn->prepare($sql);
@@ -185,10 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <div class="text mb-3">
                     <label class="form-label" for="payment">Metode Pembayaran</label>
                     <select id="payment" name="payment" class="form-select w-100">
-                      <?php foreach ($payments as $option): ?>
-                        <option value="<?php echo htmlspecialchars($option); ?>">
-                          <?php echo htmlspecialchars($option); ?>
-                        </option>
+                      <?php foreach ($actions as $index => $row) : ?>
+                        <option value="<?php echo $row['assurance']; ?>" data-patient="<?php echo $row['id']; ?>"><?php echo $row['assurance']; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>
@@ -241,16 +239,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="assets/js/app.js"></script>
   <script src="assets/js/custom.js"></script>
   <script>
-    
-    document.addEventListener('DOMContentLoaded', () => {
-    const selectElement = document.getElementById('mySelect');
-
-    selectElement.addEventListener('change', (event) => {
-        const selectedValue = event.target.value;
-        console.log(`Selected ID: ${selectedValue}`);
-      });
-    });
-
     $(document).ready(function() {
       $('#pasien').change(function() {
         var selectedPatient = $(this).val();
