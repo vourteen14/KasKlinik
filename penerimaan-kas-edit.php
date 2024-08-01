@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="tanggal">Tanggal</label>
-                    <input id="tanggal" name="tanggal" type="text" value="<?php echo substr($transaction['created_at'], 0, 10); ?>class="form-control" required="required" disabled>
+                    <input id="tanggal" name="tanggal" type="text" value="<?php echo substr($transaction['created_at'], 0, 10); ?>" class="form-control" required="required" disabled>
                   </div>
                 </div>
               </div>
