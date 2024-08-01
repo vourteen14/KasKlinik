@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
                 <label class="form-label" for="kode-pasien">Kode Pasien</label>
-                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" value="<?php echo $patientcount ?>" disabled>
+                <input id="kode-pasien" name="kode-pasien" type="text" class="form-control" value="bp1-0<?php echo $patientcount ?>" disabled>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="nama-pasien">Nama Pasien</label>
