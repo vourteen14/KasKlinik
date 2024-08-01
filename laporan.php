@@ -221,7 +221,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 																if(htmlspecialchars($data1['category']) == "Asuransi" || htmlspecialchars($data1['category']) == "BPJS") { ?>
 																<?php ?>
-																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo json_encode($data1);; ?>)">Tagihan</button>
+																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo json_encode($data1); ?>)">Tagihan</button>
 															<?php }}; ?>
 														</div>
 													</td>
