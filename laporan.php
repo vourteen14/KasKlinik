@@ -195,10 +195,10 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
-															<?php if(htmlspecialchars($row['category']) == "Asuransi" || htmlspecialchars($row['category']) == "BPJS") { ?>
+															<!-- <?php //if(htmlspecialchars($row['category']) == "Asuransi" || htmlspecialchars($row['category']) == "BPJS") { ?>
 																<?php ?>
 																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Tagihan</button>
-															<?php } ?>
+															<?php //} ?> -->
 														</div>
 													</td>
 												</tr>
