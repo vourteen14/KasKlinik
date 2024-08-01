@@ -557,8 +557,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Tambahkan judul dan informasi header
 			billingWindow.document.write('<div class="title">Penagihan</div>');
 			billingWindow.document.write('<div class="header">');
-			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + assType + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Nomor Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + assNumber + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Nomor Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.assurance + '</span></p>');
 			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.category + '</span></p>');
 			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.fullname + '</span></p>');
 			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.address + '</span></p>');
