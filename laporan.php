@@ -194,7 +194,38 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell"><?php echo htmlspecialchars($row['price']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
-															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
+															<?php if(htmlspecialchars($row['type']) == 'IN') { 
+																$sql = "SELECT 
+																						patient.id AS patient_id,
+																						patient.fullname,
+																						patient.address,
+																						patient.phone,
+																						patient.category,
+																						transaction_in.id AS transaction_id,
+																						transaction_in.total_price
+																				FROM 
+																						patient
+																				INNER JOIN 
+																						action ON patient.id = action.patient_id
+																				INNER JOIN 
+																						transaction_in ON action.id = transaction_in.action_id
+																				WHERE
+																					transaction_in.id = :transaction_id
+																				";
+
+																$stmt = $conn->prepare($sql);
+																$stmt->bindParam(':transaction_id', $row['transaction_id']);
+																$stmt->execute();
+																$data1 = $stmt->fetch(PDO::FETCH_ASSOC);
+																$data2 = json_encode($data1);	
+															?>
+																<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $data2; ?>)">Kuitansi</button>
+															<?php } else { 
+																
+																
+															?>
+																<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
+															<?php } ?>
 															<?php if(htmlspecialchars($row['type']) == 'IN') { 
 																$sql = "SELECT 
 																						patient.id AS patient_id,
@@ -354,10 +385,10 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 		function generateInvoice(index) {
 			// Ambil data untuk baris yang dipilih
-			var row = <?php echo json_encode($data); ?>[index];
+			//var row = <?php echo json_encode($data); ?>[index];
 			
 			// Hitung total jumlah dengan biaya tambahan
-			var totalPrice = parseFloat(row['total_price']);
+			var totalPrice = parseFloat(index.total_price);
 			var biayaAdministrasi = 10000; // Biaya administrasi
 			var biayaLayanan = 5000; // Biaya layanan
 			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
@@ -380,7 +411,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Tambahkan judul dan informasi header
 			invoiceWindow.document.write('<div class="title">Kuitansi</div>');
 			invoiceWindow.document.write('<div class="header">');
-			invoiceWindow.document.write('<p><span class="label">ID Kuitansi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['transaction_id'] + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">ID Kuitansi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.transaction_id + '</span></p>');
 			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">&nbsp;&nbsp;&nbsp;' + new Date().toLocaleDateString() + '</span></p>');
 			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">&nbsp;&nbsp;&nbsp;Dr. Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
@@ -390,7 +421,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('<thead><tr><th>Nama Lengkap</th><th>Alamat</th><th>Telepon</th><th>Kategori</th><th>Harga</th></tr></thead><tbody>');
 
 			// Tambahkan item invoice untuk baris yang dipilih
-			invoiceWindow.document.write('<tr><td>' + row['fullname'] + '</td><td>' + row['address'] + '</td><td>' + row['phone'] + '</td><td>' + row['category'] + '</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
+			invoiceWindow.document.write('<tr><td>' + index.fullname + '</td><td>' + index.address + '</td><td>' + index.phone + '</td><td>' + index.category + '</td><td>' + totalPrice.toFixed(2) + '</td></tr>');
 
 			// Tutup tabel dan body
 			invoiceWindow.document.write('</tbody></table>');
