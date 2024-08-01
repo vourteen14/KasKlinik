@@ -56,6 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+<script>
+  var patientcount = "<?php echo $patientcount; ?>";
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -183,17 +187,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <script>
   const selectElement = document.getElementById('kategori');
+  const inputElement = document.getElementById('kode-pasien');
 
   selectElement.addEventListener('change', (event) => {
-            // Get the selected value
     const selectedValue = event.target.value;
-            
-            // Get the selected text
-    const selectedText = event.target.options[event.target.selectedIndex].text;
-
-            // Log the selected value and text
-    console.log(`Selected value: ${selectedValue}`);
-    console.log(`Selected text: ${selectedText}`);
+    inputElement.value = `${patientcount}-${selectedValue}`;
   });
 </script>
 
