@@ -215,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="comment">Catatan Transaksi</label>
-                    <textarea id="comment" name="comment" rows="4" type="text-area" class="form-control"></textarea>
+                    <textarea id="comment" name="comment" type="text-area" class="form-control h-25"></textarea>
                   </div>
                 </div>
               </div>
