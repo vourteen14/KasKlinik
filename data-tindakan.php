@@ -140,8 +140,8 @@ $conn = null; // Menutup koneksi
 												<tr>
 													<td class="cell"><?php echo $offset + $index + 1; ?></td>
 													<td class="cell"><?php 
-														$sql = "SELECT id, patient_id, fullname FROM patient WHERE id = :patient_id";
-														$stmt = $conn->prepare($sql);
+														$sqls = "SELECT id, patient_id, fullname FROM patient WHERE id = :patient_id";
+														$stmt = $conn->prepare($sqls);
 														$stmt->bindParam(':patient_id', $row['patient_id']);
 														$stmt->execute();
 
