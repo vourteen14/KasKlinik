@@ -184,9 +184,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="payment">Metode Pembayaran</label>
-                    <?php foreach ($actions as $index => $row) : ?>
-                      <input id="payment" name="payment" type="text" value="<?php echo $row['category']; ?>" data-patient="<?php echo $row['id']; ?> class="form-control" readonly>
-                    <?php endforeach; ?>
+                    <select id="payment" name="payment" class="form-select w-100">
+                      <?php foreach ($actions as $index => $row) : ?>
+                        <option value="<?php echo $row['category']; ?>" data-patient="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">
