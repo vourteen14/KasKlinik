@@ -40,18 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
   $phone = $_POST['phone'];
+  $asuransi = $_POST['idasuransi'];
 
   try {
     // Combine kecamatan and desa into the address
     $address = $kecamatan . ', ' . $desa;
 
-    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone WHERE patient_id = :id";
+    $updateQuery = "UPDATE patient SET fullname = :fullname, address = :address, phone = :phone, assurance = :idasuransi WHERE patient_id = :id";
     $stmt = $conn->prepare($updateQuery);
     $stmt->execute([
       ':fullname' => $fullname,
       ':address' => $address,
       ':phone' => $phone,
-      ':id' => $id
+      ':id' => $id,
+      ':idasuransi' => $asuransi
     ]);
     // Set success message
     $message = 'Pasien berhasil diperbarui';
@@ -154,6 +156,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="text">
                 <label class="form-label" for="phone">Nomor Phone</label>
                 <input id="phone" name="phone" type="text" class="form-control" value="<?php echo htmlspecialchars($patientData['phone']); ?>" required="required">
+              </div>
+              <div class="text pt-3">
+                <label class="form-label" for="idasuransi">ID Asuransi/BPJS (Optional untuk Umum)</label>
+                <input id="idasuransi" name="idasuransi" type="text" placeholder="BPJS-<nomor bpjs>, Alliaz-<nomor alliaz>, dsb " value="<?php echo htmlspecialchars($patientData['assurance']); ?>" class="form-control">
               </div>
               <div class="pt-2">
                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
