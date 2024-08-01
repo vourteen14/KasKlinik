@@ -152,10 +152,10 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		<div class="app-content pt-3 p-md-3 p-lg-4">
 			<div class="container-xl">
 				<div class="row">
-					<div class="col-auto">
+					<div class="col-12">
 						<h1 class="app-page-title mb-0">Statistik</h1>
 					</div>
-					<div class="col-auto">
+					<div class="col-12">
 						dsfsa
 					</div>
 				</div>
