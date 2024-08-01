@@ -64,7 +64,7 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 						price,
 						created_at
 					FROM
-						`transaction`;
+						transaction
 					";
 
 	$stmt = $conn->prepare($sql);
