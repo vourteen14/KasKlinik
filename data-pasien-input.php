@@ -191,7 +191,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   selectElement.addEventListener('change', (event) => {
     const selectedValue = event.target.value;
-    inputElement.value = `${patientcount}-${selectedValue}`;
+    if (selectedValue == "BPJS") {
+      inputElement.value = `bp1-0${patientcount}`;
+    } else if (selectedValue == "Asuransi") {
+      inputElement.value = `as1-0${patientcount}`;
+    } else (
+      inputElement.value = `um1-0${patientcount}`;
+    )
   });
 </script>
 
