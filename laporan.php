@@ -330,11 +330,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Create a new window for the invoice
 			var printWindow = window.open('', '_self');
 			printWindow.document.open();
-			printWindow.document.write('<html><head><title>Invoice</title>');
+			printWindow.document.write('<html><head><title>Kuitansi</title>');
 			printWindow.document.write('<style>');
 			printWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
 			printWindow.document.write('.container { width: 100%; max-width: 800px; margin: auto; }');
-			printWindow.document.write('h1 { font-size: 28px; margin-bottom: 20px; text-align: left; }');
+			printWindow.document.write('h1 { font-size: 28px; margin-bottom: 20px; text-align: center; }');
 			printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-top: 20px; }');
 			printWindow.document.write('table, th, td { border: 1px solid #dddddd; }');
 			printWindow.document.write('th, td { padding: 8px; text-align: left; }');
@@ -346,7 +346,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			printWindow.document.write('</style>');
 			printWindow.document.write('</head><body>');
 			printWindow.document.write('<div class="container">');
-			printWindow.document.write('<center><h1>Invoice</h1></center>');
+			printWindow.document.write('<h1>Kuitansi</h1>');
 			printWindow.document.write('<div>');
 			printWindow.document.write('<p><strong>ID Invoice:</strong> 2c1fc17a88cd218a477e8cc8db48ad64</p>');
 			printWindow.document.write('<p><strong>Tanggal:</strong> 2024-06-09</p>');
