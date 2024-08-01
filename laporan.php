@@ -217,14 +217,29 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																$stmt->bindParam(':transaction_id', $row['transaction_id']);
 																$stmt->execute();
 																$data1 = $stmt->fetch(PDO::FETCH_ASSOC);
-																$data2 = json_encode($data1);	
+																$data2 = json_encode($data1);
 															?>
 																<button class="btn app-btn-primary" onclick='generateInvoice(<?php echo $data2; ?>)'>Kuitansi</button>
 															<?php } else { 
-																
-																
+																$sql = "SELECT 
+																						id,
+																						created_at,	
+																						information,	
+																						total_price,
+																						suppliers,
+																				FROM 
+																						transaction_in
+																				WHERE
+																					id = :transaction_id
+																				";
+
+																$stmt = $conn->prepare($sql);
+																$stmt->bindParam(':transaction_id', $row['transaction_id']);
+																$stmt->execute();
+																$data1 = $stmt->fetch(PDO::FETCH_ASSOC);
+																$data2 = json_encode($data1);						
 															?>
-																<button class="btn app-btn-primary" onclick='printInvoiceKeluar(<?php echo $index; ?>)'>Kuitansi</button>
+																<button class="btn app-btn-primary" onclick='printInvoiceKeluar(<?php echo $data2; ?>)'>Kuitansi</button>
 															<?php } ?>
 															<?php if(htmlspecialchars($row['type']) == 'IN') { 
 																$sql = "SELECT 
@@ -327,6 +342,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		}
 
 		function printInvoiceKeluar(index) {
+			console.log(index);
 			// Create a new window for the invoice
 			var printWindow = window.open('', '_self');
 			printWindow.document.open();
