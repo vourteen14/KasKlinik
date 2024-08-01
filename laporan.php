@@ -297,11 +297,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 		function generateBilling(index) {
 			// Ambil data untuk baris yang dipilih
-			var row = <?php echo json_encode($data1); ?>[index];
-			console.log(index.total_price);
+			//var row = <?php echo json_encode($data1); ?>[index];
+			//console.log(index.total_price);
 			
 			// Hitung total jumlah dengan biaya tambahan
-			var totalPrice = parseFloat(row['total_price']);
+			var totalPrice = parseFloat(index.total_price);
 			var biayaAdministrasi = 10000; // Biaya administrasi
 			var biayaLayanan = 5000; // Biaya layanan
 			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
@@ -324,11 +324,11 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Tambahkan judul dan informasi header
 			billingWindow.document.write('<div class="title">Penagihan</div>');
 			billingWindow.document.write('<div class="header">');
-			billingWindow.document.write('<p><span class="label">ID Asuransi/No:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['insurance_id'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['insurance_type'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['fullname'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['address'] + '</span></p>');
-			billingWindow.document.write('<p><span class="label">Telepon:</span><span class="value">&nbsp;&nbsp;&nbsp;' + row['phone'] + '</span></p>');
+			billingWindow.document.write('<p><span class="label">ID Asuransi/No:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.insurance_id + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.category + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.fullname + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.address + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Telepon:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.phone + '</span></p>');
 			billingWindow.document.write('</div>');
 
 			// Tambahkan tabel untuk rincian penagihan
