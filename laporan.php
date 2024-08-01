@@ -296,7 +296,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 		function generateBilling(index) {
 			// Ambil data untuk baris yang dipilih
-			var row = <?php echo json_encode($data); ?>[index];
+			var row = <?php echo json_encode($data1); ?>[index];
 			console.log(row);
 			
 			// Hitung total jumlah dengan biaya tambahan
