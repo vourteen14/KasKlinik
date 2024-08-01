@@ -489,9 +489,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup tabel dan body
 			invoiceWindow.document.write('</tbody></table>');
-			invoiceWindow.document.write('<p><span class="label">Biaya Administrasi:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp 10.000</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Biaya Layanan:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp 5.000</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Jumlah Total:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp ' + jumlahTotal.toFixed(2) + '</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Total Harga:</span><span class="value">&nbsp;&nbsp;&nbsp;Rp ' + totalPrice.toFixed(2) + '</span></p>');
 			invoiceWindow.document.write('</body></html>');
 
 			// Tutup dokumen
