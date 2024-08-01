@@ -346,7 +346,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			printWindow.document.write('</style>');
 			printWindow.document.write('</head><body>');
 			printWindow.document.write('<div class="container">');
-			printWindow.document.write('<h1>Invoice</h1>');
+			printWindow.document.write('<center><h1>Invoice</h1></center>');
 			printWindow.document.write('<div>');
 			printWindow.document.write('<p><strong>ID Invoice:</strong> 2c1fc17a88cd218a477e8cc8db48ad64</p>');
 			printWindow.document.write('<p><strong>Tanggal:</strong> 2024-06-09</p>');
@@ -369,7 +369,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Close the document and print
 			printWindow.document.close();
-			printWindow.focus();
 			printWindow.print();
 		}
 
@@ -424,7 +423,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			
     	// Tambahkan event handler untuk menutup tab jika pengguna membatalkan cetak
     	billingWindow.onbeforeunload = function() {
-        window.close();
+        billingWindow.close();
     	};
 			billingWindow.print();
 		}
