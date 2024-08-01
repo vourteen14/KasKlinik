@@ -609,7 +609,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			invoiceWindow.document.write('<div class="header">');
 			invoiceWindow.document.write('<p><span class="label">ID Kuitansi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.transaction_id + '</span></p>');
 			invoiceWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">&nbsp;&nbsp;&nbsp;' + new Date().toLocaleDateString() + '</span></p>');
-			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">&nbsp;&nbsp;&nbsp;Dr. Achmad Irawan</span></p>');
+			invoiceWindow.document.write('<p><span class="label">Nama Dokter:</span><span class="value">&nbsp;&nbsp;&nbsp;dr.Achmad Irawan</span></p>');
 			invoiceWindow.document.write('</div>');
 
 			// Tambahkan tabel untuk item invoice
