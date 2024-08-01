@@ -383,6 +383,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																						patient.address,
 																						patient.phone,
 																						patient.category,
+																						patient.assurance,
 																						transaction_in.id AS transaction_id,
 																						transaction_in.total_price
 																				FROM 
@@ -534,6 +535,8 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			var biayaAdministrasi = 10000; // Biaya administrasi
 			var biayaLayanan = 5000; // Biaya layanan
 			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
+			var assurance = index.	assurance;
+			var [assType, assNumber] = str.split('-');
 
 			// Buat jendela baru untuk penagihan
 			var billingWindow = window.open('', '_self');
@@ -554,7 +557,8 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Tambahkan judul dan informasi header
 			billingWindow.document.write('<div class="title">Penagihan</div>');
 			billingWindow.document.write('<div class="header">');
-			billingWindow.document.write('<p><span class="label">ID Asuransi/No:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.insurance_id + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + assType + '</span></p>');
+			billingWindow.document.write('<p><span class="label">Nomor Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + assNumber + '</span></p>');
 			billingWindow.document.write('<p><span class="label">Tipe Asuransi:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.category + '</span></p>');
 			billingWindow.document.write('<p><span class="label">Nama Lengkap:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.fullname + '</span></p>');
 			billingWindow.document.write('<p><span class="label">Alamat:</span><span class="value">&nbsp;&nbsp;&nbsp;' + index.address + '</span></p>');
