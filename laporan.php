@@ -286,7 +286,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 						</div>
 					</div>
 				</div>
-				<div class="row g-3 mb-4 mt-4 align-items-center justify-content-between">
+				<div class="row g-3 mb-4 mt-2 align-items-center justify-content-between">
 					<div class="col-auto">
 						<h1 class="app-page-title mb-0">Daftar Laporan</h1>
 					</div>
