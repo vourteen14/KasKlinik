@@ -184,7 +184,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 								<div class="col-4 col-lg-4">
 									<div class="app-card app-card-stat shadow-sm h-100">
 										<div class="app-card-body p-2 p-lg-2">
-											<h4 class="stats-type mb-2">BPJS</h4>
+											<h4 class="stats-type mb-2">Pasien BPJS</h4>
 												<?php
 												$sql = "SELECT COUNT(id) AS total FROM patient";
 												$result = $conn->query($sql);
@@ -207,7 +207,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 								<div class="col-4 col-lg-4">
 									<div class="app-card app-card-stat shadow-sm h-100">
 										<div class="app-card-body p-2 p-lg-2">
-											<h4 class="stats-type mb-2">Asuransi</h4>
+											<h4 class="stats-type mb-2">Pasien Asuransi</h4>
 												<?php
 												$sql = "SELECT COUNT(id) AS total FROM patient";
 												$result = $conn->query($sql);
