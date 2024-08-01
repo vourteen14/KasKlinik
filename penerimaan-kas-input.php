@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $comment = $_POST['comment'];
 
   // Membuat UUID
-  $uuid = generateUUID();
+  $uuid = '00000-' . str_pad(rand(0, 65535), 4, '0', STR_PAD_LEFT) . '-' . str_pad(rand(0, 65535), 7, '0', STR_PAD_LEFT);
 
   try {
     // Mulai transaksi
