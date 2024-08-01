@@ -36,6 +36,7 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 	$sql = "SELECT id, information, total_price, suppliers, created_at
             FROM transaction_out
             WHERE 
+						id LIKE :searchQuery OR
             suppliers LIKE :searchQuery OR 
             information LIKE :searchQuery OR
             total_price LIKE :searchQuery
