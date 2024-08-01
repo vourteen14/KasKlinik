@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label class="form-label" for="telepon">Nomor Telepon</label>
                 <input id="telepon" name="telepon" type="text" class="form-control" required="required">
               </div>
-              <div class="text">
+              <div class="text pt-2">
                 <label class="form-label" for="nomorasuransi">Nomor Asuransi/BPJS (Optional untuk Umum)</label>
                 <input id="nomorasuransi" name="nomorasuransi" type="text" class="form-control">
               </div>
