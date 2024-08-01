@@ -42,7 +42,6 @@ function renderPagination($page, $totalPages, $searchQuery)
 	include './component/pagination.php';
 }
 
-$conn = null; // Menutup koneksi
 ?>
 
 
