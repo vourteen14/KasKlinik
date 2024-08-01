@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label class="form-label" for="payment">Metode Pembayaran</label>
                     <select id="payment" name="payment" class="form-select w-100">
                       <?php foreach ($actions as $index => $row) : ?>
-                        <option value="<?php echo $row['assurance']; ?>" data-patient="<?php echo $row['id']; ?>"><?php echo $row['assurance']; ?></option>
+                        <option value="<?php echo $row['category']; ?>" data-patient="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>
@@ -250,6 +250,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           }
         });
         $('#notes option').each(function() {
+          if ($(this).data('patient') == selectedPatient) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+        $('#payment option').each(function() {
           if ($(this).data('patient') == selectedPatient) {
             $(this).show();
           } else {
