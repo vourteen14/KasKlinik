@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $kecamatan = $_POST['kecamatan'];
   $desa = $_POST['desa'];
   $telepon = $_POST['telepon'];
+  $asuransi = $_POST['idasuransi'];
   $selectedcategory = $_POST['kategori'];
 
   if ($selectedcategory == 'BPJS') {
@@ -26,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $pasientid = "um1-0" . $patientcount;
   }
 
-  $sql = "INSERT INTO patient (patient_id, fullname, address, phone, category)
-    VALUES (:patientid, :fullname, :address, :phone, :category)";
+  $sql = "INSERT INTO patient (patient_id, fullname, address, phone, category, assurance)
+    VALUES (:patientid, :fullname, :address, :phone, :category, :asuransi)";
 
   try {
     // Mempersiapkan statement
@@ -42,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':address', $alamat);
     $stmt->bindParam(':phone', $telepon);
     $stmt->bindParam(':category', $kategori);
+    $stmt->bindParam(':asuransi', $asuransi, $asuransi === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
     // Menjalankan statement
     $stmt->execute();
