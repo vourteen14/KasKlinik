@@ -224,7 +224,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																
 																
 															?>
-																<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
+																<button class="btn app-btn-primary" onclick='printInvoiceKeluar(<?php echo $index; ?>)'>Kuitansi</button>
 															<?php } ?>
 															<?php if(htmlspecialchars($row['type']) == 'IN') { 
 																$sql = "SELECT 
@@ -325,6 +325,82 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			// Click download link
 			downloadLink.click();
 		}
+
+		function printInvoiceKeluar(index) {
+			// Create the HTML content for the invoice
+			var content = `
+					<!DOCTYPE html>
+					<html lang="en">
+					<head>
+							<meta charset="UTF-8">
+							<meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<title>Invoice</title>
+							<style>
+									body { font-family: Arial, sans-serif; margin: 20px; }
+									.container { width: 100%; max-width: 800px; margin: auto; }
+									h1 { text-align: center; font-size: 28px; margin-bottom: 20px; }
+									table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+									table, th, td { border: 1px solid #dddddd; }
+									th, td { padding: 8px; text-align: left; }
+									th { background-color: #f4f4f4; }
+									.total { font-weight: bold; }
+									.footer { margin-top: 20px; text-align: right; }
+							</style>
+					</head>
+					<body>
+							<div class="container">
+									<h1>Invoice</h1>
+									<div>
+											<p><strong>ID Invoice:</strong> 2c1fc17a88cd218a477e8cc8db48ad64</p>
+											<p><strong>Tanggal:</strong> 2024-06-09</p>
+											<p><strong>Nama Supplier:</strong> dfsfda</p>
+									</div>
+									
+									<table>
+											<thead>
+													<tr>
+															<th>No</th>
+															<th>ID Transaksi</th>
+															<th>Nama Supplier</th>
+															<th>Catatan</th>
+															<th>Total Harga</th>
+															<th>Tanggal</th>
+													</tr>
+											</thead>
+											<tbody>
+													<tr>
+															<td>1</td>
+															<td>2c1fc17a88cd218a477e8cc8db48ad64</td>
+															<td>dfsfda</td>
+															<td>dfadfasfd</td>
+															<td>Rp 2.100.000</td>
+															<td>2024-06-09 06:34:30</td>
+													</tr>
+											</tbody>
+									</table>
+									
+									<div class="footer">
+											<p><strong>Total Harga:</strong> Rp 2.100.000</p>
+											<p><strong>Biaya Administrasi:</strong> Rp 10.000</p>
+											<p><strong>Biaya Layanan:</strong> Rp 5.000</p>
+											<p class="total"><strong>Jumlah Total:</strong> Rp 2.115.000</p>
+									</div>
+							</div>
+					</body>
+					</html>
+			`;
+
+			// Open a print dialog with the content
+			var printWindow = window.open('', '_self');
+			printWindow.document.open();
+			printWindow.document.write(content);
+			printWindow.document.close();
+			
+			// Trigger the print dialog
+			printWindow.focus();
+			printWindow.print();
+		}
+
 
 		function generateBilling(index) {
 			// Ambil data untuk baris yang dipilih
