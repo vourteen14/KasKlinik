@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Menambahkan data ke tabel transaction_in
     $sqlTransactionIn = "INSERT INTO transaction_in (id, action_id, doctor, total_price, created_at) 
-                           VALUES (:id, :action_id, 'Dr. Achmad Irawan', :total_price, NOW())";
+                           VALUES (:id, :action_id, 'dr.Achmad Irawan', :total_price, NOW())";
     $stmtTransactionIn = $conn->prepare($sqlTransactionIn);
     $stmtTransactionIn->execute([
       ':id' => $uuid,
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 col-lg-6">
                   <div class="text mb-3">
                     <label class="form-label" for="doctor">Doctor</label>
-                    <input id="doctor" name="doctor" type="text" class="form-control" required="required" value="Dr. Achmad Irawan" disabled>
+                    <input id="doctor" name="doctor" type="text" class="form-control" required="required" value="dr.Achmad Irawan" disabled>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">
