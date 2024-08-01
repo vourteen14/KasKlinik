@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="catatan">Catatan</label>
-                <textarea id="catatan" name="catatan" type="text" class="form-control" required="required"></textarea>
+                <textarea id="catatan" name="catatan" type="text" class="form-control" required="required" rows="4"></textarea>
               </div>
             </div>
             <div class="col-12 col-lg-6">
