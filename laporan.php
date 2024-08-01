@@ -524,8 +524,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			location.reload();
 		}
 
-
-
 		function generateBilling(index) {
 			// Ambil data untuk baris yang dipilih
 			//var row = <?php echo json_encode($data1); ?>[index];
@@ -571,12 +569,8 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup dokumen
 			billingWindow.document.close();
-			
-    	// Tambahkan event handler untuk menutup tab jika pengguna membatalkan cetak
-    	billingWindow.onbeforeunload = function() {
-        billingWindow.close();
-    	};
 			billingWindow.print();
+			location.reload();
 		}
 
 
@@ -627,10 +621,8 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Tutup dokumen
 			invoiceWindow.document.close();
-			invoiceWindow.onbeforeunload = function() {
-        window.close();
-    	};
 			invoiceWindow.print();
+			location.reload();
 		}
 
 	</script>
