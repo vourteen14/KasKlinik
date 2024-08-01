@@ -537,6 +537,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Buat jendela baru untuk penagihan
 			var billingWindow = window.open('', '_blank');
+			billingWindow.document.open();
 			billingWindow.document.write('<html><head><title>Penagihan</title>');
 			billingWindow.document.write('<style>');
 			billingWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
@@ -586,6 +587,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Buat jendela baru untuk invoice
 			var invoiceWindow = window.open('', '_blank');
+			invoiceWindow.document.open();
 			invoiceWindow.document.write('<html><head><title>Kuitansi</title>');
 			invoiceWindow.document.write('<style>');
 			invoiceWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
