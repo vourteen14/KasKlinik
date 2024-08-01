@@ -2,10 +2,11 @@
 include './config/config.php';
 $message = '';
 $isPage = 'pengeluaran-kas';
-$uuid =  '00000-' . str_pad(rand(0, 65535), 4, '0', STR_PAD_LEFT) . '-' . str_pad(rand(0, 65535), 7, '0', STR_PAD_LEFT);
+$uuids =  '00000-' . str_pad(rand(0, 65535), 4, '0', STR_PAD_LEFT) . '-' . str_pad(rand(0, 65535), 7, '0', STR_PAD_LEFT);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Ambil data dari form
+  $uuid = $_POST['id'];
   $catatan = $_POST['catatan'];
   $suppliers = $_POST['suppliers'];
   $total_price = $_POST['total_price'];
@@ -104,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-12 col-lg-6">
               <div class="text mb-3">
                 <label class="form-label" for="id">ID Transaksi</label>
-                <input id="id" name="id" type="text" class="form-control" value="<?php echo $uuid; ?>" disabled>
+                <input id="id" name="id" type="text" class="form-control" value="<?php echo $uuids; ?>" readonly>
               </div>
               <div class="text mb-3">
                 <label class="form-label" for="catatan">Catatan</label>
