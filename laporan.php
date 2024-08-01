@@ -535,8 +535,8 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			var biayaAdministrasi = 10000; // Biaya administrasi
 			var biayaLayanan = 5000; // Biaya layanan
 			var jumlahTotal = totalPrice + biayaAdministrasi + biayaLayanan;
-			var assurance = index.	assurance;
-			var [assType, assNumber] = str.split('-');
+			var assura = index.assurance;
+			var [assType, assNumber] = assura.split('-');
 
 			// Buat jendela baru untuk penagihan
 			var billingWindow = window.open('', '_self');
