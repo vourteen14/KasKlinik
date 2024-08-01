@@ -68,7 +68,7 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 					WHERE 
             transaction_id LIKE :searchQuery OR
 						created_at LIKE :searchQuery
-          LIMIT :offset, :itemsPerPage";
+          LIMIT :offset, :itemsPerPage
 					";
 
 	$stmt = $conn->prepare($sql);
