@@ -153,63 +153,65 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			<div class="container-xl">
 				<div class="row">
 					<div class="col-6">
-						<h1 class="app-page-title mb-0">Statistik Pasien</h1>
-					</div>
-					<div class="col-6 mb-2 mt-2">
-						<div class="row">
-							<div class="col-2 col-lg-2">
-								<div class="app-card app-card-stat shadow-sm h-100">
-									<div class="app-card-body p-2 p-lg-2">
-										<h4 class="stats-type mb-2">Pasien</h4>
-											<?php
-											$sql = "SELECT COUNT(id) AS total FROM patient";
-											$result = $conn->query($sql);
+						<div class="col-12">
+							<h1 class="app-page-title mb-0">Statistik Pasien</h1>
+						</div>
+						<div class="col-12 mb-2 mt-2">
+							<div class="row">
+								<div class="col-2 col-lg-2">
+									<div class="app-card app-card-stat shadow-sm h-100">
+										<div class="app-card-body p-2 p-lg-2">
+											<h4 class="stats-type mb-2">Pasien</h4>
+												<?php
+												$sql = "SELECT COUNT(id) AS total FROM patient";
+												$result = $conn->query($sql);
 
-											if ($result->rowCount() > 0) {
-												// Mengambil data dari setiap baris
-												while ($row = $result->fetch()) {
-													$total = $row["total"];
-													echo "<div class=\"stats-figure\">" . $total . "</div>";
+												if ($result->rowCount() > 0) {
+													// Mengambil data dari setiap baris
+													while ($row = $result->fetch()) {
+														$total = $row["total"];
+														echo "<div class=\"stats-figure\">" . $total . "</div>";
+													}
+												} else {
+													echo "0 results";
 												}
-											} else {
-												echo "0 results";
-											}
-											?>
-										<div class="stats-meta text-success">Rupiah</div>
+												?>
+											<div class="stats-meta text-success">Rupiah</div>
+										</div>
+										<a class="app-card-link-mask" href="#"></a>
 									</div>
-									<a class="app-card-link-mask" href="#"></a>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
 					<div class="col-6">
-						<h1 class="app-page-title mb-0">Statistik Pasien</h1>
-					</div>
-					<div class="col-6 mb-2 mt-2">
-						<div class="row">
-							<div class="col-2 col-lg-2">
-								<div class="app-card app-card-stat shadow-sm h-100">
-									<div class="app-card-body p-2 p-lg-2">
-										<h4 class="stats-type mb-2">Pasien</h4>
-											<?php
-											$sql = "SELECT COUNT(id) AS total FROM patient";
-											$result = $conn->query($sql);
+						<div class="col-12">
+							<h1 class="app-page-title mb-0">Statistik Pasien</h1>
+						</div>
+						<div class="col-12 mb-2 mt-2">
+							<div class="row">
+								<div class="col-2 col-lg-2">
+									<div class="app-card app-card-stat shadow-sm h-100">
+										<div class="app-card-body p-2 p-lg-2">
+											<h4 class="stats-type mb-2">Pasien</h4>
+												<?php
+												$sql = "SELECT COUNT(id) AS total FROM patient";
+												$result = $conn->query($sql);
 
-											if ($result->rowCount() > 0) {
-												// Mengambil data dari setiap baris
-												while ($row = $result->fetch()) {
-													$total = $row["total"];
-													echo "<div class=\"stats-figure\">" . $total . "</div>";
+												if ($result->rowCount() > 0) {
+													// Mengambil data dari setiap baris
+													while ($row = $result->fetch()) {
+														$total = $row["total"];
+														echo "<div class=\"stats-figure\">" . $total . "</div>";
+													}
+												} else {
+													echo "0 results";
 												}
-											} else {
-												echo "0 results";
-											}
-											?>
-										<div class="stats-meta text-success">Rupiah</div>
+												?>
+											<div class="stats-meta text-success">Rupiah</div>
+										</div>
+										<a class="app-card-link-mask" href="#"></a>
 									</div>
-									<a class="app-card-link-mask" href="#"></a>
 								</div>
 							</div>
 						</div>
