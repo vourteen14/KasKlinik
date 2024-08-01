@@ -195,10 +195,34 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
-															<!-- <?php //if(htmlspecialchars($row['category']) == "Asuransi" || htmlspecialchars($row['category']) == "BPJS") { ?>
+															<?php if(htmlspecialchars($row['type']) == 'IN') { 
+																$sql = "SELECT 
+																						patient.id AS patient_id,
+																						patient.fullname,
+																						patient.address,
+																						patient.phone,
+																						patient.category,
+																						transaction_in.id AS transaction_id,
+																						transaction_in.total_price
+																				FROM 
+																						patient
+																				INNER JOIN 
+																						action ON patient.id = action.patient_id
+																				INNER JOIN 
+																						transaction_in ON action.id = transaction_in.action_id
+																				WHERE
+																					transaction_in.id = :transaction_id
+																				";
+
+																$stmt = $pdo->prepare($sql);
+																$stmt->bindParam(':transaction_id', $row['transaction_id']);
+																$stmt->execute();
+																$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+																if(htmlspecialchars($data['category']) == "Asuransi" || htmlspecialchars($data['category']) == "BPJS") { ?>
 																<?php ?>
 																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Tagihan</button>
-															<?php //} ?> -->
+															<?php }}; ?>
 														</div>
 													</td>
 												</tr>
