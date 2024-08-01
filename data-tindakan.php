@@ -127,7 +127,7 @@ function renderPagination($page, $totalPages, $searchQuery)
 											<tr>
 												<th class="cell">No</th>
 												<th class="cell">Kode Pasien</th>
-												<th class="cell">Fullname Pasien</th>
+												<th class="cell">Nama Pasien</th>
 												<th class="cell">Catatan</th>
 												<th class="cell">Diagnosa</th>
 												<th class="cell">Obat</th>
