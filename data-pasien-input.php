@@ -195,9 +195,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       inputElement.value = `bp1-0${patientcount}`;
     } else if (selectedValue == "Asuransi") {
       inputElement.value = `as1-0${patientcount}`;
-    } else (
+    } else {
       inputElement.value = `um1-0${patientcount}`;
-    )
+    }
   });
 </script>
 
