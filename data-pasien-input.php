@@ -151,8 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input id="telepon" name="telepon" type="text" class="form-control" required="required">
               </div>
               <div class="text pt-3">
-                <label class="form-label" for="nomorasuransi">ID Asuransi/BPJS (Optional untuk Umum)</label>
-                <input id="nomorasuransi" name="nomorasuransi" type="text" class="form-control">
+                <label class="form-label" for="idasuransi">ID Asuransi/BPJS (Optional untuk Umum)</label>
+                <input id="idasuransi" name="idasuransi" type="text" placeholder="BPJS-<nomor bpjs>, Alliaz-<nomor alliaz>, dsb " class="form-control">
               </div>
               <div class="pt-3">
                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
