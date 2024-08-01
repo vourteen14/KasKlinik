@@ -181,4 +181,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <script src="assets/js/app.js"></script>
 </body>
 
+<script>
+  const selectElement = document.getElementById('kategori');
+
+  selectElement.addEventListener('change', (event) => {
+            // Get the selected value
+    const selectedValue = event.target.value;
+            
+            // Get the selected text
+    const selectedText = event.target.options[event.target.selectedIndex].text;
+
+            // Log the selected value and text
+    console.log(`Selected value: ${selectedValue}`);
+    console.log(`Selected text: ${selectedText}`);
+  });
+</script>
+
 </html>
