@@ -236,10 +236,10 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 						</div>
 						<div class="col-12 mb-2 mt-2">
 							<div class="row">
-								<div class="col-2 col-lg-2">
+								<div class="col-6 col-lg-6">
 									<div class="app-card app-card-stat shadow-sm h-100">
 										<div class="app-card-body p-2 p-lg-2">
-											<h4 class="stats-type mb-2">Pasien</h4>
+											<h4 class="stats-type mb-2">Transaksi Masuk</h4>
 												<?php
 												$sql = "SELECT COUNT(id) AS total FROM patient";
 												$result = $conn->query($sql);
@@ -254,7 +254,30 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													echo "0 results";
 												}
 												?>
-											<div class="stats-meta text-success">Rupiah</div>
+											<div class="stats-meta text-success">Total</div>
+										</div>
+										<a class="app-card-link-mask" href="#"></a>
+									</div>
+								</div>
+								<div class="col-6 col-lg-6">
+									<div class="app-card app-card-stat shadow-sm h-100">
+										<div class="app-card-body p-2 p-lg-2">
+											<h4 class="stats-type mb-2">Transaksi Keluar</h4>
+												<?php
+												$sql = "SELECT COUNT(id) AS total FROM patient";
+												$result = $conn->query($sql);
+
+												if ($result->rowCount() > 0) {
+													// Mengambil data dari setiap baris
+													while ($row = $result->fetch()) {
+														$total = $row["total"];
+														echo "<div class=\"stats-figure\">" . $total . "</div>";
+													}
+												} else {
+													echo "0 results";
+												}
+												?>
+											<div class="stats-meta text-success">Total</div>
 										</div>
 										<a class="app-card-link-mask" href="#"></a>
 									</div>
