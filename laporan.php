@@ -214,7 +214,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																					transaction_in.id = :transaction_id
 																				";
 
-																$stmt = $pdo->prepare($sql);
+																$stmt = $conn->prepare($sql);
 																$stmt->bindParam(':transaction_id', $row['transaction_id']);
 																$stmt->execute();
 																$data = $stmt->fetch(PDO::FETCH_ASSOC);
