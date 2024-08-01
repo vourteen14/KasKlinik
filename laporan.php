@@ -385,7 +385,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Close the document and print
 			printWindow.document.close();
-			printWindow.document.print();
+			printWindow.print();
 		}
 
 
