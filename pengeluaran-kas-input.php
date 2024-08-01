@@ -110,6 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="text mb-3">
                 <label class="form-label" for="catatan">Catatan</label>
                 <textarea id="catatan" name="catatan" class="form-control" required="required" rows="4"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
             </div>
             <div class="col-12 col-lg-6">
