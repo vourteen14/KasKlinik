@@ -155,12 +155,12 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 					<div class="col-12">
 						<h1 class="app-page-title mb-0">Statistik</h1>
 					</div>
-					<div class="col-12">
+					<div class="col-12 mb-2 mt-2">
 						<div class="row">
-							<div class="col-4 col-lg-4">
+							<div class="col-2 col-lg-2">
 								<div class="app-card app-card-stat shadow-sm h-100">
-									<div class="app-card-body p-3 p-lg-4">
-										<h4 class="stats-type mb-1">Saldo</h4>
+									<div class="app-card-body p-2 p-lg-2">
+										<h4 class="stats-type mb-2">Saldo</h4>
 										<?php
 										$sql = "SELECT balance FROM balance WHERE id = 1";
 										$result = $conn->query($sql);
