@@ -264,7 +264,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 										<div class="app-card-body p-2 p-lg-2">
 											<h4 class="stats-type mb-2">Transaksi Keluar</h4>
 												<?php
-												$sql = "SELECT COUNT(id) AS total FROM patient";
+												$sql = "SELECT COUNT(id) AS total FROM transaction_in";
 												$result = $conn->query($sql);
 
 												if ($result->rowCount() > 0) {
