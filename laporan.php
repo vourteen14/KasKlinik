@@ -221,7 +221,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 																if(htmlspecialchars($data1['category']) == "Asuransi" || htmlspecialchars($data1['category']) == "BPJS") { ?>
 																<?php ?>
-																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php json_encode($data1); ?>)">Tagihan</button>
+																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $data1; ?>)">Tagihan</button>
 															<?php }}; ?>
 														</div>
 													</td>
@@ -294,9 +294,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			downloadLink.click();
 		}
 
-		function generateBilling(row) {
+		function generateBilling(index) {
 			// Ambil data untuk baris yang dipilih
-			//var row = <?php echo json_encode($data1); ?>[index];
+			var row = <?php echo json_encode($data1); ?>[index];
 			console.log(row.total_price);
 			
 			// Hitung total jumlah dengan biaya tambahan
