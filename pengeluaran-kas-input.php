@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $transaction_in_id = !empty($_POST['transaction_in_id']) ? $_POST['transaction_in_id'] : null;
 
   // Generate UUID untuk `transaction_out` id
-  $uuid =  '00000-' . str_pad(rand(0, 65535), 5, '0', STR_PAD_LEFT);
+  $uuid =  '00000-' . str_pad(rand(0, 65535), 4, '0', STR_PAD_LEFT) . '-' . str_pad(rand(0, 65535), 7, '0', STR_PAD_LEFT);
 
   try {
     // Mulai transaksi
