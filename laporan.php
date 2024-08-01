@@ -509,7 +509,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			printWindow.document.write('<table>');
 			printWindow.document.write('<thead><tr><th>No</th><th>ID Transaksi</th><th>Supplier</th><th>Catatan</th><th>Total Harga</th><th>Tanggal</th></tr></thead>');
 			printWindow.document.write('<tbody>');
-			printWindow.document.write('<tr><td>1</td><td>' + index.id + '</td><td>' + index.suppliers + '</td><td>' + index.information + '</td><td>Rp. ' + index.total_price + '</td><td>'+ index.created_at + '</td></tr>');
+			printWindow.document.write('<tr><td>1</td><td>' + index.id + '</td><td>' + index.suppliers + '</td><td>' + index.information + '</td><td>' + index.total_price + '</td><td>'+ index.created_at + '</td></tr>');
 			printWindow.document.write('</tbody>');
 			printWindow.document.write('</table>');
 			printWindow.document.write('<div class="footer">');
