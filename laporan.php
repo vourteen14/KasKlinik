@@ -36,7 +36,7 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 	$offset = ($page - 1) * $itemsPerPage;
 
 	// Bangun query SQL untuk mengambil data
-	$sql = "SELECT 
+	/* $sql = "SELECT 
                 patient.id AS patient_id,
                 patient.fullname,
                 patient.address,
@@ -56,6 +56,16 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
                 patient.phone LIKE :searchQuery OR
                 patient.category LIKE :searchQuery
             LIMIT :offset, :itemsPerPage";
+	*/
+
+	$sql = "SELECT
+						COALESCE(transaction_in_id, transaction_out_id) AS transaction_id,
+						type,
+						price,
+						created_at
+					FROM
+						`transaction`;
+					";
 
 	$stmt = $conn->prepare($sql);
 	$searchTerm = '%' . $searchQuery . '%';
@@ -163,12 +173,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 										<thead>
 											<tr>
 												<th class="cell">No</th>
-												<th class="cell">Kode Pasien</th>
-												<th class="cell">Nama Pasien</th>
-												<th class="cell">Tempat Tinggal</th>
-												<th class="cell">Nomor Telepon</th>
-												<th class="cell">Kategori</th>
 												<th class="cell">Transaksi</th>
+												<th class="cell">Tipe Transaksi</th>
+												<th class="cell">Tanggal</th>
 												<th class="cell">Harga</th>
 												<th class="cell">Aksi</th>
 											</tr>
@@ -177,18 +184,16 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 											<?php foreach ($data as $index => $row) : ?>
 												<tr id="row-<?php echo $index; ?>">
 													<td class="cell"><?php echo ($offset + $index + 1); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['patient_id']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['fullname']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['address']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['phone']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['category']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['transaction_id']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['total_price']); ?></td>
+													<td class="cell"><?php if (htmlspecialchars($row['type']) == 'IN') { echo 'Transaksi Masuk'; } else { echo 'Transaksi Keluar'; } ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['created_at']); ?></td>
+													<td class="cell"><?php echo htmlspecialchars($row['price']); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $index; ?>)">Kuitansi</button>
 															<?php if(htmlspecialchars($row['category']) == "Asuransi" || htmlspecialchars($row['category']) == "BPJS") { ?>
-																	<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Tagihan</button>
+																<?php ?>
+																<button class="ms-1 btn app-btn-primary" onclick="generateBilling(<?php echo $index; ?>)">Tagihan</button>
 															<?php } ?>
 														</div>
 													</td>
