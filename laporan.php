@@ -342,7 +342,6 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		}
 
 		function printInvoiceKeluar(index) {
-			console.log(index);
 			// Create a new window for the invoice
 			var printWindow = window.open('', '_self');
 			printWindow.document.open();
@@ -361,14 +360,16 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 			printWindow.document.write('.footer strong { display: inline-block; width: 200px; }');
 			printWindow.document.write('.invoice-info { margin-bottom: 20px; }');
 			printWindow.document.write('.invoice-info p { margin: 5px 0; font-size: 16px; }');
+			printWindow.document.write('.invoice-info .label { display: inline-block; width: 150px; }');
+			printWindow.document.write('.invoice-info .value { display: inline-block; width: 300px; }');
 			printWindow.document.write('</style>');
 			printWindow.document.write('</head><body>');
 			printWindow.document.write('<div class="container">');
 			printWindow.document.write('<h1>Kuitansi</h1>');
 			printWindow.document.write('<div class="invoice-info">');
-			printWindow.document.write('<p><strong>ID Invoice:</strong>&nbsp;&nbsp;&nbsp;' + index.id + '</p>');
-			printWindow.document.write('<p><strong>Tanggal:</strong>&nbsp;&nbsp;&nbsp;' + index.created_at + '</p>');
-			printWindow.document.write('<p><strong>Nama Supplier:</strong>&nbsp;&nbsp;&nbsp;' + index.suppliers + '</p>');
+			printWindow.document.write('<p><span class="label">ID Invoice:</span><span class="value">' + index.id + '</span></p>');
+			printWindow.document.write('<p><span class="label">Tanggal:</span><span class="value">' + index.created_at + '</span></p>');
+			printWindow.document.write('<p><span class="label">Nama Supplier:</span><span class="value">' + index.suppliers + '</span></p>');
 			printWindow.document.write('</div>');
 			printWindow.document.write('<table>');
 			printWindow.document.write('<thead><tr><th>No</th><th>ID Transaksi</th><th>Supplier</th><th>Catatan</th><th>Total Harga</th><th>Tanggal</th></tr></thead>');
@@ -384,8 +385,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 
 			// Close the document and print
 			printWindow.document.close();
-			printWindow.print();
+			printWindow.document.print();
 		}
+
 
 
 		function generateBilling(index) {
