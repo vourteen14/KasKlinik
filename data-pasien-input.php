@@ -150,6 +150,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label class="form-label" for="telepon">Nomor Telepon</label>
                 <input id="telepon" name="telepon" type="text" class="form-control" required="required">
               </div>
+              <div class="text">
+                <label class="form-label" for="nomorasuransi">Nomor Asuransi/BPJS (Optional untuk Umum)</label>
+                <input id="nomorasuransi" name="nomorasuransi" type="text" class="form-control">
+              </div>
               <div class="pt-2">
                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
