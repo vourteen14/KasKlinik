@@ -160,9 +160,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 							<div class="col-2 col-lg-2">
 								<div class="app-card app-card-stat shadow-sm h-100">
 									<div class="app-card-body p-2 p-lg-2">
-										<h4 class="stats-type mb-2">Saldo</h4>
+										<h4 class="stats-type mb-2">Pasien</h4>
 										<?php
-										$sql = "SELECT balance FROM balance WHERE id = 1";
+										$sql = "SELECT balance FROM patient WHERE id = 1";
 										$result = $conn->query($sql);
 
 										if ($result->rowCount() > 0) {
