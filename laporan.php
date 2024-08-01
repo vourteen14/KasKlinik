@@ -65,10 +65,10 @@ function getDataFromDatabase($page, $itemsPerPage, $searchQuery)
 						created_at
 					FROM
 						transaction
-					WHERE 
-            transaction_id LIKE :searchQuery OR
+					WHERE
+						COALESCE(transaction_in_id, transaction_out_id) LIKE :searchQuery OR
 						created_at LIKE :searchQuery
-          LIMIT :offset, :itemsPerPage
+					LIMIT :offset, :itemsPerPage;
 					";
 
 	$stmt = $conn->prepare($sql);
