@@ -219,7 +219,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																$data1 = $stmt->fetch(PDO::FETCH_ASSOC);
 																$data2 = json_encode($data1);	
 															?>
-																<button class="btn app-btn-primary" onclick="generateInvoice(<?php echo $data2; ?>)">Kuitansi</button>
+																<button class="btn app-btn-primary" onclick='generateInvoice(<?php echo $data2; ?>)'>Kuitansi</button>
 															<?php } else { 
 																
 																
