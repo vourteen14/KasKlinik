@@ -6,7 +6,7 @@ $isPage = 'penerimaan-kas';
 $payments = ['BPJS', 'Asuransi', 'Umum'];
 
 // Mengambil data dari tabel action untuk dropdown
-$sql = "SELECT a.id, p.fullname, p.assurance, a.diagnosis, a.notes 
+$sql = "SELECT a.id, p.fullname, p.category, a.diagnosis, a.notes 
         FROM action a 
         JOIN patient p ON a.patient_id = p.id";
 $stmt = $conn->prepare($sql);
