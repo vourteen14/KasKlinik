@@ -327,80 +327,51 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 		}
 
 		function printInvoiceKeluar(index) {
-			// Create the HTML content for the invoice
-			var content = `
-					<!DOCTYPE html>
-					<html lang="en">
-					<head>
-							<meta charset="UTF-8">
-							<meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<title>Invoice</title>
-							<style>
-									body { font-family: Arial, sans-serif; margin: 20px; }
-									.container { width: 100%; max-width: 800px; margin: auto; }
-									h1 { text-align: center; font-size: 28px; margin-bottom: 20px; }
-									table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-									table, th, td { border: 1px solid #dddddd; }
-									th, td { padding: 8px; text-align: left; }
-									th { background-color: #f4f4f4; }
-									.total { font-weight: bold; }
-									.footer { margin-top: 20px; text-align: right; }
-							</style>
-					</head>
-					<body>
-							<div class="container">
-									<h1>Invoice</h1>
-									<div>
-											<p><strong>ID Invoice:</strong> 2c1fc17a88cd218a477e8cc8db48ad64</p>
-											<p><strong>Tanggal:</strong> 2024-06-09</p>
-											<p><strong>Nama Supplier:</strong> dfsfda</p>
-									</div>
-									
-									<table>
-											<thead>
-													<tr>
-															<th>No</th>
-															<th>ID Transaksi</th>
-															<th>Nama Supplier</th>
-															<th>Catatan</th>
-															<th>Total Harga</th>
-															<th>Tanggal</th>
-													</tr>
-											</thead>
-											<tbody>
-													<tr>
-															<td>1</td>
-															<td>2c1fc17a88cd218a477e8cc8db48ad64</td>
-															<td>dfsfda</td>
-															<td>dfadfasfd</td>
-															<td>Rp 2.100.000</td>
-															<td>2024-06-09 06:34:30</td>
-													</tr>
-											</tbody>
-									</table>
-									
-									<div class="footer">
-											<p><strong>Total Harga:</strong> Rp 2.100.000</p>
-											<p><strong>Biaya Administrasi:</strong> Rp 10.000</p>
-											<p><strong>Biaya Layanan:</strong> Rp 5.000</p>
-											<p class="total"><strong>Jumlah Total:</strong> Rp 2.115.000</p>
-									</div>
-							</div>
-					</body>
-					</html>
-			`;
-
-			// Open a print dialog with the content
+			// Create a new window for the invoice
 			var printWindow = window.open('', '_self');
 			printWindow.document.open();
-			printWindow.document.write(content);
+			printWindow.document.write('<html><head><title>Invoice</title>');
+			printWindow.document.write('<style>');
+			printWindow.document.write('body { font-family: Arial, sans-serif; margin: 20px; }');
+			printWindow.document.write('.container { width: 100%; max-width: 800px; margin: auto; }');
+			printWindow.document.write('h1 { font-size: 28px; margin-bottom: 20px; text-align: left; }');
+			printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-top: 20px; }');
+			printWindow.document.write('table, th, td { border: 1px solid #dddddd; }');
+			printWindow.document.write('th, td { padding: 8px; text-align: left; }');
+			printWindow.document.write('th { background-color: #f4f4f4; }');
+			printWindow.document.write('.total { font-weight: bold; }');
+			printWindow.document.write('.footer { margin-top: 20px; text-align: left; }');
+			printWindow.document.write('.footer p { margin: 5px 0; }');
+			printWindow.document.write('.footer strong { display: inline-block; width: 200px; }');
+			printWindow.document.write('</style>');
+			printWindow.document.write('</head><body>');
+			printWindow.document.write('<div class="container">');
+			printWindow.document.write('<h1>Invoice</h1>');
+			printWindow.document.write('<div>');
+			printWindow.document.write('<p><strong>ID Invoice:</strong> 2c1fc17a88cd218a477e8cc8db48ad64</p>');
+			printWindow.document.write('<p><strong>Tanggal:</strong> 2024-06-09</p>');
+			printWindow.document.write('<p><strong>Nama Supplier:</strong> dfsfda</p>');
+			printWindow.document.write('</div>');
+			printWindow.document.write('<table>');
+			printWindow.document.write('<thead><tr><th>No</th><th>ID Transaksi</th><th>Nama Supplier</th><th>Catatan</th><th>Total Harga</th><th>Tanggal</th></tr></thead>');
+			printWindow.document.write('<tbody>');
+			printWindow.document.write('<tr><td>1</td><td>2c1fc17a88cd218a477e8cc8db48ad64</td><td>dfsfda</td><td>dfadfasfd</td><td>Rp 2.100.000</td><td>2024-06-09 06:34:30</td></tr>');
+			printWindow.document.write('</tbody>');
+			printWindow.document.write('</table>');
+			printWindow.document.write('<div class="footer">');
+			printWindow.document.write('<p><strong>Total Harga:</strong> Rp 2.100.000</p>');
+			printWindow.document.write('<p><strong>Biaya Administrasi:</strong> Rp 10.000</p>');
+			printWindow.document.write('<p><strong>Biaya Layanan:</strong> Rp 5.000</p>');
+			printWindow.document.write('<p class="total"><strong>Jumlah Total:</strong> Rp 2.115.000</p>');
+			printWindow.document.write('</div>');
+			printWindow.document.write('</div>');
+			printWindow.document.write('</body></html>');
+
+			// Close the document and print
 			printWindow.document.close();
-			
-			// Trigger the print dialog
 			printWindow.focus();
 			printWindow.print();
 		}
-
 
 		function generateBilling(index) {
 			// Ambil data untuk baris yang dipilih
