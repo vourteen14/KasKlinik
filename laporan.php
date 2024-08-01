@@ -226,9 +226,9 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 																						created_at,	
 																						information,	
 																						total_price,
-																						suppliers,
+																						suppliers
 																				FROM 
-																						transaction_in
+																						transaction_out
 																				WHERE
 																					id = :transaction_id
 																				";
