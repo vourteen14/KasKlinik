@@ -156,6 +156,14 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 						<h1 class="app-page-title mb-0">Daftar Laporan</h1>
 					</div>
 					<div class="col-auto">
+						heeeee locale_accept_from_http
+					</div>
+				</div>
+				<div class="row g-3 mb-4 align-items-center justify-content-between">
+					<div class="col-auto">
+						<h1 class="app-page-title mb-0">Daftar Laporan</h1>
+					</div>
+					<div class="col-auto">
 						<div class="page-utilities">
 							<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 								<div class="col-auto">
