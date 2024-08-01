@@ -6,15 +6,13 @@ $isPage = 'data-tindakan';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Tangani permintaan POST untuk memperbarui data
   $action_id = $_POST['action_id'];
-  $patient_id = $_POST['patient_id'];
   $notes = $_POST['notes'];
   $diagnosis = $_POST['diagnosis'];
   $medicine = $_POST['medicine'];
 
-  $sql = "UPDATE action SET patient_id = :patient_id, notes = :notes, diagnosis = :diagnosis, medicine = :medicine WHERE id = :action_id";
+  $sql = "UPDATE action SET notes = :notes, diagnosis = :diagnosis, medicine = :medicine WHERE id = :action_id";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(':action_id', $action_id);
-  $stmt->bindParam(':patient_id', $patient_id);
   $stmt->bindParam(':notes', $notes);
   $stmt->bindParam(':diagnosis', $diagnosis);
   $stmt->bindParam(':medicine', $medicine);
@@ -52,7 +50,6 @@ $stmtPatients = $conn->prepare($sqlPatients);
 $stmtPatients->execute();
 $patients = $stmtPatients->fetchAll(PDO::FETCH_ASSOC);
 
-$conn = null; // Menutup koneksi
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +121,15 @@ $conn = null; // Menutup koneksi
                   <?php if ($patient['id'] == $data['patient_id']) : ?>
                     <!-- <label class="form-label w-100"><?php echo htmlspecialchars($patient['id']) . ', ' . htmlspecialchars($patient['fullname']); ?></label>
                     <input name="patient_id" value="<?php echo $patient['id']; ?>"> -->
-                    <input name="patient_id" type="text" class="form-control" value="<?php echo htmlspecialchars($patient['id']) . ', ' . htmlspecialchars($patient['fullname']); ?>" readonly>
+                    <input name="patient_id" type="text" class="form-control" value="<?php
+                    	$sql = "SELECT id, patient_id, fullname FROM patient WHERE id = :patient_id";
+											$stmt = $conn->prepare($sql);
+											$stmt->bindParam(':patient_id', $patient['id']);
+											$stmt->execute();
+
+											$id = $stmt->fetch(PDO::FETCH_ASSOC);
+                      echo htmlspecialchars($id['patient_id']) . ', ' . htmlspecialchars($patient['fullname']); 
+                    ?>" readonly>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </div>
