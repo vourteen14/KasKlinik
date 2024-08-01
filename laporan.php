@@ -156,7 +156,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 						<div class="col-12">
 							<h1 class="app-page-title mb-0">Statistik Pasien</h1>
 						</div>
-						<div class="col-12 mb-2 mt-2">
+						<div class="col-12 mb-2 mt-4">
 							<div class="row">
 								<div class="col-4 col-lg-4">
 									<div class="app-card app-card-stat shadow-sm h-100">
