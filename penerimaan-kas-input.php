@@ -241,6 +241,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="assets/js/app.js"></script>
   <script src="assets/js/custom.js"></script>
   <script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+    const selectElement = document.getElementById('mySelect');
+
+    selectElement.addEventListener('change', (event) => {
+        const selectedValue = event.target.value;
+        console.log(`Selected ID: ${selectedValue}`);
+      });
+    });
+
     $(document).ready(function() {
       $('#pasien').change(function() {
         var selectedPatient = $(this).val();
