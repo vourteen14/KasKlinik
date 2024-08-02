@@ -2,6 +2,10 @@
 include './config/config.php';
 $isPage = 'penerimaan-kas';
 
+function formatNumber($number) {
+  return number_format($number, 0, '', '.');
+}
+
 // Fungsi untuk mendapatkan total item dari database
 function getTotalItems($searchQuery)
 {
@@ -188,7 +192,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell"><?php echo htmlspecialchars($row['medicine']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['created_at']); ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['doctor']); ?></td>
-													<td class="cell">Rp. <?php echo htmlspecialchars($row['total_price']); ?></td>
+													<td class="cell">Rp. <?php echo formatNumber(htmlspecialchars($row['total_price'])); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<a class="btn-sm app-btn-primary me-1" href="./penerimaan-kas-edit.php?id=<?php echo htmlspecialchars($row['id'] ?? ''); ?>">Edit</a>
