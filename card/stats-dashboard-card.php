@@ -68,7 +68,7 @@ function formatNumber($number) {
 					$row = $result->fetch(PDO::FETCH_ASSOC);
 					$balance = $row["balance"];
 					
-					echo "<div class=\"stats-figure\">" . $balance . "</div>";
+					echo "<div class=\"stats-figure\">" . formatNumber($balance) . "</div>";
 				} else {
 					echo "<div class=\"stats-figure\">0</div>";
 				}
@@ -94,7 +94,7 @@ function formatNumber($number) {
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
 
-						echo "<div class=\"stats-figure\">" . formatNumber($total) . "</div>";
+						echo "<div class=\"stats-figure\">" . $total . "</div>";
 					}
 				} else {
 					echo "0 results";
