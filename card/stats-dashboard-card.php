@@ -2,7 +2,7 @@
 include './config/config.php';
 
 function formatNumber($number) {
-  return number_format($number, 0, '', ',');
+  return number_format($number, 0, '', '.');
 }
 
 ?>
@@ -21,7 +21,7 @@ function formatNumber($number) {
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
 
-						echo "<div class=\"stats-figure\">" . $total . "</div>";
+						echo "<div class=\"stats-figure\">" . formatNumber($total) . "</div>";
 					}
 				} else {
 					echo "0 results";
@@ -45,7 +45,7 @@ function formatNumber($number) {
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
 
-						echo "<div class=\"stats-figure\">" . $total . "</div>";
+						echo "<div class=\"stats-figure\">" . formatNumber($total) . "</div>";
 					}
 				} else {
 					echo "0 results";
