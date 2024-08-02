@@ -16,13 +16,8 @@ include './config/config.php';
 					// Mengambil data dari setiap baris
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
-						if ($total >= 1000000) {
-							echo "<div class=\"stats-figure\">" . number_format($total / 1000000, 1, ',', '.') . " juta</div>";
-						} elseif ($total >= 1000) {
-							echo "<div class=\"stats-figure\">" . round($total / 1000) . " ribu</div>";
-						} else {
-							echo "<div class=\"stats-figure\">" . $total . "</div>";
-						}
+
+						echo "<div class=\"stats-figure\">" . $total . "</div>";
 					}
 				} else {
 					echo "0 results";
@@ -45,13 +40,8 @@ include './config/config.php';
 					// Mengambil data dari setiap baris
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
-						if ($total >= 1000000) {
-							echo "<div class=\"stats-figure\">" . number_format($total / 1000000, 1, ',', '.') . " juta</div>";
-						} elseif ($total >= 1000) {
-							echo "<div class=\"stats-figure\">" . round($total / 1000) . " ribu</div>";
-						} else {
-							echo "<div class=\"stats-figure\">" . $total . "</div>";
-						}
+
+						echo "<div class=\"stats-figure\">" . $total . "</div>";
 					}
 				} else {
 					echo "0 results";
@@ -73,13 +63,8 @@ include './config/config.php';
 				if ($result->rowCount() > 0) {
 					$row = $result->fetch(PDO::FETCH_ASSOC);
 					$balance = $row["balance"];
-					if ($balance >= 1000000) {
-						echo "<div class=\"stats-figure\">" . number_format($balance / 1000000, 1, ',', '.') . " juta</div>";
-					} elseif ($balance >= 1000) {
-						echo "<div class=\"stats-figure\">" . round($balance / 1000) . " ribu</div>";
-					} else {
-						echo "<div class=\"stats-figure\">" . $balance . "</div>";
-					}
+					
+					echo "<div class=\"stats-figure\">" . $balance . "</div>";
 				} else {
 					echo "<div class=\"stats-figure\">0</div>";
 				}
