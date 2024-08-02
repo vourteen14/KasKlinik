@@ -1,6 +1,10 @@
 <?php
 include './config/config.php';
 
+function formatNumber($number) {
+  return number_format($number, 0, '', ',');
+}
+
 ?>
 
 <div class="row g-4 mb-4">
@@ -89,7 +93,8 @@ include './config/config.php';
 					// Mengambil data dari setiap baris
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
-						echo "<div class=\"stats-figure\">" . $total . "</div>";
+
+						echo "<div class=\"stats-figure\">" . formatNumber($total) . "</div>";
 					}
 				} else {
 					echo "0 results";
