@@ -21,10 +21,10 @@ function formatNumber($number) {
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
 
-						echo "<div class=\"stats-figure\">" . formatNumber($total) . "</div>";
+						echo "<div class=\"stats-figure\">Rp. " . formatNumber($total) . "</div>";
 					}
 				} else {
-					echo "0 results";
+					echo "<div class=\"stats-figure\">Rp. 0</div>";
 				}
 				?>
 				<div class="stats-meta text-success">Rupiah</div>
@@ -45,10 +45,10 @@ function formatNumber($number) {
 					while ($row = $result->fetch()) {
 						$total = $row["total"];
 
-						echo "<div class=\"stats-figure\">" . formatNumber($total) . "</div>";
+						echo "<div class=\"stats-figure\">Rp. " . formatNumber($total) . "</div>";
 					}
 				} else {
-					echo "0 results";
+					echo "<div class=\"stats-figure\">Rp. 0</div>";
 				}
 				?>
 				<div class="stats-meta text-success">Rupiah</div>
@@ -68,9 +68,9 @@ function formatNumber($number) {
 					$row = $result->fetch(PDO::FETCH_ASSOC);
 					$balance = $row["balance"];
 					
-					echo "<div class=\"stats-figure\">" . formatNumber($balance) . "</div>";
+					echo "<div class=\"stats-figure\">Rp. " . formatNumber($balance) . "</div>";
 				} else {
-					echo "<div class=\"stats-figure\">0</div>";
+					echo "<div class=\"stats-figure\">Rp. 0</div>";
 				}
 				?>
 				<div class="stats-meta text-success">Rupiah</div>
