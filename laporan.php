@@ -2,6 +2,10 @@
 include './config/config.php';
 $isPage = 'laporan';
 
+function formatNumber($number) {
+  return number_format($number, 0, '', '.');
+}
+
 // Fungsi untuk mendapatkan total item dari database
 function getTotalItems($searchQuery)
 {
@@ -232,7 +236,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 					</div>
 					<div class="col-6">
 						<div class="col-12">
-							<h1 class="app-page-title mb-0">Statistik Transaksi</h1>
+							<h1 class="app-page-title mb-0">Statistik Transaksi Bulanan</h1>
 						</div>
 						<div class="col-12 mb-2 mt-4">
 							<div class="row">
@@ -326,7 +330,7 @@ $offset = ($page - 1) * $itemsPerPage; // Menghitung offset untuk nomor baris
 													<td class="cell"><?php echo htmlspecialchars($row['transaction_id']); ?></td>
 													<td class="cell"><?php if (htmlspecialchars($row['type']) == 'IN') { echo 'Transaksi Masuk'; } else { echo 'Transaksi Keluar'; } ?></td>
 													<td class="cell"><?php echo htmlspecialchars($row['created_at']); ?></td>
-													<td class="cell"><?php echo htmlspecialchars($row['price']); ?></td>
+													<td class="cell">Rp. <?php echo formatNumber(htmlspecialchars($row['price'])); ?></td>
 													<td class="cell">
 														<div class="d-flex justify-content-between w-50">
 															<?php if(htmlspecialchars($row['type']) == 'IN') { 
